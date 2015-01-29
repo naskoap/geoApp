@@ -18,6 +18,7 @@ var map;
 var infowindow;
 var marker;
 
+//Construct building coordinates
 var fulford = new google.maps.LatLng(35.20479,-85.92166);
 var walsh = new google.maps.LatLng(35.20479,-85.91960);
 var mcclurg = new google.maps.LatLng(35.20321,-85.92009);
@@ -28,6 +29,7 @@ var stirlings = new google.maps.LatLng(35.20528,-85.91656);
 var sut = new google.maps.LatLng(35.20402, -85.92155);
 var gamma = new google.maps.LatLng(35.20622,-85.91526);
 
+//Store them in an array
 var locationArray = [fulford,walsh,mcclurg,allsaints,bookstore,woods,stirlings,sut,gamma];
 var locationNameArray = ['Fulford','Walsh-Ellett','McClurg','All Saints Chapel',
 'Barnes&Noble','Woods','Stirlings','Thompson Union','Gamma'];
@@ -42,7 +44,7 @@ var mapOptions = {
     };
 
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
+  //Infobox content
   var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
