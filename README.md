@@ -16,6 +16,7 @@
     <script>
 var map;
 var infowindow;
+var marker;
 
 var fulford = new google.maps.LatLng(35.20479,-85.92166);
 var walsh = new google.maps.LatLng(35.20479,-85.91960);
@@ -28,23 +29,53 @@ var sut = new google.maps.LatLng(35.20402, -85.92155);
 var gamma = new google.maps.LatLng(35.20622,-85.91526);
 
 var locationArray = [fulford,walsh,mcclurg,allsaints,bookstore,woods,stirlings,sut,gamma];
+var locationNameArray = ['Fulford','Walsh-Ellett','McClurg','All Saints Chapel',
+'Barnes&Noble','Woods','Stirlings','Thompson Union','Gamma'];
 
 function initialize() {
+  
 var theCenter = new google.maps.LatLng(35.20438,-85.92016);
 
-  map = new google.maps.Map(document.getElementById('map-canvas'), {
+var mapOptions = {
     center: theCenter,
-    zoom: 17
-  });
+    zoom: 17   
+    };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">Fulford</h1>'+
+      '<div id="bodyContent">'+
+      '<p>Welcome to Fulford!</p>'+
+      '</div>'+
+      '</div>';
 
   var request = {
     location: theCenter,
     radius: 500,
-    types: ['store']
-  };
-  infowindow = new google.maps.InfoWindow();
+    };
+    
+  infowindow = new google.maps.InfoWindow({
+    content: contentString
+    });
+    
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
+  
+  var coord;
+   for (coord in locationArray) {
+    var marker = new google.maps.Marker({
+      position: locationArray[coord],
+      map: map,
+      title: locationNameArray[coord]
+      });
+  
+    google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map, marker);
+  });
+}
 
 }
 
@@ -54,23 +85,6 @@ function callback(results, status) {
       createMarker(results[i]);
     }
   }
-}
-
-function createMarker(place) {
-  
-   var coord;
-   for (coord in locationArray) {
-    var marker = new google.maps.Marker({
-      position: locationArray[coord],
-      map: map,
-      //title: locationNameArray[coord]
-    });
-  }
-  
-    google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent(place.name);
-    infowindow.open(map, this);
-  });
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
