@@ -12,7 +12,18 @@
         margin: 0px;
         padding: 0px
       }
+	  #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
     </style>
+</script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
     <script src="buildings.js"> </script>
     <script src="coords.js"> </script>
@@ -22,7 +33,10 @@
 var map;
 var infowindow;
 var marker;
-
+var currentLocation;
+//Empty array for clearing the userLocation marker
+var markersArray = [];
+var positionTimer;
 //Store them in an array
 var locationArray = [fulford,walsh,mcclurg,allsaints,bookstore,woods,stirlings,sut,gamma];
 var locationNameArray = ['Fulford','Walsh-Ellett','McClurg','All Saints Chapel',
@@ -88,33 +102,60 @@ var mapOptions = {
     location: theCenter,
     radius: 500,
     };
-  
-    navigator.geolocation.getCurrentPosition(function(pos) {
-    var lat = pos.coords.latitude;
-    var lng = pos.coords.longitude;
-    directionsDisplay = new google.maps.DirectionsRenderer();
-    var latlng = new google.maps.LatLng(lat, lng);
 
-    geocoder.geocode({'latLng': latlng}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        if (results[0]) {
-              marker = new google.maps.Marker({
-              position: latlng,
-              map: map
-          });
-          currentLocation = results[0].formatted_address;
-          infowindow.setContent(results[0].formatted_address);
-          infowindow.open(map, marker);
-        } else {
-          alert('No results found');
-        }
-      } else {
-        alert('Geocoder failed due to: ' + status);
-      }
+
+  navigator.geolocation.getCurrentPosition(function(pos) {
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  currentLocation = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+
+if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(displayAndWatch, locError, {
+            enableHighAccuracy : true,
+            timeout : 60000,
+            maximumAge : 0
+        });
+    } else {
+        alert("Your phone does not support the Geolocation API");
+    }
+   function locError(error){alert("the location could not be found!")}
+
+function displayAndWatch(pos){
+    // set current position
+    setUserLocation(pos);
+    // watch position
+    watchCurrentPosition();
+}
+
+function setUserLocation(pos) {
+    // marker for userLocation
+    userLocation = new google.maps.Marker({
+           map : map,
+           position : new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+           title : "You are here",
+}
+  )//push the marker into an array to be cleared
+           markersArray.push(userLocation);
+    };
+
+function watchCurrentPosition() {
+        positionTimer = navigator.geolocation.watchPosition(function(position) {
+        setMarkerPosition(userLocation, position);
+        
     });
-    directionsDisplay.setMap(map);
-  });
-  
+}
+/*function watchCurrentPosition1() {
+        positionTimer = navigator.geolocation.watchPosition(function(currentLocation) {
+        setMarkerPosition(currentLocation, position);
+        
+    });
+}*/
+    
+function setMarkerPosition(marker, position) {
+     marker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+     console.log(position);
+}
+directionsDisplay.setMap(map);});
+
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
       //Construct markers
@@ -135,7 +176,12 @@ var mapOptions = {
     infowindow.open(map, marker);
   });
  }
-
+//Create the function that will clear the userLocation marker
+function clearOverlays() {
+  for (var i = 0; i < markersArray.length; i++ ) {
+   markersArray[i].setMap(null);
+  }
+}
  function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
@@ -143,15 +189,13 @@ var mapOptions = {
     }
   }
 }
- 
 google.maps.event.addDomListener(window, 'load', initialize);
-//window.onload = geolocateUser;
   </script> 
   </head>
   <body>
 <div id="panel">
     <b>Directions to</b>
-      <select id="end" onchange="calcRoute();">
+      <select id="end" onchange="calcRoute();clearOverlays();navigator.geolocation.clearWatch( positionTimer )">
       <option value="27 Canterbury Way, Sewanee, TN, 37375">    27 Canterbury</option>
       <option value="92 Dubose Ln, Sewanee, TN 37375"> 	 	Gailor Hall</option>
       <option value="1260 University Avenue, Sewanee, TN 37375">Hospital</option>
