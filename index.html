@@ -21,7 +21,7 @@
         border: 1px solid #999;
       }
     </style>
-</script>
+</script> 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
     <script src="buildings.js"> </script>
     <script src="coords.js"> </script>
@@ -32,7 +32,7 @@ var map;
 var infowindow, infowindow1;
 var marker;
 
-//Store them in an array
+//Store markers in an array
 var locationArray = [fulford,walsh,mcclurg,allsaints,bookstore,woods,stirlings,sut,gamma];
 var locationNameArray = ['Fulford','Walsh-Ellett','McClurg','All Saints Chapel',
 'Barnes&Noble','Woods','Stirlings','Thompson Union','Gamma'];
@@ -48,6 +48,7 @@ var mapOptions = {
 
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   
+  //Make polygons interactive - their position in the array is shown upon onMouseClick
   var addListenersOnPolygon = function(polygon) {
   google.maps.event.addListener(polygon, 'click', function (event) {
   alert(polygon.indexID);
@@ -82,7 +83,7 @@ var mapOptions = {
     });
     q.setMap(map);
     addListenersOnPolygon(q);
-}
+}    
      var infoArray = [fulfordStr,walshStr,mcclurgStr,allsaintsStr,bookStr,woodsStr,stirlingsStr,sutStr,gammaStr]; 
  
     infowindow = new google.maps.InfoWindow({
@@ -98,18 +99,20 @@ var mapOptions = {
     radius: 500,
     };
   
+    // Locate the user's current position on the map 
     navigator.geolocation.getCurrentPosition(function(pos) {
     var lat = pos.coords.latitude;
     var lng = pos.coords.longitude;
     directionsDisplay = new google.maps.DirectionsRenderer();
     var latlng = new google.maps.LatLng(lat, lng);
 
+    // Use the geocoder method to transform the geographical coordinates into addresses
     geocoder.geocode({'latLng': latlng}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         if (results[0]) {
               marker = new google.maps.Marker({
               position: latlng,
-    	      icon: 'blue-dot.png',
+    	      icon: 'blue-dot.png', // Create a marker in a different color
               map: map
           });
           currentLocation = latlng;
@@ -125,10 +128,12 @@ var mapOptions = {
     directionsDisplay.setMap(map);
   });
   
+  // Put a new marker on the preexisting route of point A and point B
   function setMarkerPosition(marker, position) {
      marker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
      console.log(position);}
 
+  // Get and update the user's position
   function watchCurrentPosition() {
     var positionTimer = navigator.geolocation.watchPosition(function(position) {
     setMarkerPosition(userLocation, position);
@@ -171,6 +176,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <body>
 <div id="panel">
     <b>Directions to</b>
+      <!-- Add the locations as coordinates as opposed to addresses -->
       <select id="end" onchange="calcRoute()">
       <option value="(35.21453470927821,-85.9375570689474)">    27 Canterbury</option>
       <option value="(35.202682963315375,-85.91974720108851)"> Gailor Hall</option>
