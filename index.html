@@ -1,6 +1,4 @@
-<!-- 
- geoApp
- Geolocation map of Sewanee -->
+<!-- <!-- geoApp Geolocation map of Sewanee -->
 <html>
   <head>
     <title> Sewanee map </title>
@@ -28,232 +26,156 @@
     <script src="buildings.js"> </script>
     <script src="coords.js"> </script>
     <script src="direct.js"> </script>
-    <script type="text/javascript">
-
+    <script>
+  
 var map;
-var infowindow;
-var marker, marker1;
-var coords = new google.maps.LatLng(35.20438,-85.92016);
-var markersArray = [];
-var positionTimer;
+var infowindow, infowindow1;
+var marker;
+
+//Store them in an array
 var locationArray = [fulford,walsh,mcclurg,allsaints,bookstore,woods,stirlings,sut,gamma];
 var locationNameArray = ['Fulford','Walsh-Ellett','McClurg','All Saints Chapel',
 'Barnes&Noble','Woods','Stirlings','Thompson Union','Gamma'];
 
-
-/*function setMarker(pos) {
-	var lat = pos.coords.latitude, 
-	    lng = pos.coords.longitude;
-	    coords = new google.maps.LatLng(lat, lng);
-	    marker1 = new google.maps.Marker({
-	    map: map,
-	    position: coords,
-	    title: "Current Position"
-}
-  );
-	    map.panTo(coords);
-}*/
-
 function initialize() {
+  
+var theCenter = new google.maps.LatLng(35.20438,-85.92016);
 
-	var mapOptions = {
-    	center: coords,
-    	zoom: 17   
-};
-
-	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-   
-	var infowindow1 = new google.maps.InfoWindow({
-     	 content: ""
-}
-  );
- 
-	if (navigator.geolocation) {
-    	navigator.geolocation.getCurrentPosition(setMarker);
-  	} else {
-    	alert("Your browser does not support the Geolocation API");
-}
-
-function setMarker(pos) {
-	var lat = pos.coords.latitude, 
-	    lng = pos.coords.longitude;
-	    coords = new google.maps.LatLng(lat, lng);
-	    marker1 = new google.maps.Marker({
-	    map: map,
-	    position: coords,
-	    title: "Current Position"
-}
-  );
-	    map.panTo(coords);
-            directionsDisplay = new google.maps.DirectionsRenderer();
-            markersArray.push(marker1);
-
-
-  	    positionTimer = navigator.geolocation.watchPosition(function (pos) {
-    	var lat = pos.coords.latitude, 
-     	    lng = pos.coords.longitude;
-   	coords = new google.maps.LatLng(lat, lng);
-    	marker1.setPosition(coords);
-    	map.panTo(coords);
-}
-       
-  );
-        directionsDisplay.setMap(map)
-     }
-
-  	var addListenersOnPolygon = function(polygon) {
-  	google.maps.event.addListener(polygon, 'click', function (event) {
-  	alert(polygon.indexID);
-}
-  );  
-     }
-
- 	for (var i = 0; i < dormsArray.length; i++) {
-    
-    	var p = new google.maps.Polygon({
-    	paths: dormsArray[i],
-    	strokeColor: '#FF0000',
-    	strokeOpacity: 0.8,
-    	strokeWeight: 2,
-    	fillColor: '#FF0000',
-    	fillOpacity: 0.35,
-    	indexID: i
-}
-  );
-    	p.setMap(map);
-    	addListenersOnPolygon(p);
-}
-
- 	for (var j = 0; j < fratArray.length; j++) {
-    
-   	 var q = new google.maps.Polygon({
-    	 paths: fratArray[j],
-   	 strokeColor: '#CCFFEE',
-   	 strokeOpacity: 0.2,
-   	 strokeWeight: 2,
-   	 fillColor: '#CCFF10',
-   	 fillOpacity: 0.35,
-   	 indexID: j
-}
-  );
-    	q.setMap(map);
-    	addListenersOnPolygon(q);
-}
-     	var infoArray = [fulfordStr,walshStr,mcclurgStr,allsaintsStr,bookStr,woodsStr,stirlingsStr,sutStr,gammaStr]; 
- 
-    	infowindow = new google.maps.InfoWindow({
-   	 content: ""
-}
-  );
-   
-    	var request = {
-    	location: coords,
-    	radius: 500,
-};
-
-/*Old Code
-	navigator.geolocation.getCurrentPosition(function(pos) {
-  	directionsDisplay = new google.maps.DirectionsRenderer();
-  	currentLocation = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-
-	if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(displayAndWatch, locError, {
-            enableHighAccuracy : true,
-            timeout : 60000,
-            maximumAge : 0
-}
-  );
-    } 
-	else {
-        alert("Your phone does not support the Geolocation API");
-}
-
-function locError(error){alert("the location could not be found!")}
-
-function displayAndWatch(pos){
-    	// set current position
-    	setUserLocation(pos);
-    	// watch position
-    	watchCurrentPosition();
-}
-
-function setUserLocation(pos) {
-    	// marker for userLocation
-   	userLocation = new google.maps.Marker({
-        map : map,
-        position : new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-        title : "You are here",
-}
-  )	//push the marker into an array to be cleared
-        markersArray.push(userLocation);
+var mapOptions = {
+    center: theCenter,
+    zoom: 17   
     };
 
-function watchCurrentPosition() {
-        positionTimer = navigator.geolocation.watchPosition(function(position) {
-        setMarkerPosition(userLocation, position);
-}
-  );
-     }
-
-function setMarkerPosition(marker, position) {
-     	marker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-        console.log(position);
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  
+  var addListenersOnPolygon = function(polygon) {
+  google.maps.event.addListener(polygon, 'click', function (event) {
+  alert(polygon.indexID);
+  });  
 }
 
-	directionsDisplay.setMap(map);});*/
-
-  	var service = new google.maps.places.PlacesService(map);
- 		service.nearbySearch(request, callback);
-        //Construct markers
-      	for (var i=0; i<locationArray.length; i++) {
-      	var storeV=infoArray[i];
-      	  marker = new google.maps.Marker({
-      	  position: locationArray[i],
-      	  map: map,
-      	  title: locationNameArray[i]
+ for (var i = 0; i < dormsArray.length; i++) {
+    
+    var p = new google.maps.Polygon({
+    paths: dormsArray[i],
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35,
+    indexID: i
+    });
+    p.setMap(map);
+    addListenersOnPolygon(p);
 }
-  );
-	  linkInfoWindow(marker, map, infowindow, storeV);
-     }
+
+ for (var j = 0; j < fratArray.length; j++) {
+    
+    var q = new google.maps.Polygon({
+    paths: fratArray[j],
+    strokeColor: '#CCFFEE',
+    strokeOpacity: 0.2,
+    strokeWeight: 2,
+    fillColor: '#CCFF10',
+    fillOpacity: 0.35,
+    indexID: j
+    });
+    q.setMap(map);
+    addListenersOnPolygon(q);
+}
+     var infoArray = [fulfordStr,walshStr,mcclurgStr,allsaintsStr,bookStr,woodsStr,stirlingsStr,sutStr,gammaStr]; 
+ 
+    infowindow = new google.maps.InfoWindow({
+    content: ""
+    });
+
+    infowindow1 = new google.maps.InfoWindow({
+    content: ""
+    });
+   
+    var request = {
+    location: theCenter,
+    radius: 500,
+    };
+  
+    navigator.geolocation.getCurrentPosition(function(pos) {
+    var lat = pos.coords.latitude;
+    var lng = pos.coords.longitude;
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    var latlng = new google.maps.LatLng(lat, lng);
+
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[0]) {
+              marker = new google.maps.Marker({
+              position: latlng,
+    	      icon: 'blue-dot.png',
+              map: map
+          });
+          currentLocation = latlng;
+          infowindow1.setContent(results[0].formatted_address);
+          infowindow1.open(map, marker);
+          } else {
+          alert('No results found');
+        }
+      } else {
+        alert('Geocoder failed due to: ' + status);
+      }
+    });
+    directionsDisplay.setMap(map);
+  });
+  
+  function setMarkerPosition(marker, position) {
+     marker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+     console.log(position);}
+
+  function watchCurrentPosition() {
+    var positionTimer = navigator.geolocation.watchPosition(function(position) {
+    setMarkerPosition(userLocation, position);
+    map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+    });
+}
+
+  var service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, callback);
+      //Construct markers
+      for (var i=0; i<locationArray.length; i++) {
+      var storeV=infoArray[i];
+      marker = new google.maps.Marker({
+      position: locationArray[i],
+      map: map,
+      title: locationNameArray[i]
+    });
      
-   	
-}
-//Connect the description with the appropriate marker
-function linkInfoWindow(marker, map, infowindow, description) {
+    linkInfoWindow(marker, map, infowindow, storeV);
+ }
+}   //Connect the description with the appropriate marker
+    function linkInfoWindow(marker, map, infowindow, description) {
+    google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent(description);
+    infowindow.open(map, marker);
+  });
+ }
 
-    	google.maps.event.addListener(marker, 'click', function() {
-    	infowindow.setContent(description);
-    	infowindow.open(map, marker);
-}
-  );
-     }
-//Create the function that will clear the userLocation marker
-function clearOverlays() {
-
-  	for (var i = 0; i < markersArray.length; i++ ) {
-   	markersArray[i].setMap(null);
-}
-  }
-function callback(results, status) {
-
-  	if (status == google.maps.places.PlacesServiceStatus.OK) {
-    	for (var i = 0; i < results.length; i++) {
-        createMarker(results[i]);
-}
-  }
+ function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      createMarker(results[i]);
     }
-	google.maps.event.addDomListener(window, 'load', initialize);
+  }
+}
+window.setInterval(navigator.geolocation, 200);
+google.maps.event.addDomListener(window, 'load', initialize);
   </script> 
   </head>
   <body>
 <div id="panel">
     <b>Directions to</b>
-      <select id="end" onchange="calcRoute();clearOverlays();navigator.geolocation.clearWatch( positionTimer )">
-      <option value="27 Canterbury Way, Sewanee, TN, 37375">    27 Canterbury</option>
-      <option value="92 Dubose Ln, Sewanee, TN 37375"> 	 	Gailor Hall</option>
-      <option value="1260 University Avenue, Sewanee, TN 37375">Hospital</option>
-      <option value="740 University Avenue, Sewanee, TN 37375"> Walsh-Ellett Hall</option>
-      <option value="new google.maps.LatLng(35.20424,-85.91928);">  Gamma</option>
+      <select id="end" onchange="calcRoute()">
+      <option value="(35.21453470927821,-85.9375570689474)">    27 Canterbury</option>
+      <option value="(35.202682963315375,-85.91974720108851)"> Gailor Hall</option>
+      <option value="(35.20816088524198,-85.9140354369913)">Hospital</option>
+      <option value="(35.20485598596547,-85.91960370290622)"> Walsh-Ellett Hall</option>
     </select>
     </div>
   <div id="out"></div>
