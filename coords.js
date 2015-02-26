@@ -8,6 +8,12 @@ var stirlings = new google.maps.LatLng(35.20528,-85.91656);
 var sut = new google.maps.LatLng(35.20402, -85.92155);
 var gamma = new google.maps.LatLng(35.20622,-85.91526);
 
+var locationArray = [fulford,walsh,mcclurg,allsaints,bookstore,woods,stirlings,sut,gamma];
+var locationNameArray = ['Fulford','Walsh-Ellett','McClurg','All Saints Chapel',
+'Barnes&Noble','Woods','Stirlings','Thompson Union','Gamma'];
+
+var infoArray =  [fulfordStr,walshStr,mcclurgStr,allsaintsStr,bookStr,woodsStr,stirlingsStr,sutStr,gammaStr];
+
 var cannon = new google.maps.LatLng(35.20468,-85.92264);
 var smith = new google.maps.LatLng(35.20469,-85.92211);
 var benedict = new google.maps.LatLng(35.20746,-85.91716);
