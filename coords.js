@@ -8,6 +8,13 @@ var stirlings = new google.maps.LatLng(35.20528,-85.91656);
 var sut = new google.maps.LatLng(35.20402, -85.92155);
 var gamma = new google.maps.LatLng(35.20622,-85.91526);
 
+var cannon = new google.maps.LatLng(35.20468,-85.92264);
+var smith = new google.maps.LatLng(35.20469,-85.92211);
+var benedict = new google.maps.LatLng(35.20746,-85.91716);
+var stLukes = new google.maps.LatLng(35.20608,-85.91883);
+
+var dormMarkerarray = [cannon, smith, benedict, stLukes];
+
 
   var elliotCoords =  [new google.maps.LatLng(35.200591, -85.921505),
                        new google.maps.LatLng(35.200651,-85.921477),
