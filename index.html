@@ -23,16 +23,16 @@
 	  #panel {
         position: absolute;
         top: 70px;
-		margin-left: 300px;
+		margin-left: 850px;
         z-index: 100;
         background-color: #fff;
         padding: 5px;
         border: 1px solid #999;
-      }
-       #panel2 {
+		}
+	  #panel2 {
         position: absolute;
         top: 70px;
-		margin-left: 1200px;
+		margin-left: 300px;
         z-index: 100;
         background-color: #fff;
         padding: 5px;
@@ -57,7 +57,7 @@
 	  -webkit-border-radius: 40px;
 	  border-radius:         40px;
 	  border: 1px solid #999;
-	  padding: 5px;
+	  padding: 10px;
 	  }
 	 
     </style>
@@ -72,33 +72,35 @@ var map;
 var infowindow;
 var marker, marker1, posMarker, dMarker;
 var coords = new google.maps.LatLng(35.20438,-85.92016);
-//var markersArray = [];
+var markersArray = [];
 var positionTimer;
-
+var locationArray = [fulford,walsh,mcclurg,allsaints,bookstore,woods,stirlings,sut,gamma];
+var locationNameArray = ['Fulford','Walsh-Ellett','McClurg','All Saints Chapel',
+'Barnes&Noble','Woods','Stirlings','Thompson Union','Gamma'];
 var dormMarkerBox = [];
-var locationBox   = [];
 
-  function initialize() {
-    var mapOptions = {
-    center: coords,
-    zoom: 17   
-  };
 
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+function initialize() {
+
+	var mapOptions = {
+    	center: coords,
+    	zoom: 17
+};
+
+	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
    
-  var infowindow1 = new google.maps.InfoWindow({
-      content: ""
-  });
+	var infowindow1 = new google.maps.InfoWindow({
+     	 content: ""
+}
+  );
  
-  if  (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(setMarker);
-    }
-  else {
-    alert("Your browser does not support the Geolocation API");
-  }
-
-  function setMarker(pos) {
-  	    var lat = pos.coords.latitude, 
+	if  (navigator.geolocation) {
+    	    navigator.geolocation.getCurrentPosition(setMarker);
+  	    } else {
+    	    alert("Your browser does not support the Geolocation API");
+}
+function setMarker(pos) {
+	    var lat = pos.coords.latitude, 
 	    lng = pos.coords.longitude;
 	    coords = new google.maps.LatLng(lat, lng);
 	    posMarker = new google.maps.Marker({
@@ -110,11 +112,9 @@ var locationBox   = [];
   );
 	    map.panTo(coords);
             directionsDisplay = new google.maps.DirectionsRenderer();
-            //markersArray.push(posMarker);
-
 
   	    positionTimer = navigator.geolocation.watchPosition(function (pos) {
-    	var lat = pos.coords.latitude, 
+    	    var lat = pos.coords.latitude, 
      	    lng = pos.coords.longitude;
    	    coords = new google.maps.LatLng(lat, lng);
     	    posMarker.setPosition(coords);
@@ -163,11 +163,12 @@ var locationBox   = [];
     	q.setMap(map);
     	addListenersOnPolygon(q);
 }
-     	 
+     	
  
     	infowindow = new google.maps.InfoWindow({
-   	 content: ""
-});
+        content: ""
+}
+  );
    
     	var request = {
     	location: coords,
@@ -176,58 +177,81 @@ var locationBox   = [];
 
   	var service = new google.maps.places.PlacesService(map);
  		service.nearbySearch(request, callback);
-   }
-   
-  for (var i=0; i<locationArray.length; i++) {
-    var storeV=infoArray[i];
-    marker1 = new google.maps.Marker({
-    position: locationArray[i],
-    map: map,
-    title: locationNameArray[i]});
-    locationBox.push(marker1);
-    linkInfoWindow(marker1, map, infowindow, storeV);
-    }
-	 
-  function linkInfoWindow(marker1, map, infowindow, description) {
-     google.maps.event.addListener(marker1, 'click', function() {
-     infowindow.setContent(description);
-     infowindow.open(map, marker1);
-      });
-    }
-  
-  for (var i=0; i<dormMarkerarray.length; i++){
-    dMarker = new google.maps.Marker({
-    position: dormMarkerarray[i],
-    map: map});    
-    dormMarkerBox.push(dMarker);
-  }
-	 
-   function locationBox2() {
-    if(box2.checked) {
-      for( var i=0; i < locationBox.length; i++)
-        locationBox[i].setMap(map);
-    }else {
-       for(var j=0; j < locationBox.length; j++)
-         locationBox[j].setMap(null);
-     } 
-   }
-	
-  function residenceBox() {
-    if(box1.checked) {
-      for( var i=0; i < dormMarkerBox.length; i++)
-        dormMarkerBox[i].setMap(map);
-    }else {
-       for(var i=0; i < dormMarkerBox.length; i++)
-         dormMarkerBox[i].setMap(null);
-     } 
-   }
 
-  function callback(results, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      for (var i = 0; i < results.length; i++) 
-        createMarker(results[i]);
+
+            } //end of Initialize function
+
+
+      //Construct markers
+      var infoArray =  [fulfordStr,walshStr,mcclurgStr,allsaintsStr,bookStr,woodsStr,stirlingsStr,sutStr,gammaStr]; 
+      for (var i=0; i<= locationArray.length; i++) {
+      var storeV=infoArray[i];
+      marker1 = new google.maps.Marker({
+      position: locationArray[i],
+      map: map,
+      title: locationNameArray[i]
+
+}
+  );
+       markersArray.push(marker1);
+       linkInfoWindow(marker1, map, infowindow, storeV);
+
+     }
+	 
+       function linkInfoWindow(marker1, map, infowindow, description) {
+       google.maps.event.addListener(marker1, 'click', function() {
+       infowindow.setContent(description);
+       infowindow.open(map, marker1);
+}
+    );
+        }
+
+	 for (var o=0; o<dormMarkerarray.length; o++){
+	 dMarker = new google.maps.Marker({
+	 position: dormMarkerarray[o],
+	 map: map
+}
+   );      dormMarkerBox.push(dMarker);
+       }
+	 
+	 function residenceBox() {
+	 if(box1.checked){
+	 for( var m=0; m < dormMarkerBox.length; m++){
+	 dormMarkerBox[m].setMap(map);
+}
     }
+	 if(!box1.checked){
+	 for(var l=0; l < dormMarkerBox.length; l++){
+	 dormMarkerBox[l].setMap(null);
+}
+    }
+	}
+	 function academicBox() {
+	 if(box2.checked){
+	 for(m=0; m < markersArray.length; m++){
+	 markersArray[m].setMap(map);
+}
+    }
+	 if(!box2.checked){
+	 for(l=0; l < markersArray.length; l++){
+	 markersArray[l].setMap(null);
+}
+    }
+	}
+     function routeCalc(){
+	 if(document.getElementById('start').value < 28){
+	 calcRoute();
+	 }
+	 else{calcRoute2();}
+	 }
+
+function callback(results, status) {
+  	if (status == google.maps.places.PlacesServiceStatus.OK) {
+    	for (var i = 0; i < results.length; i++) {
+        //createMarker(results[i]);
+}
   }
+    }
 	google.maps.event.addDomListener(window, 'load', initialize);
   </script> 
   </head>
@@ -236,10 +260,10 @@ var locationBox   = [];
 <h1>Sewanee:The University of the South</h1>
 </div>
 <div id="checkBox">
-<!--<br>
-CheckBoxes Will Be With Us SOON!!<hr><br>-->
+<br>
+CheckBoxes Will Be With Us SOON!!<hr><br>
 <input type="checkbox" id="box1" onchange="residenceBox()"/>Residence Halls<br>
-<input type="checkbox" id="box2" onchange="locationBox2()"/>Academic Buildings<br>
+<input type="checkbox" id="box2" onchange="academicBox()"/>Academic Buildings<br>
 </div>
 <div id="panel">
     <b>Directions to</b>
@@ -275,7 +299,40 @@ CheckBoxes Will Be With Us SOON!!<hr><br>-->
 	  <option value="27">                                        Guerry Hall and Art Gallery</option>
     </select>
     </div>
-  <!-- <div id="panel2"> <b> Panel 2 </b> </div> -->
+  <div id="panel2">
+    <b>Directions From</b>
+    <select id="start" onchange="routeCalc();">
+	  <option value="28">                                        Current Location</option>
+      <option value="4">                            	 	     Gailor Hall</option>
+      <option value="3">                                         Hospital</option>
+      <option value="0">                                         Walsh-Ellett Hall</option>
+      <option value="1">                                         Book Store</option>
+	  <option value="2">                                         Woods/Spencer Hall</option>
+	  <option value="5">                                         McClurg Dining Hall</option>
+	  <option value="6">                                         Fowler Center</option>
+	  <option value="7">                                         Carnegie Hall</option>
+	  <option value="8">                                         DuPoint Library</option>
+	  <option value="9">                                         Bishops Commons</option>
+	  <option value="10">                                        Fulford Hall</option>
+	  <option value="11">                                        All Saints</option>
+	  <option value="12">                                        Thompson Union</option>
+	  <option value="13">                                        St. Lukes Hall</option>
+	  <option value="14">                                        McCrady Hall</option>
+	  <option value="15">                                        Van Ness Hall</option>
+	  <option value="16">                                        Snowden Hall</option>
+	  <option value="17">                                        Archives</option>
+	  <option value="18">                                        Police/Fire Service</option>
+	  <option value="19">                                        Stirlings</option>
+	  <option value="20">                                        McGriff Alumni House</option>
+	  <option value="21">                                        Hoffman Hall</option>
+	  <option value="22">                                        Career Leadership and Development Office</option>
+	  <option value="23">                                        Barnwick Womens Center</option>
+	  <option value="24">                                        EQB</option>
+	  <option value="25">                                        Chen Hall</option>
+	  <option value="26">                                        Convocation Hall</option>
+	  <option value="coords">                                        Guerry Hall and Art Gallery</option>
+    </select>
+    </div>
   <div id="out"></div>
   <div id="map-canvas"></div>
   </body>
