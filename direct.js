@@ -4,6 +4,9 @@ var infowindow = new google.maps.InfoWindow();
 var geocoder   = new google.maps.Geocoder();
 var map;
 var coords;
+var lat;
+var lng;
+
 
 //Marker paths
 var walshElletM = new google.maps.LatLng(35.20458,-85.91990);
@@ -43,6 +46,21 @@ convocation, guerry];
 
 function calcRoute() {
   var request = {
+      origin: navArray[document.getElementById('start').value],
+      destination: navArray[document.getElementById('end').value],
+      travelMode: google.maps.TravelMode.WALKING
+      
+  };
+     
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+  });
+}
+		
+function calcRoute2() {
+  var request = {
       origin: coords,
       destination: navArray[document.getElementById('end').value],
       travelMode: google.maps.TravelMode.WALKING
@@ -55,6 +73,5 @@ function calcRoute() {
     }
   });
 }
-//setInterval(calcRoute, 2500);
 
 google.maps.event.addDomListener(window, 'load', initialize);
