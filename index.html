@@ -105,7 +105,7 @@ function setMarker(pos) {
         coords = new google.maps.LatLng(lat, lng);
         posMarker = new google.maps.Marker({
         map: map,
-        icon: 'blue-dot.png',
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
         position: coords,
         title: "Current Position"
 }
@@ -175,11 +175,9 @@ function setMarker(pos) {
         radius: 500,
 };
 
-      var service = new google.maps.places.PlacesService(map);
-         service.nearbySearch(request, callback);
-
-
-            } //end of Initialize function
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+  } 
 
 
       //Construct markers
@@ -239,7 +237,7 @@ function setMarker(pos) {
     }
     }
      function routeCalc(){
-     if(document.getElementById('start').value < 28){
+     if(document.getElementById('start').value != 28){
      calcRoute();
      }
      else{calcRoute2();}
@@ -267,8 +265,8 @@ CheckBoxes Will Be With Us SOON!!<hr><br>
 </div>
 <div id="panel">
     <b>Directions to</b>
-    <select id="end" onchange="calcRoute();">
-      <option value="27 Canterbury Way, Sewanee, TN, 37375">     27 Canterbury</option>
+    <select id="end" onchange="routeCalc();">
+      <option value="29">                                        Choose Destination</option>
       <option value="4">                                          Gailor Hall</option>
       <option value="3">                                         Hospital</option>
       <option value="0">                                         Walsh-Ellett Hall</option>
@@ -302,8 +300,9 @@ CheckBoxes Will Be With Us SOON!!<hr><br>
   <div id="panel2">
     <b>Directions From</b>
     <select id="start" onchange="routeCalc();">
+      <option value="29">                                        Choose Origin</option>
       <option value="28">                                        Current Location</option>
-      <option value="4">                                          Gailor Hall</option>
+      <option value="4">                                         Gailor Hall</option>
       <option value="3">                                         Hospital</option>
       <option value="0">                                         Walsh-Ellett Hall</option>
       <option value="1">                                         Book Store</option>
