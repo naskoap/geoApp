@@ -99,6 +99,7 @@ function initialize() {
           } else {
             alert("Your browser does not support the Geolocation API");
 }
+// Set blue marker indicating user position
 function setMarker(pos) {
         var lat = pos.coords.latitude,
         lng = pos.coords.longitude;
@@ -112,7 +113,7 @@ function setMarker(pos) {
   );
         map.panTo(coords);
             directionsDisplay = new google.maps.DirectionsRenderer();
-
+          // Update user's location  
           positionTimer = navigator.geolocation.watchPosition(function (pos) {
             var lat = pos.coords.latitude,
              lng = pos.coords.longitude;
@@ -177,6 +178,15 @@ function setMarker(pos) {
 
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch(request, callback);
+    
+    function callback(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          var place = results[i];
+          createMarker(results[i]);
+        }
+      }
+    }
   } 
 
 
@@ -187,11 +197,8 @@ function setMarker(pos) {
       marker1 = new google.maps.Marker({
       position: locationArray[i],
       map: map,
-      title: locationNameArray[i]
-
-}
-  );
-       markersArray.push(marker1);
+      title: locationNameArray[i]});
+       markersArray.push(marker1);  // -> Attempt to push the marker to an array s
        linkInfoWindow(marker1, map, infowindow, storeV);
 
      }
@@ -237,19 +244,12 @@ function setMarker(pos) {
     }
     }
      function routeCalc(){
-     if(document.getElementById('start').value != 28){
-     calcRoute();
-     }
-     else{calcRoute2();}
+       if(document.getElementById('start').value != 28)
+         calcRoute();
+       else
+         calcRoute2();
      }
 
-function callback(results, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-        //createMarker(results[i]);
-}
-  }
-    }
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
   </head>
