@@ -84,10 +84,10 @@ function setMarker(pos) {
           // Update user's location  
           positionTimer = navigator.geolocation.watchPosition(function (pos) {
             var lat = pos.coords.latitude,
-            lng = pos.coords.longitude;
-            coords = new google.maps.LatLng(lat, lng);
+             lng = pos.coords.longitude;
+           coords = new google.maps.LatLng(lat, lng);
             posMarker.setPosition(coords);
-            map.panTo(coords);
+           // map.panTo(coords);
 }
       
   );
@@ -155,10 +155,11 @@ function setMarker(pos) {
         }
       }
     }
- 
+  
 
 
       //Construct markers
+      var infoArray =  [fulfordStr,mcclurgStr,allsaintsStr,bookStr,stirlingsStr,sutStr,gammaStr];
       for (var i=0; i<= locationArray.length; i++) {
       var storeV=infoArray[i];
       marker1 = new google.maps.Marker({
@@ -171,7 +172,6 @@ function setMarker(pos) {
       markersArray[i].setMap(null);
      }
      
- } 
        function linkInfoWindow(marker1, map, infowindow, description) {
        google.maps.event.addListener(marker1, 'click', function() {
        infowindow.setContent(description);
@@ -179,6 +179,7 @@ function setMarker(pos) {
 }
     );
         }
+   } 
 
      for (var o=0; o<dormMarkerarray.length; o++){
      dMarker = new google.maps.Marker({
@@ -239,47 +240,74 @@ function setMarker(pos) {
 
 
 
-function routeCalc(){
-if(document.getElementById('start').value != 28)
-calcRoute();
-else
-calcRoute2();
-}
+     function routeCalc(){
+       if(document.getElementById('start').value != 28)
+         calcRoute();
+       else
+         calcRoute2();
+     }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', initialize);
   </script>
   </head>
   
 <body>																																						
 
+<!--17 closing divs            -->
 
+																																
 <div id="divContainer" class="container"></div>
+																																									
 <div class="container">
+																																										
 <div class="row">
+																																											
 <div class="column">
+																																												
 <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12" style="background-color: #893389;
-height: 60px;" >
-
+                                                            height: 60px;" >
+																																													
 <div id="sewaneeBox" class="topBox">
- <h3 class="text">Sewanee:The University of the South</h3>
+                                                                                                                                                                                    
+                                                                                                                                                
+<h3 class="text">Sewanee:The University of the South</h3>
 <hr>
+
+
+
+
+																																								
 </div>
+																																								
 </div>
+																																										
 </div>
+																																											
 </div>
+
+																																								
 <div class="row">
+                    
 <div class="col-xs-3 col-md-4 col-lg-4 col-xl-4" style="background-color: #BABABA" >
+																																				                    
 <div id="checkBox" class="text-left">
+                                                                                                                                                                                                                                                                           
 <br>
 CheckBoxes Will Be With Us SOON!!<hr><br>
 <input type="checkbox" id="box1" onchange="residenceBox()"/>Residence Halls<br>
 <input type="checkbox" id="box2" onchange="academicBox()"/>University Buildings<br>
 <input type="checkbox" id="box3" onchange="academicBox2()"/>Acadmic Buildings</br>
 
+																																								
 </div>
+																																									
 </div>
 <div class="col-xs-9 col-md-8 col-lg-8 col-xl-8">
+																																									
 <div id="panel">
+                                                                                                                                                                    
+                                                                                                                                                                    
+    <b>Directions to</b>
     <select id="end" onchange="routeCalc();">
       <option value="29">                                        Choose Destination</option>
       <option value="4">                                         Gailor Hall</option>
@@ -311,8 +339,14 @@ CheckBoxes Will Be With Us SOON!!<hr><br>
       <option value="26">                                        Convocation Hall</option>
       <option value="27">                                        Guerry Hall and Art Gallery</option>
     </select>
+																																								
 </div>
+																																									
+																																										
+																																											
 <div id="panel2">
+                                                                                                                                                                            
+                                                                                                                                                                            
     <b>Directions From</b>
     <select id="start" onchange="routeCalc();">
       <option value="29">                                        Choose Origin</option>
@@ -346,11 +380,19 @@ CheckBoxes Will Be With Us SOON!!<hr><br>
       <option value="26">                                        Convocation Hall</option>
       <option value="27">                                        Guerry Hall and Art Gallery</option>
     </select>
+																																										
 </div>
+
+
 <div id="out">
+																																											            
 </div>
+																									
 <div id="map-canvas">
+																																																    
 </div>
-</div><div></div></div></div>
-</body>
+      
+                                                        </div><div></div></div></div>
+                                                        
+  </body>
   </html>
