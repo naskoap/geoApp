@@ -1,4 +1,4 @@
-<!--
+<!-- 
  geoApp
  Geolocation map of Sewanee -->
 <html>
@@ -11,80 +11,93 @@
         height: 100%;
         margin: 0px;
       }
-      #map-canvas {
-        top: 10px;
+	  #map-canvas {
+	    top: 30px;
         height: 85%;
         margin: 0px;
         padding: 0px;
-        margin: 50px 5px 20px 260px;
-        border-style: solid;
-        border-width: 2px
-        }
-      #panel {
+	margin: 50px 5px 20px 260px;
+	border-style: solid;
+	border-width: 2px
+		}
+	  #panel {
         position: absolute;
-        top: 70px;
-        margin-left: 850px;
-        z-index: 100;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        }
-      #panel2 {
-        position: absolute;
-        top: 70px;
-        margin-left: 300px;
+        top: 100px;
+	margin-left: 260px;
         z-index: 100;
         background-color: #fff;
         padding: 5px;
         border: 1px solid #999;
       }
-      #sewaneeBox {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      height: 50px;
-      width: 100%;
-      background-color: #8A2BE2;
-      padding: 5px;
-      }
-      #checkBox {
-      position: absolute;
-      top: 70px;
-      left: 5px;
-      height: 70%;
-      width: 240px;
-      background-color: #E0E0E0;
-      -webkit-border-radius: 40px;
-      border-radius:         40px;
-      border: 1px solid #999;
-      padding: 10px;
-      }
-     
+	  	  #panel2 {
+        position: absolute;
+        top: 100px;
+        margin-left: 720px;
+        z-index: 100;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+}
+	    #sewaneeBox {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 55px;
+        width: 100%;
+        background-color: #3D007A;
+        padding: 5px;
+        border-bottom: 2px solid;
+}
+          div.dropDown{
+        background-color: #ffffff;
+        border: 1px solid black;
+        opacity: 0.8;
+        filter: alpha(opacity=60);
+        width: 40px;
+}
+	  #checkBox {
+        position: absolute;
+        top: 70px;
+        left: 5px;
+        height: 84%;
+        width: 240px;
+        background-color: #E0E0E0;
+        -moz-border-radius: 40px;
+        -webkit-border-radius: 40px;
+        border-radius:         40px;
+        border: 1px solid #999;
+        padding: 5px;
+	  }
+         img.logo{
+        width: 300px;
+        height: 60px;
+}
+	 
     </style>
 </script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
     <script src="buildings.js"> </script>
     <script src="coords.js"> </script>
     <script src="direct.js"> </script>
+    <script src="detectMobileBrowser.js"></script>
     <script type="text/javascript">
 
 var map;
 var infowindow;
-var marker, marker1, posMarker, dMarker;
+var marker, marker1, posMarker, dMarker, aMarker;
 var coords = new google.maps.LatLng(35.20438,-85.92016);
 var markersArray = [];
 var positionTimer;
-var locationArray = [fulford,walsh,mcclurg,allsaints,bookstore,woods,stirlings,sut,gamma];
-var locationNameArray = ['Fulford','Walsh-Ellett','McClurg','All Saints Chapel',
-'Barnes&Noble','Woods','Stirlings','Thompson Union','Gamma'];
-var dormMarkerBox = [];
 
+var dormMarkerBox = [];
+var academicMBox = [];
 
 function initialize() {
 
     var mapOptions = {
         center: coords,
-        zoom: 17
+        zoom: 17,
+        maxZoom: 20
 };
 
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -115,8 +128,8 @@ function setMarker(pos) {
             directionsDisplay = new google.maps.DirectionsRenderer();
           // Update user's location  
           positionTimer = navigator.geolocation.watchPosition(function (pos) {
-            var lat = pos.coords.latitude,
-             lng = pos.coords.longitude;
+           var lat = pos.coords.latitude,
+           lng = pos.coords.longitude;
            coords = new google.maps.LatLng(lat, lng);
             posMarker.setPosition(coords);
            // map.panTo(coords);
@@ -183,26 +196,31 @@ function setMarker(pos) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
           var place = results[i];
-          createMarker(results[i]);
+          //createMarker(results[i]);
         }
       }
     }
-  } 
 
 
       //Construct markers
-      var infoArray =  [fulfordStr,walshStr,mcclurgStr,allsaintsStr,bookStr,woodsStr,stirlingsStr,sutStr,gammaStr];
+      var infoArray =  [fulfordStr,mcclurgStr,allsaintsStr,bookStr,stirlingsStr,sutStr,gammaStr];
       for (var i=0; i<= locationArray.length; i++) {
       var storeV=infoArray[i];
       marker1 = new google.maps.Marker({
       position: locationArray[i],
       map: map,
-      title: locationNameArray[i]});
-       markersArray.push(marker1);  // -> Attempt to push the marker to an array s
-       linkInfoWindow(marker1, map, infowindow, storeV);
+      title: locationNameArray[i]
+      });
+      markersArray.push(marker1);  // -> Attempt to push the marker to an array s
+      markersArray[i].setMap(null);
+      
+  linkInfoWindow(marker1, map, infowindow, storeV);
+  } // initialize end
 
-     }
-     
+
+    
+
+
        function linkInfoWindow(marker1, map, infowindow, description) {
        google.maps.event.addListener(marker1, 'click', function() {
        infowindow.setContent(description);
@@ -210,13 +228,25 @@ function setMarker(pos) {
 }
     );
         }
-
+ }
      for (var o=0; o<dormMarkerarray.length; o++){
      dMarker = new google.maps.Marker({
      position: dormMarkerarray[o],
      map: map
 }
    );      dormMarkerBox.push(dMarker);
+       }
+
+
+
+
+
+     for (var i=0; i<academicArray.length; i++){
+     aMarker = new google.maps.Marker({
+     position: academicArray[i],
+     map: map
+}
+   );      academicMBox.push(aMarker);
        }
      
      function residenceBox() {
@@ -243,6 +273,21 @@ function setMarker(pos) {
 }
     }
     }
+     function academicBox2() {
+     if(box3.checked){
+     for(i=0; i < academicMBox.length; i++){
+     academicMBox[i].setMap(map);
+}
+    }
+     if(!box3.checked){
+     for(i=0; i < academicMBox.length; i++){
+     academicMBox[i].setMap(null);
+}
+    }
+    }
+
+
+
      function routeCalc(){
        if(document.getElementById('start').value != 28)
          calcRoute();
@@ -251,23 +296,25 @@ function setMarker(pos) {
      }
 
     google.maps.event.addDomListener(window, 'load', initialize);
-  </script>
+  </script> 
   </head>
   <body>
 <div id="sewaneeBox">
-<h1>Sewanee:The University of the South</h1>
+<img src="SewaneeLogo.png" class="Logo">
 </div>
 <div id="checkBox">
 <br>
-CheckBoxes Will Be With Us SOON!!<hr><br>
-<input type="checkbox" id="box1" onchange="residenceBox()"/>Residence Halls<br>
-<input type="checkbox" id="box2" onchange="academicBox()"/>Academic Buildings<br>
-</div>
-<div id="panel">
+CheckBoxes Will Be With Us SOON!!<hr>
+<input type="checkbox" id="box1" onchange="residenceBox()"/>Residence Halls<br><br>
+<input type="checkbox" id="box2" onchange="academicBox()"/>University Buildings<br><br>
+<input type="checkbox" id="box3" onchange="academicBox2()"/>Acadmic Buildings<hr>
+                                                                                                                                                           
+                                                                                                                                                                    
     <b>Directions to</b>
     <select id="end" onchange="routeCalc();">
       <option value="29">                                        Choose Destination</option>
-      <option value="4">                                          Gailor Hall</option>
+      <option value="nothing">                                   - - - - - - - - - - - - - - -</option>
+      <option value="4">                                         Gailor Hall</option>
       <option value="3">                                         Hospital</option>
       <option value="0">                                         Walsh-Ellett Hall</option>
       <option value="1">                                         Book Store</option>
@@ -289,18 +336,20 @@ CheckBoxes Will Be With Us SOON!!<hr><br>
       <option value="19">                                        Stirlings</option>
       <option value="20">                                        McGriff Alumni House</option>
       <option value="21">                                        Hoffman Hall</option>
-      <option value="22">                                        Career Leadership and Development Office</option>
+      <option value="22">                                        Career Services</option>
       <option value="23">                                        Barnwick Womens Center</option>
       <option value="24">                                        EQB</option>
       <option value="25">                                        Chen Hall</option>
       <option value="26">                                        Convocation Hall</option>
       <option value="27">                                        Guerry Hall and Art Gallery</option>
     </select>
-    </div>
-  <div id="panel2">
+																																								
+                                                                                                                                     
+                                                                                                                                                                            
     <b>Directions From</b>
     <select id="start" onchange="routeCalc();">
       <option value="29">                                        Choose Origin</option>
+      <option value="nothing">                                   - - - - - - - - - - - - - - -</option>
       <option value="28">                                        Current Location</option>
       <option value="4">                                         Gailor Hall</option>
       <option value="3">                                         Hospital</option>
@@ -324,14 +373,16 @@ CheckBoxes Will Be With Us SOON!!<hr><br>
       <option value="19">                                        Stirlings</option>
       <option value="20">                                        McGriff Alumni House</option>
       <option value="21">                                        Hoffman Hall</option>
-      <option value="22">                                        Career Leadership and Development Office</option>
+      <option value="22">                                        Career Services</option>
       <option value="23">                                        Barnwick Womens Center</option>
       <option value="24">                                        EQB</option>
       <option value="25">                                        Chen Hall</option>
       <option value="26">                                        Convocation Hall</option>
-      <option value="coords">                                        Guerry Hall and Art Gallery</option>
-    </select>
-    </div>
+      <option value="27">                                        Guerry Hall and Art Gallery</option>
+    </select><hr>
+																																										
+</div>
+    
   <div id="out"></div>
   <div id="map-canvas"></div>
   </body>
