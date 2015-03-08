@@ -1,90 +1,58 @@
 <!--
  geoApp
  Geolocation map of Sewanee -->
+<!DOCTYPE html>
 <html>
   <head>
     <title> Sewanee map </title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <meta charset="utf-8">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
       html, body {
-        height: 100%;
         margin: 0px;
       }
-      #map-canvas {
+	    #map-canvas {
         top: 10px;
-        height: 85%;
+        height:300px;
         margin: 0px;
         padding: 0px;
-        margin: 50px 5px 20px 260px;
         border-style: solid;
-        border-width: 2px
-        }
-      #panel {
-        position: absolute;
-        top: 70px;
-        margin-left: 850px;
-        z-index: 100;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        }
-      #panel2 {
-        position: absolute;
-        top: 70px;
-        margin-left: 300px;
-        z-index: 100;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-      }
-      #sewaneeBox {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      height: 50px;
-      width: 100%;
-      background-color: #8A2BE2;
-      padding: 5px;
-      }
-      #checkBox {
-      position: absolute;
-      top: 70px;
-      left: 5px;
-      height: 70%;
-      width: 240px;
-      background-color: #E0E0E0;
-      -webkit-border-radius: 40px;
-      border-radius:         40px;
-      border: 1px solid #999;
-      padding: 10px;
-      }
-     
+        border-width: 2px}
+        
+        #sewaneeBox{
+        height: 100px;
+}
+        h3{
+        font-size: 140%
+}
     </style>
-</script>
+
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
     <script src="buildings.js"> </script>
     <script src="coords.js"> </script>
     <script src="direct.js"> </script>
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
 
 var map;
 var infowindow;
-var marker, marker1, posMarker, dMarker;
+var marker, marker1, posMarker, dMarker, aMarker;
 var coords = new google.maps.LatLng(35.20438,-85.92016);
 var markersArray = [];
 var positionTimer;
-var locationArray = [fulford,walsh,mcclurg,allsaints,bookstore,woods,stirlings,sut,gamma];
-var locationNameArray = ['Fulford','Walsh-Ellett','McClurg','All Saints Chapel',
-'Barnes&Noble','Woods','Stirlings','Thompson Union','Gamma'];
 var dormMarkerBox = [];
+var academicMBox = [];
 
 
 function initialize() {
 
     var mapOptions = {
         center: coords,
-        zoom: 17
+        zoom: 17,
+        maxZoom: 20
 };
 
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -116,10 +84,10 @@ function setMarker(pos) {
           // Update user's location  
           positionTimer = navigator.geolocation.watchPosition(function (pos) {
             var lat = pos.coords.latitude,
-             lng = pos.coords.longitude;
-           coords = new google.maps.LatLng(lat, lng);
+            lng = pos.coords.longitude;
+            coords = new google.maps.LatLng(lat, lng);
             posMarker.setPosition(coords);
-           // map.panTo(coords);
+            map.panTo(coords);
 }
       
   );
@@ -183,26 +151,27 @@ function setMarker(pos) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
           var place = results[i];
-          createMarker(results[i]);
+          //createMarker(results[i]);
         }
       }
     }
-  } 
+ 
 
 
       //Construct markers
-      var infoArray =  [fulfordStr,walshStr,mcclurgStr,allsaintsStr,bookStr,woodsStr,stirlingsStr,sutStr,gammaStr];
       for (var i=0; i<= locationArray.length; i++) {
       var storeV=infoArray[i];
       marker1 = new google.maps.Marker({
       position: locationArray[i],
       map: map,
-      title: locationNameArray[i]});
-       markersArray.push(marker1);  // -> Attempt to push the marker to an array s
-       linkInfoWindow(marker1, map, infowindow, storeV);
-
+      title: locationNameArray[i]
+      });
+      markersArray.push(marker1);  // -> Attempt to push the marker to an array s
+      linkInfoWindow(marker1, map, infowindow, storeV);
+      markersArray[i].setMap(null);
      }
      
+ } 
        function linkInfoWindow(marker1, map, infowindow, description) {
        google.maps.event.addListener(marker1, 'click', function() {
        infowindow.setContent(description);
@@ -217,6 +186,18 @@ function setMarker(pos) {
      map: map
 }
    );      dormMarkerBox.push(dMarker);
+       }
+
+
+
+
+
+     for (var i=0; i<academicArray.length; i++){
+     aMarker = new google.maps.Marker({
+     position: academicArray[i],
+     map: map
+}
+   );      academicMBox.push(aMarker);
        }
      
      function residenceBox() {
@@ -243,31 +224,65 @@ function setMarker(pos) {
 }
     }
     }
-     function routeCalc(){
-       if(document.getElementById('start').value != 28)
-         calcRoute();
-       else
-         calcRoute2();
-     }
+     function academicBox2() {
+     if(box3.checked){
+     for(i=0; i < academicMBox.length; i++){
+     academicMBox[i].setMap(map);
+}
+    }
+     if(!box3.checked){
+     for(i=0; i < academicMBox.length; i++){
+     academicMBox[i].setMap(null);
+}
+    }
+    }
 
-    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+function routeCalc(){
+if(document.getElementById('start').value != 28)
+calcRoute();
+else
+calcRoute2();
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
   </script>
   </head>
-  <body>
-<div id="sewaneeBox">
-<h1>Sewanee:The University of the South</h1>
+  
+<body>																																						
+
+
+<div id="divContainer" class="container"></div>
+<div class="container">
+<div class="row">
+<div class="column">
+<div class="col-xs-12 col-md-12 col-lg-12 col-xl-12" style="background-color: #893389;
+height: 60px;" >
+
+<div id="sewaneeBox" class="topBox">
+ <h3 class="text">Sewanee:The University of the South</h3>
+<hr>
 </div>
-<div id="checkBox">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-3 col-md-4 col-lg-4 col-xl-4" style="background-color: #BABABA" >
+<div id="checkBox" class="text-left">
 <br>
 CheckBoxes Will Be With Us SOON!!<hr><br>
 <input type="checkbox" id="box1" onchange="residenceBox()"/>Residence Halls<br>
-<input type="checkbox" id="box2" onchange="academicBox()"/>Academic Buildings<br>
+<input type="checkbox" id="box2" onchange="academicBox()"/>University Buildings<br>
+<input type="checkbox" id="box3" onchange="academicBox2()"/>Acadmic Buildings</br>
+
 </div>
+</div>
+<div class="col-xs-9 col-md-8 col-lg-8 col-xl-8">
 <div id="panel">
-    <b>Directions to</b>
     <select id="end" onchange="routeCalc();">
       <option value="29">                                        Choose Destination</option>
-      <option value="4">                                          Gailor Hall</option>
+      <option value="4">                                         Gailor Hall</option>
       <option value="3">                                         Hospital</option>
       <option value="0">                                         Walsh-Ellett Hall</option>
       <option value="1">                                         Book Store</option>
@@ -289,15 +304,15 @@ CheckBoxes Will Be With Us SOON!!<hr><br>
       <option value="19">                                        Stirlings</option>
       <option value="20">                                        McGriff Alumni House</option>
       <option value="21">                                        Hoffman Hall</option>
-      <option value="22">                                        Career Leadership and Development Office</option>
+      <option value="22">                                        Career Services</option>
       <option value="23">                                        Barnwick Womens Center</option>
       <option value="24">                                        EQB</option>
       <option value="25">                                        Chen Hall</option>
       <option value="26">                                        Convocation Hall</option>
       <option value="27">                                        Guerry Hall and Art Gallery</option>
     </select>
-    </div>
-  <div id="panel2">
+</div>
+<div id="panel2">
     <b>Directions From</b>
     <select id="start" onchange="routeCalc();">
       <option value="29">                                        Choose Origin</option>
@@ -324,15 +339,18 @@ CheckBoxes Will Be With Us SOON!!<hr><br>
       <option value="19">                                        Stirlings</option>
       <option value="20">                                        McGriff Alumni House</option>
       <option value="21">                                        Hoffman Hall</option>
-      <option value="22">                                        Career Leadership and Development Office</option>
+      <option value="22">                                        Career Services</option>
       <option value="23">                                        Barnwick Womens Center</option>
       <option value="24">                                        EQB</option>
       <option value="25">                                        Chen Hall</option>
       <option value="26">                                        Convocation Hall</option>
-      <option value="coords">                                        Guerry Hall and Art Gallery</option>
+      <option value="27">                                        Guerry Hall and Art Gallery</option>
     </select>
-    </div>
-  <div id="out"></div>
-  <div id="map-canvas"></div>
-  </body>
+</div>
+<div id="out">
+</div>
+<div id="map-canvas">
+</div>
+</div><div></div></div></div>
+</body>
   </html>
