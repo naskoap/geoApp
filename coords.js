@@ -8,9 +8,9 @@ var sut = new google.maps.LatLng(35.20402, -85.92155);
 var gamma = new google.maps.LatLng(35.20622,-85.91526);
 
 
-var locationArray = [fulford,mcclurg,allsaints,bookstore,stirlings,sut,gamma];
+var locationArray = [fulford,mcclurg,allsaints,bookstore,stirlings,sut,gamma,fowler];
 var locationNameArray = ['Fulford','McClurg','All Saints Chapel',
-'Barnes&Noble','Stirlings','Thompson Union','Gamma'];
+'Barnes&Noble','Stirlings','Thompson Union','Gamma','Fowler Center'];
 
 var infoArray =  [fulfordStr,mcclurgStr,allsaintsStr,bookStr,stirlingsStr,sutStr,gammaStr];
 
@@ -45,6 +45,16 @@ var snowdenM = new google.maps.LatLng(35.20323,-85.91764);
 
 var academicArray = [woodsM, walshM, carnegieM, gailorM, spencerM, guerryM, snowdenM];
 //Academic section close
+
+//University Building open
+var fulford = new google.maps.LatLng(35.20479,-85.92166);
+var walsh = new google.maps.LatLng(35.20479,-85.91960);
+var mcclurg = new google.maps.LatLng(35.20321,-85.92009);
+var allsaints = new google.maps.LatLng(35.20397,-85.92011);
+var bookstore = new google.maps.LatLng(35.20281, -85.92086);
+var stirlings = new google.maps.LatLng(35.20528,-85.91656);
+var sut = new google.maps.LatLng(35.20402, -85.92155);
+var fowler = new google.maps.LatLng(35.208650, -85.920085);
 
 
 //Polygon coordinates open
@@ -380,12 +390,42 @@ var humphreysCoords = [new google.maps.LatLng(35.20490,-85.91507),
 					   new google.maps.LatLng(35.20495,-85.91466),
 					   new google.maps.LatLng(35.20492,-85.91466),
 					   new google.maps.LatLng(35.20496,-85.91496)];
-//Polygon coordinates close
 
+var fowlerCoords = [new google.maps.LatLng(35.207980, -85.919774),
+                    new google.maps.LatLng(35.208027, -85.920328),
+                    new google.maps.LatLng(35.208044, -85.920330),
+                    new google.maps.LatLng(35.208057, -85.920440),
+                    new google.maps.LatLng(35.208278, -85.920423),
+                    new google.maps.LatLng(35.208303, -85.920817),
+                    new google.maps.LatLng(35.208584, -85.920781),
+                    new google.maps.LatLng(35.208588, -85.920725),
+                    new google.maps.LatLng(35.209082, -85.920676),
+                    new google.maps.LatLng(35.209077, -85.920483),
+                    new google.maps.LatLng(35.209053, -85.920272),
+                    new google.maps.LatLng(35.209072, -85.920271),
+                    new google.maps.LatLng(35.209014, -85.919545),
+                    new google.maps.LatLng(35.209001, -85.919487),
+                    new google.maps.LatLng(35.208923, -85.919507),
+                    new google.maps.LatLng(35.208923, -85.919518),
+                    new google.maps.LatLng(35.208880, -85.919506),
+                    new google.maps.LatLng(35.208820, -85.919496),
+                    new google.maps.LatLng(35.208747, -85.919503),
+                    new google.maps.LatLng(35.208664, -85.919542),
+                    new google.maps.LatLng(35.208630, -85.919542),
+                    new google.maps.LatLng(35.208630, -85.919526),
+                    new google.maps.LatLng(35.208550, -85.919540),
+                    new google.maps.LatLng(35.208555, -85.919636),
+                    new google.maps.LatLng(35.208532, -85.919642),
+                    new google.maps.LatLng(35.208531, -85.919709),
+                    new google.maps.LatLng(35.208441, -85.919715),
+                    new google.maps.LatLng(35.208436, -85.919680),
+                    new google.maps.LatLng(35.208305, -85.919685),
+                    new google.maps.LatLng(35.208304, -85.919725)];
+//Polygon coordinates close
 
 var dormsArray = [elliotCoords,tuckawayCoords,quintardCoords,gorgasCoords,
                   hunterCoords,clevelandCoords,cannonCoords,johnsonCoords,
-                  stLukesCoords,hoffmanCoords,benedictCoords,humphreysCoords,smithCoords];
+                  stLukesCoords,hoffmanCoords,benedictCoords,humphreysCoords,smithCoords,fowlerCoords];
 
 var fratArray = [sigmaNuCoords,aTOCoords, phiSocietyCoords,phiSocietyBarnCoords,
                  sigmaAlphaEpsilonCoords,deltaTauDeltCoords,phiGammaCoords,
