@@ -48,6 +48,28 @@ var academicArray = [woodsM, walshM, carnegieM, gailorM, spencerM, guerryM, snow
 
 
 //Polygon coordinates open
+  var smithCoords = [new google.maps.LatLng(35.20449,-85.92187),
+                    new google.maps.LatLng(35.20450,-85.92186),
+					new google.maps.LatLng(35.20457,-85.92185),
+					new google.maps.LatLng(35.20458,-85.92187),
+					new google.maps.LatLng(35.20464,-85.92191),
+					new google.maps.LatLng(35.20465,-85.92200),
+					new google.maps.LatLng(35.20471,-85.92200),
+					new google.maps.LatLng(35.20472,-85.92193),
+					new google.maps.LatLng(35.20482,-85.92193),
+					new google.maps.LatLng(35.20484,-85.92198),
+					new google.maps.LatLng(35.20488,-85.92237),
+					new google.maps.LatLng(35.20480,-85.92241),
+					new google.maps.LatLng(35.20473,-85.92235),
+					new google.maps.LatLng(35.20472,-85.92220),
+					new google.maps.LatLng(35.20468,-85.92221),
+					new google.maps.LatLng(35.20466,-85.92227),
+					new google.maps.LatLng(35.20461,-85.92233),
+					new google.maps.LatLng(35.20458,-85.92231),
+					new google.maps.LatLng(35.20458,-85.92233),
+					new google.maps.LatLng(35.20453,-85.92231),
+					new google.maps.LatLng(35.20451,-85.92228)];
+
   var elliotCoords =  [new google.maps.LatLng(35.200591, -85.921505),
                        new google.maps.LatLng(35.200651,-85.921477),
                        new google.maps.LatLng(35.200665,-85.921508),
@@ -363,7 +385,7 @@ var humphreysCoords = [new google.maps.LatLng(35.20490,-85.91507),
 
 var dormsArray = [elliotCoords,tuckawayCoords,quintardCoords,gorgasCoords,
                   hunterCoords,clevelandCoords,cannonCoords,johnsonCoords,
-                  stLukesCoords,hoffmanCoords,benedictCoords,humphreysCoords];
+                  stLukesCoords,hoffmanCoords,benedictCoords,humphreysCoords,smithCoords];
 
 var fratArray = [sigmaNuCoords,aTOCoords, phiSocietyCoords,phiSocietyBarnCoords,
                  sigmaAlphaEpsilonCoords,deltaTauDeltCoords,phiGammaCoords,
