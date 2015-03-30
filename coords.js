@@ -10,7 +10,7 @@ var gamma = new google.maps.LatLng(35.20622,-85.91526);
 
 var locationArray = [fulford,mcclurg,allsaints,bookstore,stirlings,sut,gamma];
 var locationNameArray = ['Fulford','McClurg','All Saints Chapel',
-'Barnes&Noble','Woods','Stirlings','Thompson Union','Gamma'];
+'Barnes&Noble','Stirlings','Thompson Union','Gamma'];
 
 var infoArray =  [fulfordStr,mcclurgStr,allsaintsStr,bookStr,stirlingsStr,sutStr,gammaStr];
 
