@@ -7,7 +7,7 @@ var fulfordStr = '<div id="content">'+
       '</div>'+
       '</div>';
 
-var walshStr = '<div id="content1">'+
+/*var walshStr = '<div id="content1">'+
       '<div id="siteNotice1">'+
       '</div>'+
       '<h1 id="firstHeading1" class="firstHeading1">Walsh-Ellett</h1>'+
@@ -15,7 +15,7 @@ var walshStr = '<div id="content1">'+
       '<p>Welcome to Walsh-Ellett!</p>'+
       '</div>'+
       '</div>';
-
+*/
 var mcclurgStr = '<div id="content2">'+
       '<div id="siteNotice2">'+
       '</div>'+
@@ -43,7 +43,7 @@ var bookStr = '<div id="content4">'+
       '</div>'+
       '</div>';
       
-var woodsStr = '<div id="content5">'+
+/*var woodsStr = '<div id="content5">'+
       '<div id="siteNotice5">'+
       '</div>'+
       '<h1 id="firstHeading5" class="firstHeading5">Woods</h1>'+
@@ -51,27 +51,27 @@ var woodsStr = '<div id="content5">'+
       '<p>Welcome to Woods!</p>'+
       '</div>'+
       '</div>';
-
+*/
  var stirlingsStr = 
-      '<h1 id="firstHeading6" class="firstHeading6">Stirlings</h1>'+
-      '<div id="bodyContent6">'+
+      '<h1 id="firstHeading5" class="firstHeading5">Stirlings</h1>'+
+      '<div id="bodyContent5">'+
       '<p>Welcome to Stirlings!</p>'+
       '</div>'
 
-var sutStr = '<div id="content7">'+
-      '<div id="siteNotice7">'+
+var sutStr = '<div id="content6">'+
+      '<div id="siteNotice6">'+
       '</div>'+
-      '<h1 id="firstHeading7" class="firstHeading7">Thompson Union</h1>'+
-      '<div id="bodyContent7">'+
+      '<h1 id="firstHeading6" class="firstHeading6">Thompson Union</h1>'+
+      '<div id="bodyContent6">'+
       '<p>Welcome to Thompson Union!</p>'+
       '</div>'+
       '</div>';
 
-var gammaStr = '<div id="content8">'+
-      '<div id="siteNotice8">'+
+var gammaStr = '<div id="content7">'+
+      '<div id="siteNotice7">'+
       '</div>'+
-      '<h1 id="firstHeading8" class="firstHeading8">Gamma</h1>'+
-      '<div id="bodyContent8">'+
+      '<h1 id="firstHeading7" class="firstHeading7">Gamma</h1>'+
+      '<div id="bodyContent7">'+
       '<p>Welcome to Gamma!</p>'+
       '</div>'+
       '</div>';

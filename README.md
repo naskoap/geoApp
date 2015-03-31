@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Purpose 
 
 The purpose of this project is to create a geolocation service for Sewanee - The University of the South using Google Maps API. The application will retrieve the user coordinates and render directions from point A to point B.
@@ -11,3 +12,7 @@ We are trying to include two travel modes - walking and driving. The walking mod
 Our goal is to send a watchPosition request every 2.5 seconds so the user's location is automatically updated.
 
 
+=======
+This is an interactive map for Sewanee: The University of the South.
+This interactive map uses Bootstrap as well as the detectMobileBrowser files.
+>>>>>>> c12dc33b09a5bb0ef84f73a316fa4e34fdaf48d5
