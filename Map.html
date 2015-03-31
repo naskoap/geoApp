@@ -12,6 +12,7 @@
     <script src="coords.js"> </script>
     <script src="direct.js"> </script>
     <script src="detectMobileBrowser.js"></script>
+    <script src="Pictures.js"></script>
     <script type="text/javascript">
 
 var marker, marker1, posMarker, dMarker, aMarker, positionTimer,infowindowU, infowindowD, infowindowA, map;
@@ -119,7 +120,7 @@ function setMarker(pos) {
       }
     }
       //Construct markers
-      for (var p=0; p<= locationNameArrayD.length; p++) {
+      for (var p=0; p < locationNameArrayD.length; p++) {
       var infoD = '<div>'+
       '<div>'+
       '</div>'+
@@ -130,7 +131,7 @@ function setMarker(pos) {
       '</div>';
       infoArrayD[p] = infoD;
       }
-for (var i=0; i<= locationNameArrayD.length; i++) {
+for (var i=0; i < locationNameArrayD.length; i++) {
       var storeD=infoArrayD[i];
       dMarker = new google.maps.Marker({
       position: dormMarkerarray[i],
@@ -154,18 +155,18 @@ for (var i=0; i<= locationNameArrayD.length; i++) {
         }
     
       //Construct markers
-      for (var p=0; p<= locationArrayU.length; p++) {
+      for (var p=0; p < locationArrayU.length; p++) {
       var infoU = '<div>'+
       '<div>'+
       '</div>'+
-      '<h1>' + locationNameArrayU[p] + '</h1>'+
+      '<h1>' + locationNameArrayU[p] + '</h1>'+ pictureArrayU[p] +
       '<div>'+
       '<p>Welcome to ' + locationNameArrayU[p] + '!</p>' +
       '</div>'+
       '</div>';
       infoArrayU[p] = infoU;
       }
-for (var i=0; i<= locationArrayU.length; i++) {
+for (var i=0; i < locationArrayU.length; i++) {
       var storeV=infoArrayU[i];
       marker1 = new google.maps.Marker({
       position: locationArrayU[i],
@@ -186,7 +187,7 @@ for (var i=0; i<= locationArrayU.length; i++) {
     );
         }
       //Construct markers
-      for (var p=0; p<= locationNameArrayA.length; p++) {
+      for (var p=0; p < locationNameArrayA.length; p++) {
       var infoA = '<div>'+
       '<div>'+
       '</div>'+
@@ -197,7 +198,7 @@ for (var i=0; i<= locationArrayU.length; i++) {
       '</div>';
       infoArrayA[p] = infoA;
       }
-for (var i=0; i<= locationNameArrayA.length; i++) {
+for (var i=0; i < locationNameArrayA.length; i++) {
       var storeA=infoArrayA[i];
       aMarker = new google.maps.Marker({
       position: academicArray[i],

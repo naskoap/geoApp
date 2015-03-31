@@ -6,7 +6,7 @@ var bookstore = new google.maps.LatLng(35.20281, -85.92086);
 var stirlings = new google.maps.LatLng(35.20528,-85.91656);
 var sut = new google.maps.LatLng(35.20402, -85.92155);
 var gamma = new google.maps.LatLng(35.20622,-85.91526);
-
+var fowler = new google.maps.LatLng(35.208650, -85.920085);
 
 var locationArrayU = [fulford,mcclurg,allsaints,bookstore,stirlings,sut,gamma,fowler];
 var locationNameArrayU = ['Fulford','McClurg','All Saints Chapel',
@@ -48,15 +48,12 @@ var locationNameArrayA = ['Woods Laboratories','Walsh-Ellett Hall','Carnegie','G
 //Academic section close
 
 //University Building open
-var fulford = new google.maps.LatLng(35.20479,-85.92166);
 var walsh = new google.maps.LatLng(35.20479,-85.91960);
 var mcclurg = new google.maps.LatLng(35.20321,-85.92009);
 var allsaints = new google.maps.LatLng(35.20397,-85.92011);
 var bookstore = new google.maps.LatLng(35.20281, -85.92086);
 var stirlings = new google.maps.LatLng(35.20528,-85.91656);
 var sut = new google.maps.LatLng(35.20402, -85.92155);
-var fowler = new google.maps.LatLng(35.208650, -85.920085);
-
 
 //Polygon coordinates open
   var smithCoords = [new google.maps.LatLng(35.20449,-85.92187),
