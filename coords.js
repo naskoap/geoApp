@@ -8,11 +8,9 @@ var sut = new google.maps.LatLng(35.20402, -85.92155);
 var gamma = new google.maps.LatLng(35.20622,-85.91526);
 
 
-var locationArray = [fulford,mcclurg,allsaints,bookstore,stirlings,sut,gamma,fowler];
-var locationNameArray = ['Fulford','McClurg','All Saints Chapel',
+var locationArrayU = [fulford,mcclurg,allsaints,bookstore,stirlings,sut,gamma,fowler];
+var locationNameArrayU = ['Fulford','McClurg','All Saints Chapel',
 'Barnes&Noble','Stirlings','Thompson Union','Gamma','Fowler Center'];
-
-var infoArray =  [fulfordStr,mcclurgStr,allsaintsStr,bookStr,stirlingsStr,sutStr,gammaStr];
 
 
 //Dorm Array section open
@@ -32,6 +30,8 @@ var Cleveland = new google.maps.LatLng(35.20247,-85.92175);
 
 
 var dormMarkerarray = [cannon, smith, benedict, stLukes, Hoffman, Humphreys, Hodgeson, Elliot, Tuckaway, Hunter, Quintard, Gorgas, Cleveland];
+var locationNameArrayD = ['Cannon','Smith','Benedict','St. Lukes','Hoffman','Humphreys','Hodgeson','Elliot','Tuckaway','Hunter',
+                         'Quintard','Gorgas','Cleveland'];
 //Dorm array section close
 
 //Academic array section open
@@ -44,6 +44,7 @@ var guerryM = new google.maps.LatLng(35.20497,-85.91961);
 var snowdenM = new google.maps.LatLng(35.20323,-85.91764);
 
 var academicArray = [woodsM, walshM, carnegieM, gailorM, spencerM, guerryM, snowdenM];
+var locationNameArrayA = ['Woods Laboratories','Walsh-Ellett Hall','Carnegie','Gailor','Spencer','Guerry','Snowden'];
 //Academic section close
 
 //University Building open
@@ -425,7 +426,8 @@ var fowlerCoords = [new google.maps.LatLng(35.207980, -85.919774),
 
 var dormsArray = [elliotCoords,tuckawayCoords,quintardCoords,gorgasCoords,
                   hunterCoords,clevelandCoords,cannonCoords,johnsonCoords,
-                  stLukesCoords,hoffmanCoords,benedictCoords,humphreysCoords,smithCoords,fowlerCoords];
+                  stLukesCoords,hoffmanCoords,benedictCoords,humphreysCoords,smithCoords];
+
 
 var fratArray = [sigmaNuCoords,aTOCoords, phiSocietyCoords,phiSocietyBarnCoords,
                  sigmaAlphaEpsilonCoords,deltaTauDeltCoords,phiGammaCoords,

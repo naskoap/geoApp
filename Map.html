@@ -9,20 +9,22 @@
     <link href="css/styling.css" rel="stylesheet"> 
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    <script src="buildings.js"> </script>
     <script src="coords.js"> </script>
     <script src="direct.js"> </script>
     <script src="detectMobileBrowser.js"></script>
     <script type="text/javascript">
 
-var marker, marker1, posMarker, dMarker, aMarker, positionTimer,infowindow, map;
+var marker, marker1, posMarker, dMarker, aMarker, positionTimer,infowindowU, infowindowD, infowindowA, map;
 var coords = new google.maps.LatLng(35.20438,-85.92016);
 var markersArray  = [];
+var markersArrayD  = [];
+var markersArrayA  = [];
 var dormMarkerBox = [];
 var academicMBox  = [];
 var dormPolygonArray = [];
-var infoArray =  [fulfordStr,mcclurgStr,allsaintsStr,bookStr,stirlingsStr,sutStr,gammaStr];
-//var buildingArray3 = [Fulford, McClurg, All Saints, Book Store, Stirlings, SUT, Gamma];
+var infoArrayU = [];
+var infoArrayD = [];
+var infoArrayA = [];
 
 function initialize() {
 
@@ -88,7 +90,14 @@ function setMarker(pos) {
 }
         
  
-        infowindow = new google.maps.InfoWindow({
+        infowindowU = new google.maps.InfoWindow({
+        content: ""
+        });
+        infowindowD = new google.maps.InfoWindow({
+        content: ""
+}
+  );
+        infowindowA = new google.maps.InfoWindow({
         content: ""
 }
   );
@@ -109,36 +118,104 @@ function setMarker(pos) {
         }
       }
     }
-
       //Construct markers
-      for (var i=0; i<= locationArray.length; i++) {
-      for(var j=0; j < infoArray.length; j++){
-      infoArray[j] = '<div>'+
+      for (var p=0; p<= locationNameArrayD.length; p++) {
+      var infoD = '<div>'+
       '<div>'+
       '</div>'+
-      '<h1>' + locationNameArray[j] + '</h1>'+
+      '<h1>' + locationNameArrayD[p] + '</h1>'+
       '<div>'+
-      '<p>Welcome to ' + locationNameArray[j] + '!</p>' +
+      '<p>Welcome to ' + locationNameArrayD[p] + '!</p>' +
       '</div>'+
       '</div>';
-    }
-
-      var storeV=infoArray[i];
-      marker1 = new google.maps.Marker({
-      position: locationArray[i],
+      infoArrayD[p] = infoD;
+      }
+for (var i=0; i<= locationNameArrayD.length; i++) {
+      var storeD=infoArrayD[i];
+      dMarker = new google.maps.Marker({
+      position: dormMarkerarray[i],
+      icon: 'markers/blue-dot.png',
       map: map,
-      title: locationNameArray[i]
+      title: locationNameArrayU[i]
+      });
+      dormMarkerBox.push(dMarker);
+      markersArrayD.push(dMarker);  // -> Attempt to push the marker to an array s
+      markersArrayD[i].setMap(null);
+      
+      linkInfoWindow(dMarker, map, infowindowD, storeD);
+  }
+
+       function linkInfoWindow(dMarker, map, infowindowD, description) {
+       google.maps.event.addListener(dMarker, 'click', function() {
+       infowindowD.setContent(description);
+       infowindowD.open(map, dMarker);
+}
+    );
+        }
+    
+      //Construct markers
+      for (var p=0; p<= locationArrayU.length; p++) {
+      var infoU = '<div>'+
+      '<div>'+
+      '</div>'+
+      '<h1>' + locationNameArrayU[p] + '</h1>'+
+      '<div>'+
+      '<p>Welcome to ' + locationNameArrayU[p] + '!</p>' +
+      '</div>'+
+      '</div>';
+      infoArrayU[p] = infoU;
+      }
+for (var i=0; i<= locationArrayU.length; i++) {
+      var storeV=infoArrayU[i];
+      marker1 = new google.maps.Marker({
+      position: locationArrayU[i],
+      map: map,
+      title: locationNameArrayU[i]
       });
       markersArray.push(marker1);  // -> Attempt to push the marker to an array s
       markersArray[i].setMap(null);
       
-      linkInfoWindow(marker1, map, infowindow, storeV);
+      linkInfoWindow(marker1, map, infowindowU, storeV);
   }
 
-       function linkInfoWindow(marker1, map, infowindow, description) {
+       function linkInfoWindow(marker1, map, infowindowU, description) {
        google.maps.event.addListener(marker1, 'click', function() {
-       infowindow.setContent(description);
-       infowindow.open(map, marker1);
+       infowindowU.setContent(description);
+       infowindowU.open(map, marker1);
+}
+    );
+        }
+      //Construct markers
+      for (var p=0; p<= locationNameArrayA.length; p++) {
+      var infoA = '<div>'+
+      '<div>'+
+      '</div>'+
+      '<h1>' + locationNameArrayA[p] + '</h1>'+
+      '<div>'+
+      '<p>Welcome to ' + locationNameArrayA[p] + '!</p>' +
+      '</div>'+
+      '</div>';
+      infoArrayA[p] = infoA;
+      }
+for (var i=0; i<= locationNameArrayA.length; i++) {
+      var storeA=infoArrayA[i];
+      aMarker = new google.maps.Marker({
+      position: academicArray[i],
+      icon: 'markers/blue-dot.png',
+      map: map,
+      title: locationNameArrayU[i]
+      });
+      academicMBox.push(aMarker);
+      markersArrayA.push(aMarker);  // -> Attempt to push the marker to an array s
+      markersArrayA[i].setMap(null);
+      
+      linkInfoWindow(aMarker, map, infowindowA, storeA);
+  }
+
+       function linkInfoWindow(dMarker, map, infowindowD, description) {
+       google.maps.event.addListener(dMarker, 'click', function() {
+       infowindowD.setContent(description);
+       infowindowD.open(map, dMarker);
 }
     );
         }
@@ -169,24 +246,6 @@ function setMarker(pos) {
   );
         dormPolygonArray.push(p);
 } 
-
-     for (var o=0; o<dormMarkerarray.length; o++){
-     dMarker = new google.maps.Marker({
-     position: dormMarkerarray[o],
-     icon: 'markers/blue-dot.png',
-     map: map
-}
-   );      dormMarkerBox.push(dMarker);
-       }
-
-     for (var i=0; i<academicArray.length; i++){
-     aMarker = new google.maps.Marker({
-     position: academicArray[i],
-     icon: 'markers/yellowMarker.png',
-     map: map
-}
-   );      academicMBox.push(aMarker);
-       }
      
      function residenceBox() {
      if(box1.checked){
