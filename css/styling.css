@@ -1,0 +1,67 @@
+html, body {
+        height: 100%;
+        margin: 0px;
+      }
+	  #map-canvas {
+	    top: 30px;
+        height: 85%;
+        margin: 0px;
+        padding: 0px;
+	margin: 50px 5px 20px 260px;
+	border-style: solid;
+	border-width: 2px
+		}
+	  #panel {
+        position: absolute;
+        top: 100px;
+	margin-left: 260px;
+        z-index: 100;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+	  	  #panel2 {
+        position: absolute;
+        top: 100px;
+        margin-left: 720px;
+        z-index: 100;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+}
+	    #sewaneeBox {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 55px;
+        width: 100%;
+        background-color: #3D007A;
+        padding: 5px;
+        border-bottom: 2px solid;
+}
+          div.dropDown{
+        background-color: #ffffff;
+        border: 1px solid black;
+        opacity: 0.8;
+        filter: alpha(opacity=60);
+        width: 40px;
+}
+	  #checkBox {
+        position: absolute;
+        top: 70px;
+        left: 5px;
+        height: 84%;
+        width: 240px;
+        background-color: #E0E0E0;
+        -moz-border-radius: 40px;
+        -webkit-border-radius: 40px;
+        border-radius:         40px;
+        border: 1px solid #999;
+        padding: 5px;
+	  }
+         img.logo{
+        width: 300px;
+        height: 60px;
+}
+        .pic{
+        width: 80px;}
