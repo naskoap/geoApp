@@ -3,24 +3,80 @@ var walsh = new google.maps.LatLng(35.20479,-85.91960);
 var mcclurg = new google.maps.LatLng(35.20321,-85.92009);
 var allsaints = new google.maps.LatLng(35.20397,-85.92011);
 var bookstore = new google.maps.LatLng(35.20281, -85.92086);
-var woods = new google.maps.LatLng(35.20420, -85.91908);
 var stirlings = new google.maps.LatLng(35.20528,-85.91656);
 var sut = new google.maps.LatLng(35.20402, -85.92155);
 var gamma = new google.maps.LatLng(35.20622,-85.91526);
+var fowler = new google.maps.LatLng(35.208650, -85.920085);
 
-var locationArray = [fulford,walsh,mcclurg,allsaints,bookstore,woods,stirlings,sut,gamma];
-var locationNameArray = ['Fulford','Walsh-Ellett','McClurg','All Saints Chapel',
-'Barnes&Noble','Woods','Stirlings','Thompson Union','Gamma'];
+var locationArrayU = [fulford,mcclurg,allsaints,bookstore,stirlings,sut,gamma,fowler];
+var locationNameArrayU = ['Fulford','McClurg','All Saints Chapel',
+'Barnes&Noble','Stirlings','Thompson Union','Gamma','Fowler Center'];
 
-var infoArray =  [fulfordStr,walshStr,mcclurgStr,allsaintsStr,bookStr,woodsStr,stirlingsStr,sutStr,gammaStr];
 
+//Dorm Array section open
 var cannon = new google.maps.LatLng(35.20468,-85.92264);
 var smith = new google.maps.LatLng(35.20469,-85.92211);
 var benedict = new google.maps.LatLng(35.20746,-85.91716);
 var stLukes = new google.maps.LatLng(35.20608,-85.91883);
+var Hoffman = new google.maps.LatLng(35.20650,-85.91875);
+var Humphreys = new google.maps.LatLng(35.20507,-85.91508);
+var Hodgeson = new google.maps.LatLng(35.20510,-85.92802);
+var Elliot = new google.maps.LatLng(35.20075,-85.92140);
+var Tuckaway = new google.maps.LatLng(35.20120,-85.92223);
+var Hunter = new google.maps.LatLng(35.20070,-85.92004);
+var Quintard = new google.maps.LatLng(35.19760,-85.92516);
+var Gorgas = new google.maps.LatLng(35.19715,-85.92599);
+var Cleveland = new google.maps.LatLng(35.20247,-85.92175);
 
-var dormMarkerarray = [cannon, smith, benedict, stLukes];
 
+var dormMarkerarray = [cannon, smith, benedict, stLukes, Hoffman, Humphreys, Hodgeson, Elliot, Tuckaway, Hunter, Quintard, Gorgas, Cleveland];
+var locationNameArrayD = ['Cannon','Smith','Benedict','St. Lukes','Hoffman','Humphreys','Hodgeson','Elliot','Tuckaway','Hunter',
+                         'Quintard','Gorgas','Cleveland'];
+//Dorm array section close
+
+//Academic array section open
+var woodsM = new google.maps.LatLng(35.20422,-85.91905);
+var walshM = new google.maps.LatLng(35.20473,-85.92011);
+var carnegieM = new google.maps.LatLng(35.20430,-85.91977);
+var gailorM = new google.maps.LatLng(35.20255,-85.91956);
+var spencerM = new google.maps.LatLng(35.20411,-85.91849);
+var guerryM = new google.maps.LatLng(35.20497,-85.91961);
+var snowdenM = new google.maps.LatLng(35.20323,-85.91764);
+
+var academicArray = [woodsM, walshM, carnegieM, gailorM, spencerM, guerryM, snowdenM];
+var locationNameArrayA = ['Woods Laboratories','Walsh-Ellett Hall','Carnegie','Gailor','Spencer','Guerry','Snowden'];
+//Academic section close
+
+//University Building open
+var walsh = new google.maps.LatLng(35.20479,-85.91960);
+var mcclurg = new google.maps.LatLng(35.20321,-85.92009);
+var allsaints = new google.maps.LatLng(35.20397,-85.92011);
+var bookstore = new google.maps.LatLng(35.20281, -85.92086);
+var stirlings = new google.maps.LatLng(35.20528,-85.91656);
+var sut = new google.maps.LatLng(35.20402, -85.92155);
+
+//Polygon coordinates open
+  var smithCoords = [new google.maps.LatLng(35.20449,-85.92187),
+                    new google.maps.LatLng(35.20450,-85.92186),
+					new google.maps.LatLng(35.20457,-85.92185),
+					new google.maps.LatLng(35.20458,-85.92187),
+					new google.maps.LatLng(35.20464,-85.92191),
+					new google.maps.LatLng(35.20465,-85.92200),
+					new google.maps.LatLng(35.20471,-85.92200),
+					new google.maps.LatLng(35.20472,-85.92193),
+					new google.maps.LatLng(35.20482,-85.92193),
+					new google.maps.LatLng(35.20484,-85.92198),
+					new google.maps.LatLng(35.20488,-85.92237),
+					new google.maps.LatLng(35.20480,-85.92241),
+					new google.maps.LatLng(35.20473,-85.92235),
+					new google.maps.LatLng(35.20472,-85.92220),
+					new google.maps.LatLng(35.20468,-85.92221),
+					new google.maps.LatLng(35.20466,-85.92227),
+					new google.maps.LatLng(35.20461,-85.92233),
+					new google.maps.LatLng(35.20458,-85.92231),
+					new google.maps.LatLng(35.20458,-85.92233),
+					new google.maps.LatLng(35.20453,-85.92231),
+					new google.maps.LatLng(35.20451,-85.92228)];
 
   var elliotCoords =  [new google.maps.LatLng(35.200591, -85.921505),
                        new google.maps.LatLng(35.200651,-85.921477),
@@ -333,11 +389,42 @@ var humphreysCoords = [new google.maps.LatLng(35.20490,-85.91507),
 					   new google.maps.LatLng(35.20492,-85.91466),
 					   new google.maps.LatLng(35.20496,-85.91496)];
 
-
+var fowlerCoords = [new google.maps.LatLng(35.207980, -85.919774),
+                    new google.maps.LatLng(35.208027, -85.920328),
+                    new google.maps.LatLng(35.208044, -85.920330),
+                    new google.maps.LatLng(35.208057, -85.920440),
+                    new google.maps.LatLng(35.208278, -85.920423),
+                    new google.maps.LatLng(35.208303, -85.920817),
+                    new google.maps.LatLng(35.208584, -85.920781),
+                    new google.maps.LatLng(35.208588, -85.920725),
+                    new google.maps.LatLng(35.209082, -85.920676),
+                    new google.maps.LatLng(35.209077, -85.920483),
+                    new google.maps.LatLng(35.209053, -85.920272),
+                    new google.maps.LatLng(35.209072, -85.920271),
+                    new google.maps.LatLng(35.209014, -85.919545),
+                    new google.maps.LatLng(35.209001, -85.919487),
+                    new google.maps.LatLng(35.208923, -85.919507),
+                    new google.maps.LatLng(35.208923, -85.919518),
+                    new google.maps.LatLng(35.208880, -85.919506),
+                    new google.maps.LatLng(35.208820, -85.919496),
+                    new google.maps.LatLng(35.208747, -85.919503),
+                    new google.maps.LatLng(35.208664, -85.919542),
+                    new google.maps.LatLng(35.208630, -85.919542),
+                    new google.maps.LatLng(35.208630, -85.919526),
+                    new google.maps.LatLng(35.208550, -85.919540),
+                    new google.maps.LatLng(35.208555, -85.919636),
+                    new google.maps.LatLng(35.208532, -85.919642),
+                    new google.maps.LatLng(35.208531, -85.919709),
+                    new google.maps.LatLng(35.208441, -85.919715),
+                    new google.maps.LatLng(35.208436, -85.919680),
+                    new google.maps.LatLng(35.208305, -85.919685),
+                    new google.maps.LatLng(35.208304, -85.919725)];
+//Polygon coordinates close
 
 var dormsArray = [elliotCoords,tuckawayCoords,quintardCoords,gorgasCoords,
                   hunterCoords,clevelandCoords,cannonCoords,johnsonCoords,
-                  stLukesCoords,hoffmanCoords,benedictCoords,humphreysCoords];
+                  stLukesCoords,hoffmanCoords,benedictCoords,humphreysCoords,smithCoords];
+
 
 var fratArray = [sigmaNuCoords,aTOCoords, phiSocietyCoords,phiSocietyBarnCoords,
                  sigmaAlphaEpsilonCoords,deltaTauDeltCoords,phiGammaCoords,
