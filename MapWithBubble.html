@@ -84,24 +84,26 @@ function initialize() {
             infoBubble.open(map, marker1);
           
           });
-       function linkInfoBubble(marker1, map, infoBubble, description1, description2){
+       function linkInfoBubble(marker1, map, infoBubble, description1, description2){ 
+       
+        
        google.maps.event.addListener(marker1, 'click', function() {
+       
+       if (infoBubble.getMap() != null) {
+          infoBubble.close();
+          delete InfoBubble;
+          infoBubble = new InfoBubble({
+          maxWidth: 300
+        });
+      }
        infoBubble.open(map, marker1);
        infoBubble.addTab('Building', description1);
        infoBubble.addTab('Photo', description2);
-  if (infoBubble.getMap() != null) {
-    infoBubble.close()
-    delete infoBubble;
-    infoBubble = new InfoBubble({
-       maxWidth: 100
-    });
-  }
-       infoBubble.addTab('Building', description1);
-       infoBubble.addTab('Photo', description2);
-           
+
 }
     );
         }
+        
 // Set blue marker indicating user position
 function setMarker(pos) {
         var lat = pos.coords.latitude,
