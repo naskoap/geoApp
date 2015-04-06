@@ -53,7 +53,7 @@ function setMarker(pos) {
         coords = new google.maps.LatLng(lat, lng);
         posMarker = new google.maps.Marker({
         map: map,
-        icon: 'TrackingDot.png',
+        //icon: 'TrackingDot.png',
         position: coords,
         title: "Current Position"
 }
@@ -143,7 +143,7 @@ function setMarker(pos) {
       var storeV=infoArray[i];
       marker1 = new google.maps.Marker({
       position: locationArray[i],
-      icon: 'yellowMarker.png',
+      //icon: 'yellowMarker.png',
       map: map,
       title: locationNameArray[i]
       });
@@ -185,7 +185,7 @@ function setMarker(pos) {
      for (var i=0; i<academicArray.length; i++){
      aMarker = new google.maps.Marker({
      position: academicArray[i],
-     icon: 'blue-dot.png',
+     //icon: 'blue-dot.png',
      map: map
 }
    );      academicMBox.push(aMarker);
