@@ -81,7 +81,7 @@ function initialize() {
     infoBubbleArrayD[p] = contentStringD;
     }
 
-      for (var i=0; i < locationNameArrayD.length; i++) {
+      for (var i=0; i <= locationNameArrayD.length; i++) {
       var storeY = infoBubbleArrayD[i];
       var storeW = infoBubbleArrayD[i];
       dMarker = new google.maps.Marker({
@@ -143,7 +143,7 @@ function initialize() {
     infoBubbleArrayA[p] = contentStringA;
     }
 
-      for (var i=0; i < academicArray.length; i++) {
+      for (var i=0; i <= academicArray.length; i++) {
       var storeK = infoBubbleArrayA[i];
       var storeT = infoBubbleArrayA[i];
       aMarker = new google.maps.Marker({
@@ -221,9 +221,10 @@ function initialize() {
           
           });
        function linkInfoBubble(marker1, map, infoBubble, description1, description2){ 
-       
-       google.maps.event.addListener(marker1, 'click', function() {infoBubble.close();});
        google.maps.event.addListener(marker1, 'click', function() {
+       google.maps.event.addListener(map, "click", function () { 
+       infoBubble.close();
+        });
        if('click'){infoBubble.close();}
        if(infoBubble.getMap()){
           infoBubble.close();
@@ -244,6 +245,21 @@ function initialize() {
 }
     );
         }
+       google.maps.event.addListener(map, "click", function () { 
+       infoBubble.close();
+       infoBubbleA.close();
+       infoBubbleD.close();
+        });
+    
+    InfoBubble.prototype.buildDom_ = function() {
+
+  // ...  
+
+  var that = this;
+  google.maps.event.addDomListener(close, 'click', function() {
+    that.close();
+    google.maps.event.trigger(that, 'closeclick');
+  });}
         
 // Set blue marker indicating user position
 function setMarker(pos) {
@@ -312,75 +328,7 @@ function setMarker(pos) {
         }
       }
     }
-      //Construct markers
- /*     for (var p=0; p < locationNameArrayD.length; p++) {
-      var infoD = '<div>'+
-      '<div>'+
-      '</div>'+
-      '<h1>' + locationNameArrayD[p] + '</h1>'+
-      '<div>'+
-      '<p>Welcome to ' + locationNameArrayD[p] + '!</p>' +
-      '</div>'+
-      '</div>';
-      infoArrayD[p] = infoD;
-      }
-for (var i=0; i < locationNameArrayD.length; i++) {
-      var storeD=infoArrayD[i];
-      dMarker = new google.maps.Marker({
-      position: dormMarkerarray[i],
-      icon: 'markers/blue-dot.png',
-      map: map,
-      title: locationNameArrayD[i]
-      });
-      dormMarkerBox.push(dMarker);
-      markersArrayD.push(dMarker);  // -> Attempt to push the marker to an array s
-      markersArrayD[i].setMap(null);
-      
-      linkInfoWindow(dMarker, map, infowindowD, storeD);
-  }
 
-       function linkInfoWindow(dMarker, map, infowindowD, description) {
-       google.maps.event.addListener(dMarker, 'click', function() {
-       infowindowD.setContent(description);
-       infowindowD.open(map, dMarker);
-}
-    );
-        }*/
-    
-      //Construct markers
-    /*  for (var p=0; p < locationNameArrayA.length; p++) {
-      var infoA = '<div>'+
-      '<div>'+
-      '</div>'+
-      '<h1>' + locationNameArrayA[p] + '</h1>'+
-      '<div>'+
-      '<p>Welcome to ' + locationNameArrayA[p] + '!</p>' +
-      '</div>'+
-      '</div>';
-      infoArrayA[p] = infoA;
-      }
-for (var i=0; i < locationNameArrayA.length; i++) {
-      var storeA=infoArrayA[i];
-      aMarker = new google.maps.Marker({
-      position: academicArray[i],
-      icon: 'markers/yellowMarker.png',
-      map: map,
-      title: locationNameArrayA[i]
-      });
-      academicMBox.push(aMarker);
-      markersArrayA.push(aMarker);  // -> Attempt to push the marker to an array s
-      markersArrayA[i].setMap(null);
-      
-      linkInfoWindow(aMarker, map, infowindowA, storeA);
-  }
-
-       function linkInfoWindow(dMarker, map, infowindowD, description) {
-       google.maps.event.addListener(dMarker, 'click', function() {
-       infowindowD.setContent(description);
-       infowindowD.open(map, dMarker);
-}
-    );
-        }*/
 
      google.maps.event.addListenerOnce(map, "projection_changed", function(){
       map.setMapTypeId(google.maps.MapTypeId.HYBRID);  //Changes the MapTypeId in short time.
