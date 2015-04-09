@@ -4,26 +4,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Sewanee map </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <title> Sewanee map </title>   
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="mobileStyling.css" rel="stylesheet">
-
+    <link href="css/mobileStyling.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    <script src="buildings.js"> </script>
     <script src="coords.js"> </script>
     <script src="direct.js"> </script>
     <script src="bootstrap/js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js"></script>
+    <script src="Pictures.js"></script>
     <script type="text/javascript">
 
-var map, infowindow, marker, marker1, posMarker, dMarker, aMarker, positionTimer;
+var map, infowindow, marker, marker1, posMarker, dMarker, aMarker, positionTimer,infowindowU, infowindowD, infowindowA;;
 var coords = new google.maps.LatLng(35.20438,-85.92016);
 var markersArray  = [];
+var markersArrayD  = [];
+var markersArrayA  = [];
 var dormMarkerBox = [];
 var academicMBox  = [];
+var dormPolygonArray = [];
+var infoArrayU = [];
+var infoArrayD = [];
+var infoArrayA = [];
+var storeB, storeZ;
+var infoBubble;
+var infoBubbleA;
+var infoBubbleD;
+var contentStringU;
+var contentStringA;
+var contentStringD;
+var infoBubbleArrayU = [];
+var infoBubbleArrayA = [];
+var infoBubbleArrayD = [];
 
 
 function initialize() {
@@ -46,6 +62,209 @@ function initialize() {
           } else {
             alert("Your browser does not support the Geolocation API");
 }
+            infoBubble = new InfoBubble({
+          maxWidth: 100
+        });
+                infoBubbleA = new InfoBubble({
+          maxWidth: 100
+        });
+                infoBubbleD = new InfoBubble({
+          maxWidth: 100
+        });
+      //Construct markers
+    // DORM MARKERS START
+            for (var p=0; p < locationNameArrayD.length; p++) {
+         contentStringD = '<div>'+
+      '<div>'+
+      '</div>'+
+      '<h1>' + locationNameArrayD[p] + '</h1>'+
+      '<div>'+
+      '<p>Welcome to ' + locationNameArrayD[p] + '!</p>' +
+      '</div>'+
+      '</div>';
+    infoBubbleArrayD[p] = contentStringD;
+    }
+
+      for (var i=0; i <= locationNameArrayD.length; i++) {
+      var storeY = infoBubbleArrayD[i];
+      var storeW = infoBubbleArrayD[i];
+      dMarker = new google.maps.Marker({
+      position: dormMarkerarray[i],
+      map: map,
+      icon: 'markers/yellowMarker.png',
+      title: locationNameArrayD[i]
+      });
+      dormMarkerBox.push(dMarker);
+      markersArrayD.push(dMarker);  // -> Attempt to push the marker to an array s
+      markersArrayD[i].setMap(null);
+      linkInfoBubble(dMarker, map, infoBubbleD, storeY, storeW);
+}
+            google.maps.event.addListener(dMarker, 'click', function() {
+            infoBubbleD.open(map, dMarker);
+          
+          });
+       function linkInfoBubble(dMarker, map, infoBubbleD, description5, description6){ 
+       
+       google.maps.event.addListener(aMarker, 'click', function() {
+       if('click'){infoBubbleD.close();}
+       if(infoBubbleD.getMap()){
+          infoBubbleD.close();
+       }
+       if (infoBubbleD.getMap() != null) {
+          delete infoBubbleD;
+          infoBubbleD = new InfoBubble({
+          maxWidth: 300
+        });
+      }
+                  if(infoBubbleD.getMap()){
+          infoBubbleD.close();
+       }
+       infoBubbleD.open(map, dMarker);
+       infoBubbleD.addTab('Building', description5);
+       infoBubbleD.addTab('Photo', description6);
+
+}
+    );
+        }
+    
+    
+    
+    
+    
+    
+    
+    //ACADEMIC MARKERS
+    
+        for (var p=0; p < locationNameArrayA.length; p++) {
+         contentStringA = '<div>'+
+      '<div>'+
+      '</div>'+
+      '<h1>' + locationNameArrayA[p] + '</h1>'+
+      '<div>'+
+      '<p>Welcome to ' + locationNameArrayA[p] + '!</p>' +
+      '</div>'+
+      '</div>';
+    infoBubbleArrayA[p] = contentStringA;
+    }
+
+      for (var i=0; i <= academicArray.length; i++) {
+      var storeK = infoBubbleArrayA[i];
+      var storeT = infoBubbleArrayA[i];
+      aMarker = new google.maps.Marker({
+      position: academicArray[i],
+      map: map,
+      icon: 'markers/blue-dot.png',
+      title: locationNameArrayA[i]
+      });
+      academicMBox.push(aMarker);  // -> Attempt to push the marker to an array s
+      academicMBox[i].setMap(null);
+      linkInfoBubble(aMarker, map, infoBubbleA, storeK, storeT);
+}
+            google.maps.event.addListener(aMarker, 'click', function() {
+            infoBubbleA.open(map, aMarker);
+          
+          });
+       function linkInfoBubble(aMarker, map, infoBubbleA, description3, description4){ 
+       
+       google.maps.event.addListener(aMarker, 'click', function() {
+       if('click'){infoBubbleA.close();}
+       if(infoBubbleA.getMap()){
+          infoBubbleA.close();
+       }
+       if (infoBubbleA.getMap() != null) {
+          delete infoBubbleA;
+          infoBubbleA = new InfoBubble({
+          maxWidth: 300
+        });
+      }
+                  if(infoBubbleA.getMap()){
+          infoBubbleA.close();
+       }
+       infoBubbleA.open(map, aMarker);
+       infoBubbleA.addTab('Building', description3);
+       infoBubbleA.addTab('Photo', description4);
+
+}
+    );
+        }
+    
+    
+    
+    
+    
+    
+    
+    //UNIVERSITY MARKERS
+    
+    for (var p=0; p < locationArrayU.length; p++) {
+         contentString = '<div>'+
+      '<div>'+
+      '</div>'+
+      '<h1>' + locationNameArrayU[p] + '</h1>'+
+      '<div>'+
+      '<p>Welcome to ' + locationNameArrayU[p] + '!</p>' +
+      '</div>'+
+      '</div>';
+    infoBubbleArrayU[p] = contentString;
+    }
+
+      for (var i=0; i < locationArrayU.length; i++) {
+      var storeU = infoBubbleArrayU[i];
+      var storeP = pictureArrayU[i];
+      marker1 = new google.maps.Marker({
+      position: locationArrayU[i],
+      map: map,
+      title: locationNameArrayU[i]
+      });
+      markersArray.push(marker1);  // -> Attempt to push the marker to an array s
+      markersArray[i].setMap(null);
+      linkInfoBubble(marker1, map, infoBubble, storeU, storeP);
+}
+            google.maps.event.addListener(marker, 'click', function() {
+            infoBubble.open(map, marker1);
+          
+          });
+       function linkInfoBubble(marker1, map, infoBubble, description1, description2){ 
+       google.maps.event.addListener(marker1, 'click', function() {
+       google.maps.event.addListener(map, "click", function () { 
+       infoBubble.close();
+        });
+       if('click'){infoBubble.close();}
+       if(infoBubble.getMap()){
+          infoBubble.close();
+       }
+       if (infoBubble.getMap() != null) {
+          delete InfoBubble;
+          infoBubble = new InfoBubble({
+          maxWidth: 300
+        });
+      }
+                  if(infoBubble.getMap()){
+          infoBubble.close();
+       }
+       infoBubble.open(map, marker1);
+       infoBubble.addTab('Building', description1);
+       infoBubble.addTab('Photo', description2);
+
+}
+    );
+        }
+       google.maps.event.addListener(map, "click", function () { 
+       infoBubble.close();
+       infoBubbleA.close();
+       infoBubbleD.close();
+        });
+    
+    InfoBubble.prototype.buildDom_ = function() {
+
+  // ...  
+
+  var that = this;
+  google.maps.event.addDomListener(close, 'click', function() {
+    that.close();
+    google.maps.event.trigger(that, 'closeclick');
+  });}
+        
 // Set blue marker indicating user position
 function setMarker(pos) {
         var lat = pos.coords.latitude,
@@ -53,7 +272,7 @@ function setMarker(pos) {
         coords = new google.maps.LatLng(lat, lng);
         posMarker = new google.maps.Marker({
         map: map,
-        //icon: 'TrackingDot.png',
+        icon: 'markers/TrackingDot.png',
         position: coords,
         title: "Current Position"
 }
@@ -62,39 +281,17 @@ function setMarker(pos) {
             directionsDisplay = new google.maps.DirectionsRenderer();
           // Update user's location  
           positionTimer = navigator.geolocation.watchPosition(function (pos) {
-            var lat = pos.coords.latitude,
-             lng = pos.coords.longitude;
+           var lat = pos.coords.latitude,
+           lng = pos.coords.longitude;
            coords = new google.maps.LatLng(lat, lng);
             posMarker.setPosition(coords);
-           // map.panTo(coords);
+            //map.panTo(coords);
 }
       
   );
         directionsDisplay.setMap(map)
      }
 
-      var addListenersOnPolygon = function(polygon) {
-      google.maps.event.addListener(polygon, 'click', function (event) {
-      alert(polygon.indexID);
-}
-  ); 
-     }
-
-     for (var i = 0; i < dormsArray.length; i++) {
-   
-        var p = new google.maps.Polygon({
-        paths: dormsArray[i],
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-        indexID: i
-}
-  );
-        p.setMap(map);
-        addListenersOnPolygon(p);
-}
 
      for (var j = 0; j < fratArray.length; j++) {
    
@@ -109,11 +306,12 @@ function setMarker(pos) {
 }
   );
         q.setMap(map);
-        addListenersOnPolygon(q);
 }
-        
- 
-        infowindow = new google.maps.InfoWindow({
+        infowindowD = new google.maps.InfoWindow({
+        content: ""
+}
+  );
+        infowindowA = new google.maps.InfoWindow({
         content: ""
 }
   );
@@ -136,31 +334,7 @@ function setMarker(pos) {
     }
 
 
-
-      //Construct markers
-      var infoArray =  [fulfordStr,mcclurgStr,allsaintsStr,bookStr,stirlingsStr,sutStr,gammaStr];
-      for (var i=0; i<= locationArray.length; i++) {
-      var storeV=infoArray[i];
-      marker1 = new google.maps.Marker({
-      position: locationArray[i],
-      //icon: 'yellowMarker.png',
-      map: map,
-      title: locationNameArray[i]
-      });
-      markersArray.push(marker1);  // -> Attempt to push the marker to an array s
-      linkInfoWindow(marker1, map, infowindow, storeV);
-      markersArray[i].setMap(null);
-     }
-     
-       function linkInfoWindow(marker1, map, infowindow, description) {
-       google.maps.event.addListener(marker1, 'click', function() {
-       infowindow.setContent(description);
-       infowindow.open(map, marker1);
-}
-    );
-        }
-
-      google.maps.event.addListenerOnce(map, "projection_changed", function(){
+     google.maps.event.addListenerOnce(map, "projection_changed", function(){
       map.setMapTypeId(google.maps.MapTypeId.HYBRID);  //Changes the MapTypeId in short time.
       setZoomLimit(map, google.maps.MapTypeId.ROADMAP);
       setZoomLimit(map, google.maps.MapTypeId.HYBRID);
@@ -168,41 +342,43 @@ function setMarker(pos) {
       setZoomLimit(map, google.maps.MapTypeId.TERRAIN);
       map.setMapTypeId(google.maps.MapTypeId.ROADMAP);  //Sets the MapTypeId to original.
     });
-  } 
 
-     for (var o=0; o<dormMarkerarray.length; o++){
-     dMarker = new google.maps.Marker({
-     position: dormMarkerarray[o],
-     map: map
+
+   }               // initialize end
+
+     for (var i = 0; i < dormsArray.length; i++) {
+   
+        var p = new google.maps.Polygon({
+        paths: dormsArray[i],
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        indexID: i
 }
-   );      dormMarkerBox.push(dMarker);
-       }
-
-
-
-
-
-     for (var i=0; i<academicArray.length; i++){
-     aMarker = new google.maps.Marker({
-     position: academicArray[i],
-     //icon: 'blue-dot.png',
-     map: map
-}
-   );      academicMBox.push(aMarker);
-       }
+  );
+        dormPolygonArray.push(p);
+} 
      
      function residenceBox() {
      if(box1.checked){
      for( var m=0; m < dormMarkerBox.length; m++){
      dormMarkerBox[m].setMap(map);
 }
+     for(var j=0; j<dormPolygonArray.length; j++){
+     dormPolygonArray[j].setMap(map);
     }
+}
      if(!box1.checked){
      for(var l=0; l < dormMarkerBox.length; l++){
      dormMarkerBox[l].setMap(null);
+
 }
+     for(var j=0; j<dormPolygonArray.length; j++){
+     dormPolygonArray[j].setMap(null);
     }
-    }
+    }}
      function academicBox() {
      if(box2.checked){
      for(m=0; m < markersArray.length; m++){
@@ -234,8 +410,8 @@ function setMarker(pos) {
        else
          calcRoute2();
      }
-
-    function setZoomLimit(map, mapTypeId){
+  
+  function setZoomLimit(map, mapTypeId){
     //Gets MapTypeRegistry
     var mapTypeRegistry = map.mapTypes;    
     //Gets the specified MapType
@@ -244,7 +420,6 @@ function setMarker(pos) {
     mapType.maxZoom = 19;  
     mapType.minZoom = 14;
   }
-
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
   </head>
@@ -293,9 +468,9 @@ function setMarker(pos) {
 </div>
 <div class="col-xs-11 col-md-11 col-lg-11 col-xl-11">
 <br>
-    <b>Directions From</b>
+ <b>Directions From</b>
     <select id="start" onchange="routeCalc();">
-      <option value="29">                                        Choose Origin</option>
+      <option value="none">                                        Choose Origin</option>
       <option value="nothing">                                   - - - - - - - - - - - - - - -</option>
       <option value="28">                                        Current Location</option>
       <option value="4">                                         Gailor Hall</option>
@@ -326,12 +501,34 @@ function setMarker(pos) {
       <option value="25">                                        Chen Hall</option>
       <option value="26">                                        Convocation Hall</option>
       <option value="27">                                        Guerry Hall and Art Gallery</option>
-    </select>
+      <option value="28">                                        Soccer Field</option>
+      <option value="29">                                        Golf Course</option>
+      <option value="30">                                        Equestrian</option>
+      <option value="31">                                        Tennis Courts</option>
+      <option value="32">                                        Football Field</option>
+      <option value="33">                                        Baseball Field</option>
+      <option value="34">                                        Memorial Cross</option>
+      <option value="35">                                        Morgan's Steep</option>
+      <option value="36">                                        Green's View</option>
+      <option value="37">                                        Sewanee Inn</option>
+      <option value="38">                                        St. Lukes Chapel</option>
+      <option value="39">                                        Spencer</option>
+      <option value="40">                                        Tennesee Williams Center</option>
+      <option value="41">                                        Cravens Hall</option>
+      <option value="42">                                        University Farm</option>
+      <option value="43">                                        Nabit Art Building</option>
+      <option value="44">                                        MultiCultural Center</option>
+      <option value="45">                                        Hodgeson</option>
+      <option value="46">                                        Philips</option>
+      <option value="47">                                        Smith</option>
+      <option value="48">                                        Trez</option>
+      <option value="49">                                        Courts</option>
+                </select>  
    <br>
    <br>
 <b>Directions To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
     <select id="end" onchange="routeCalc();">
-      <option value="29">                                        Choose Destination</option>
+      <option value="none">                                        Choose Destination</option>
       <option value="nothing">                                   - - - - - - - - - - - - - - -</option>
       <option value="4">                                         Gailor Hall</option>
       <option value="3">                                         Hospital</option>
@@ -361,6 +558,28 @@ function setMarker(pos) {
       <option value="25">                                        Chen Hall</option>
       <option value="26">                                        Convocation Hall</option>
       <option value="27">                                        Guerry Hall and Art Gallery</option>
+      <option value="28">                                        Soccer Field</option>
+      <option value="29">                                        Golf Course</option>
+      <option value="30">                                        Equestrian</option>
+      <option value="31">                                        Tennis Courts</option>
+      <option value="32">                                        Football Field</option>
+      <option value="33">                                        Baseball Field</option>
+      <option value="34">                                        Memorial Cross</option>
+      <option value="35">                                        Morgan's Steep</option>
+      <option value="36">                                        Green's View</option>
+      <option value="37">                                        Sewanee Inn</option>
+      <option value="38">                                        St. Lukes Chapel</option>
+      <option value="39">                                        Spencer</option>
+      <option value="40">                                        Tennesee Williams Center</option>
+      <option value="41">                                        Cravens Hall</option>
+      <option value="42">                                        University Farm</option>
+      <option value="43">                                        Nabit Art Building</option>
+      <option value="44">                                        MultiCultural Center</option>
+      <option value="45">                                        Hodgeson</option>
+      <option value="46">                                        Philips</option>
+      <option value="47">                                        Smith</option>
+      <option value="48">                                        Trez</option>
+      <option value="49">                                        Courts</option>
     </select>
 </div>
 </div>
