@@ -452,12 +452,11 @@ function setMarker(pos) {
     }
 
      function routeCalc(){
-       if(document.getElementById('start').value != 28)
+       if(document.getElementById('start').value != 70)
          calcRoute();
        else
          calcRoute2();
      }
-  
   function setZoomLimit(map, mapTypeId){
     //Gets MapTypeRegistry
     var mapTypeRegistry = map.mapTypes;    
@@ -483,9 +482,9 @@ CheckBoxes Will Be With Us SOON!!<hr>
                                                                                                                                                            
  <b>Directions From</b>
     <select id="start" onchange="routeCalc();">
-      <option value="none">                                        Choose Origin</option>
-      <option value="nothing">                                   - - - - - - - - - - - - - - -</option>
-      <option value="28">                                        Current Location</option>
+      <option value="100">                                       Choose Origin</option>
+      <option value="100">                                       - - - - - - - - - - - - - - -</option>
+      <option value="70">                                        Current Location</option>
       <option value="4">                                         Gailor Hall</option>
       <option value="3">                                         Hospital</option>
       <option value="0">                                         Walsh-Ellett Hall</option>
@@ -540,8 +539,8 @@ CheckBoxes Will Be With Us SOON!!<hr>
 
     <b>Directions To</b>
     <select id="end" onchange="routeCalc();">
-      <option value="none">                                        Choose Destination</option>
-      <option value="nothing">                                   - - - - - - - - - - - - - - -</option>
+      <option value="100">                                       Choose Destination</option>
+      <option value="100">                                       - - - - - - - - - - - - - - -</option>
       <option value="4">                                         Gailor Hall</option>
       <option value="3">                                         Hospital</option>
       <option value="0">                                         Walsh-Ellett Hall</option>
