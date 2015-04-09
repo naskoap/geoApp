@@ -7,7 +7,6 @@ var coords;
 var lat;
 var lng;
 
-
 //Marker paths
 var walshElletM = new google.maps.LatLng(35.20458,-85.91990);
 var bookStoreMarker = new google.maps.LatLng(35.20283, -85.92100);
@@ -37,11 +36,37 @@ var eqb = new google.maps.LatLng(35.20285,-85.92032);
 var chen = new google.maps.LatLng(35.20310,-85.92214);
 var convocation = new google.maps.LatLng(35.20497,-85.92045);
 var guerry = new google.maps.LatLng(35.20507,-85.91959);
+var soccerField = new google.maps.LatLng(35.196098, -85.927296);
+var sewaneeGolfCourse = new google.maps.LatLng(35.210493, -85.914744);
+var equestrian = new google.maps.LatLng(35.214192, -85.936966);
+var tennisCourts = new google.maps.LatLng(35.209908, -85.915493);
+var footballField = new google.maps.LatLng(35.209406, -85.921503);
+var baseballField = new google.maps.LatLng(35.211948, -85.925140);
+var memorialCross = new google.maps.LatLng(35.191995, -85.937322);
+var morgansSteep = new google.maps.LatLng(35.202472, -85.931802);
+var greensView = new google.maps.LatLng(35.217453, -85.918474);
+var sewaneeInn = new google.maps.LatLng(35.209099, -85.913995);
+var stLukesChapel = new google.maps.LatLng(35.205584, -85.918786);
+var spencer = new google.maps.LatLng(35.20411,-85.91849);
+var tenneseeWilliams = new google.maps.LatLng(35.196440, -85.924078);
+var cravens = new google.maps.LatLng(35.196388, -85.925687);
+var universityFarm = new google.maps.LatLng(35.212991, -85.926138);
+var nabit = new google.maps.LatLng(35.203750, -85.914345);
+var multiculturalCenter = new google.maps.LatLng(35.201101, -85.919406);
+var hodgeson = new google.maps.LatLng(35.20510,-85.92802);
+var philips = new google.maps.LatLng(35.205716, -85.928844);
+var smith = new google.maps.LatLng(35.20469,-85.92211);
+var trez = new google.maps.LatLng(35.205545, -85.912272);
+var courts = new google.maps.LatLng(35.205150, -85.913943);
 
-var navArray = [walshElletM, bookStoreMarker, woodsLab, hospital, gailor, mcclurg, fowlerCenter, 
-carnegie, library, bishopCommons, fulford, allSaints, thompsonUnion, stLukes, mccrady, vanness, 
-snowden, archives, policeFire, stirlings, alumniHouse, hoffman, careerServices, womensCenter, eqb, chen, 
-convocation, guerry];
+
+
+var navArray = [walshElletM, bookStoreMarker, woodsLab, hospital, gailor, mcclurg, fowlerCenter,
+carnegie, library, bishopCommons, fulford, allSaints, thompsonUnion, stLukes, mccrady, vanness,
+snowden, archives, policeFire, stirlings, alumniHouse, hoffman, careerServices, womensCenter, eqb, chen,
+convocation, guerry, soccerField, sewaneeGolfCourse, equestrian, tennisCourts, footballField, baseballField, memorialCross,
+morgansSteep, greensView, sewaneeInn, stLukesChapel, spencer, tenneseeWilliams, cravens, universityFarm, nabit, multiculturalCenter,
+hodgeson, philips, smith, trez, courts];
 
 
 function calcRoute() {
