@@ -37,6 +37,8 @@ var contentStringD;
 var infoBubbleArrayU = [];
 var infoBubbleArrayA = [];
 var infoBubbleArrayD = [];
+var acadPolygonArray = [];
+var univPolygonArray = [];
 
 function initialize() {
 
@@ -342,10 +344,25 @@ function setMarker(pos) {
 
    }               // initialize end
 
-     for (var i = 0; i < dormsArray.length; i++) {
+      for (var i = 0; i < dormsArray.length; i++) {
    
         var p = new google.maps.Polygon({
         paths: dormsArray[i],
+        strokeColor: '#996633',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#996633',
+        fillOpacity: 0.35,
+        indexID: i
+}
+  );
+        dormPolygonArray.push(p);
+} 
+
+     for (var i = 0; i < univArray.length; i++) {
+   
+        var p = new google.maps.Polygon({
+        paths: univArray[i],
         strokeColor: '#FF0000',
         strokeOpacity: 0.8,
         strokeWeight: 2,
@@ -354,8 +371,26 @@ function setMarker(pos) {
         indexID: i
 }
   );
-        dormPolygonArray.push(p);
+        univPolygonArray.push(p);
+}
+
+ for (var i = 0; i < acadCoordArray.length; i++) {
+   
+        var p = new google.maps.Polygon({
+        paths: acadCoordArray[i],
+        strokeColor: '#5CADFF',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#5CADFF',
+        fillOpacity: 0.35,
+        indexID: i
+}
+  );
+        acadPolygonArray.push(p);
 } 
+
+
+
      
      function residenceBox() {
      if(box1.checked){
@@ -375,28 +410,44 @@ function setMarker(pos) {
      dormPolygonArray[j].setMap(null);
     }
     }}
+
+
      function academicBox() {
      if(box2.checked){
      for(m=0; m < markersArray.length; m++){
      markersArray[m].setMap(map);
 }
+    for(var j=0; j<univPolygonArray.length; j++){
+     univPolygonArray[j].setMap(map);
+    }
     }
      if(!box2.checked){
      for(l=0; l < markersArray.length; l++){
      markersArray[l].setMap(null);
 }
+     for(var j=0; j<univPolygonArray.length; j++){
+     univPolygonArray[j].setMap(null);
     }
     }
+    }
+
+
      function academicBox2() {
      if(box3.checked){
      for(i=0; i < academicMBox.length; i++){
      academicMBox[i].setMap(map);
 }
+    for(var j=0; j<acadPolygonArray.length; j++){
+     acadPolygonArray[j].setMap(map);
+    }
     }
      if(!box3.checked){
      for(i=0; i < academicMBox.length; i++){
      academicMBox[i].setMap(null);
 }
+     for(var j=0; j<acadPolygonArray.length; j++){
+     acadPolygonArray[j].setMap(null);
+    }
     }
     }
 
@@ -486,7 +537,7 @@ CheckBoxes Will Be With Us SOON!!<hr>
       <option value="48">                                        Trez</option>
       <option value="49">                                        Courts</option>
                 </select>  
-                                                                                                                                                                 
+
     <b>Directions To</b>
     <select id="end" onchange="routeCalc();">
       <option value="none">                                        Choose Destination</option>
@@ -543,7 +594,6 @@ CheckBoxes Will Be With Us SOON!!<hr>
       <option value="49">                                        Courts</option>
     </select>
  <hr>
-																																										
 </div>
     
   <div id="out"></div>
