@@ -16,11 +16,12 @@ var Cleveland = new google.maps.LatLng(35.20247,-85.92175);
 var trez = new google.maps.LatLng(35.205545, -85.912272);
 var courts = new google.maps.LatLng(35.205150, -85.913943);
 var philips = new google.maps.LatLng(35.205716, -85.928844);
+var mcCradyM = new google.maps.LatLng(35.202684,-85.918171)
 
 
-var dormMarkerarray = [cannon, smith, benedict, stLukes, Hoffman, Humphreys, Hodgeson, Elliot, Tuckaway, Hunter, Quintard, Gorgas, Cleveland, trez, courts, philips];
+var dormMarkerarray = [cannon, smith, benedict, stLukes, Hoffman, Humphreys, Hodgeson, Elliot, Tuckaway, Hunter, Quintard, Gorgas, Cleveland, trez, courts, philips, mcCradyM];
 var locationNameArrayD = ['Cannon','Smith','Benedict','St. Lukes','Hoffman','Humphreys','Hodgeson','Elliot','Tuckaway','Hunter',
-                         'Quintard','Gorgas','Cleveland','Trezevant Hall','Courts Hall','Philips'];
+                         'Quintard','Gorgas','Cleveland','Trezevant Hall','Courts Hall','Philips','McCrady Hall'];
 //Dorm array section close
 
 //Academic array section open
@@ -32,9 +33,10 @@ var spencerM = new google.maps.LatLng(35.20411,-85.91849);
 var guerryM = new google.maps.LatLng(35.20497,-85.91961);
 var snowdenM = new google.maps.LatLng(35.20323,-85.91764);
 var spencer = new google.maps.LatLng(35.20411,-85.91849);
+var libraryM = new google.maps.LatLng(35.204479, -85.917758);
 
-var academicArray = [woodsM, walshM, carnegieM, gailorM, spencerM, guerryM, snowdenM, spencer];
-var locationNameArrayA = ['Woods Laboratories','Walsh-Ellett Hall','Carnegie','Gailor','Spencer','Guerry','Snowden','Spencer'];
+var academicArray = [woodsM, walshM, carnegieM, gailorM, spencerM, guerryM, snowdenM, spencer, libraryM];
+var locationNameArrayA = ['Woods Laboratories','Walsh-Ellett Hall','Carnegie','Gailor','Spencer','Guerry','Snowden','Spencer','DuPoint Library'];
 //Academic section close
 
 //University Building open
@@ -59,7 +61,6 @@ var cravens = new google.maps.LatLng(35.196388, -85.925687);
 var universityFarm = new google.maps.LatLng(35.212991, -85.926138);
 var nabit = new google.maps.LatLng(35.203750, -85.914345);
 var multiculturalCenter = new google.maps.LatLng(35.201101, -85.919406);
-
 var fulford = new google.maps.LatLng(35.20479,-85.92166);
 var walsh = new google.maps.LatLng(35.20479,-85.91960);
 var mcclurg = new google.maps.LatLng(35.20321,-85.92009);
@@ -69,13 +70,27 @@ var stirlings = new google.maps.LatLng(35.20528,-85.91656);
 var sut = new google.maps.LatLng(35.20402, -85.92155);
 var fowler = new google.maps.LatLng(35.208650, -85.920085);
 
+var policeM = new google.maps.LatLng(35.203541, -85.917817);
+var fireM = new google.maps.LatLng(35.203594, -85.917463);
+var archivesM = new google.maps.LatLng(35.203883, -85.917871);
+var spanishM = new google.maps.LatLng(35.206417, -85.917973);
+var germanM = new google.maps.LatLng(35.207990, -85.918187);
+var bcM = new google.maps.LatLng(35.205606, -85.917994);
+var alumniM = new google.maps.LatLng(35.204804, -85.918767);
+var vannessM = new google.maps.LatLng(35.202748, -85.917388);
+var hospitalM = new google.maps.LatLng(35.208025, -85.913907);
+var UHSM = new google.maps.LatLng(35.207407, -85.913504);
+
+
+
 var locationArrayU = [fulford,mcclurg,allsaints,bookstore,stirlings,sut,fowler, careerServices, womensCenter, eqb, chen, convocation, soccerField,
 sewaneeGolfCourse, equestrian, tennisCourts, footballField, baseballField, memorialCross, morgansSteep, greensView, sewaneeInn, stLukesChapel, tenneseeWilliams,
-cravens, universityFarm, nabit, multiculturalCenter];
+cravens, universityFarm, nabit, multiculturalCenter, policeM, fireM, archivesM, spanishM, germanM, bcM, alumniM, vannessM, hospitalM, UHSM];
 var locationNameArrayU = ['Fulford','McClurg','All Saints Chapel',
 'Barnes&Noble','Stirlings','Thompson Union','Fowler Center','Career Services','Women\'s Center','EQB House','Chen Hall','Convocation Hall','The Soccer Field',
 'The Sewanee Golf Course','Equestrian Center','Tennis Courts','Football Field','Baseball Field','Memorial Cross','Morgan\'s Steep','Green\'s View',
-'Sewanee Inn','St. Luke\'s Chapel','Tennesee Williams Center','Cravens Hall','The University Farm','Nabit Art Building','Ayers Multicultural Center'];
+'Sewanee Inn','St. Luke\'s Chapel','Tennesee Williams Center','Cravens Hall','The University Farm','Nabit Art Building','Ayers Multicultural Center',
+'Police Department','Fire Department','Archives','Spanish House','German House','Bishop\'s Common','McGriff Alumni House','Vannes Hall', 'Hospital','Health Services'];
 
 //Polygon coordinates open
   var smithCoords = [new google.maps.LatLng(35.20449,-85.92187),
@@ -282,7 +297,7 @@ var phiGammaCoords = [new google.maps.LatLng(35.20154,-85.92025),
 					  new google.maps.LatLng(35.20166,-85.92014),
 					  new google.maps.LatLng(35.20173,-85.92029),
 					  new google.maps.LatLng(35.20169,-85.92032),
-					  new google.maps.LatLng(35.20170,-85.92033),
+                                 	  new google.maps.LatLng(35.20170,-85.92033),
 					  new google.maps.LatLng(35.20165,-85.92037),
 					  new google.maps.LatLng(35.20163,-85.92035),
 					  new google.maps.LatLng(35.20160,-85.92037)];
@@ -401,7 +416,7 @@ var humphreysCoords = [new google.maps.LatLng(35.20490,-85.91507),
 					   new google.maps.LatLng(35.20527,-85.91513),
 					   new google.maps.LatLng(35.20529,-85.91512),
 					   new google.maps.LatLng(35.20526,-85.91493),
-					   new google.maps.LatLng(35.20514,-85.91495),
+				 	   new google.maps.LatLng(35.20514,-85.91495),
 					   new google.maps.LatLng(35.20512,-85.91493),
 					   new google.maps.LatLng(35.20508,-85.91463),
 					   new google.maps.LatLng(35.20504,-85.91463),
