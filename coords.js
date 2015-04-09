@@ -1,17 +1,3 @@
-var fulford = new google.maps.LatLng(35.20479,-85.92166);
-var walsh = new google.maps.LatLng(35.20479,-85.91960);
-var mcclurg = new google.maps.LatLng(35.20321,-85.92009);
-var allsaints = new google.maps.LatLng(35.20397,-85.92011);
-var bookstore = new google.maps.LatLng(35.20281, -85.92086);
-var stirlings = new google.maps.LatLng(35.20528,-85.91656);
-var sut = new google.maps.LatLng(35.20402, -85.92155);
-var gamma = new google.maps.LatLng(35.20622,-85.91526);
-var fowler = new google.maps.LatLng(35.208650, -85.920085);
-
-var locationArrayU = [fulford,mcclurg,allsaints,bookstore,stirlings,sut,gamma,fowler];
-var locationNameArrayU = ['Fulford','McClurg','All Saints Chapel',
-'Barnes&Noble','Stirlings','Thompson Union','Gamma','Fowler Center'];
-
 
 //Dorm Array section open
 var cannon = new google.maps.LatLng(35.20468,-85.92264);
@@ -27,11 +13,14 @@ var Hunter = new google.maps.LatLng(35.20070,-85.92004);
 var Quintard = new google.maps.LatLng(35.19760,-85.92516);
 var Gorgas = new google.maps.LatLng(35.19715,-85.92599);
 var Cleveland = new google.maps.LatLng(35.20247,-85.92175);
+var trez = new google.maps.LatLng(35.205545, -85.912272);
+var courts = new google.maps.LatLng(35.205150, -85.913943);
+var philips = new google.maps.LatLng(35.205716, -85.928844);
 
 
-var dormMarkerarray = [cannon, smith, benedict, stLukes, Hoffman, Humphreys, Hodgeson, Elliot, Tuckaway, Hunter, Quintard, Gorgas, Cleveland];
+var dormMarkerarray = [cannon, smith, benedict, stLukes, Hoffman, Humphreys, Hodgeson, Elliot, Tuckaway, Hunter, Quintard, Gorgas, Cleveland, trez, courts, philips];
 var locationNameArrayD = ['Cannon','Smith','Benedict','St. Lukes','Hoffman','Humphreys','Hodgeson','Elliot','Tuckaway','Hunter',
-                         'Quintard','Gorgas','Cleveland'];
+                         'Quintard','Gorgas','Cleveland','Trezevant Hall','Courts Hall','Philips'];
 //Dorm array section close
 
 //Academic array section open
@@ -42,18 +31,51 @@ var gailorM = new google.maps.LatLng(35.20255,-85.91956);
 var spencerM = new google.maps.LatLng(35.20411,-85.91849);
 var guerryM = new google.maps.LatLng(35.20497,-85.91961);
 var snowdenM = new google.maps.LatLng(35.20323,-85.91764);
+var spencer = new google.maps.LatLng(35.20411,-85.91849);
 
-var academicArray = [woodsM, walshM, carnegieM, gailorM, spencerM, guerryM, snowdenM];
-var locationNameArrayA = ['Woods Laboratories','Walsh-Ellett Hall','Carnegie','Gailor','Spencer','Guerry','Snowden'];
+var academicArray = [woodsM, walshM, carnegieM, gailorM, spencerM, guerryM, snowdenM, spencer];
+var locationNameArrayA = ['Woods Laboratories','Walsh-Ellett Hall','Carnegie','Gailor','Spencer','Guerry','Snowden','Spencer'];
 //Academic section close
 
 //University Building open
+var careerServices = new google.maps.LatLng(35.20784,-85.91988);
+var womensCenter = new google.maps.LatLng(35.20635,-85.91726);
+var eqb = new google.maps.LatLng(35.20285,-85.92032);
+var chen = new google.maps.LatLng(35.20310,-85.92214);
+var convocation = new google.maps.LatLng(35.20497,-85.92045);
+var soccerField = new google.maps.LatLng(35.196098, -85.927296);
+var sewaneeGolfCourse = new google.maps.LatLng(35.210493, -85.914744);
+var equestrian = new google.maps.LatLng(35.214192, -85.936966);
+var tennisCourts = new google.maps.LatLng(35.209908, -85.915493);
+var footballField = new google.maps.LatLng(35.209406, -85.921503);
+var baseballField = new google.maps.LatLng(35.211948, -85.925140);
+var memorialCross = new google.maps.LatLng(35.191995, -85.937322);
+var morgansSteep = new google.maps.LatLng(35.202472, -85.931802);
+var greensView = new google.maps.LatLng(35.217453, -85.918474);
+var sewaneeInn = new google.maps.LatLng(35.209099, -85.913995);
+var stLukesChapel = new google.maps.LatLng(35.205584, -85.918786);
+var tenneseeWilliams = new google.maps.LatLng(35.196440, -85.924078);
+var cravens = new google.maps.LatLng(35.196388, -85.925687);
+var universityFarm = new google.maps.LatLng(35.212991, -85.926138);
+var nabit = new google.maps.LatLng(35.203750, -85.914345);
+var multiculturalCenter = new google.maps.LatLng(35.201101, -85.919406);
+
+var fulford = new google.maps.LatLng(35.20479,-85.92166);
 var walsh = new google.maps.LatLng(35.20479,-85.91960);
 var mcclurg = new google.maps.LatLng(35.20321,-85.92009);
 var allsaints = new google.maps.LatLng(35.20397,-85.92011);
 var bookstore = new google.maps.LatLng(35.20281, -85.92086);
 var stirlings = new google.maps.LatLng(35.20528,-85.91656);
 var sut = new google.maps.LatLng(35.20402, -85.92155);
+var fowler = new google.maps.LatLng(35.208650, -85.920085);
+
+var locationArrayU = [fulford,mcclurg,allsaints,bookstore,stirlings,sut,fowler, careerServices, womensCenter, eqb, chen, convocation, soccerField,
+sewaneeGolfCourse, equestrian, tennisCourts, footballField, baseballField, memorialCross, morgansSteep, greensView, sewaneeInn, stLukesChapel, tenneseeWilliams,
+cravens, universityFarm, nabit, multiculturalCenter];
+var locationNameArrayU = ['Fulford','McClurg','All Saints Chapel',
+'Barnes&Noble','Stirlings','Thompson Union','Fowler Center','Career Services','Women\'s Center','EQB House','Chen Hall','Convocation Hall','The Soccer Field',
+'The Sewanee Golf Course','Equestrian Center','Tennis Courts','Football Field','Baseball Field','Memorial Cross','Morgan\'s Steep','Green\'s View',
+'Sewanee Inn','St. Luke\'s Chapel','Tennesee Williams Center','Cravens Hall','The University Farm','Nabit Art Building','Ayers Multicultural Center'];
 
 //Polygon coordinates open
   var smithCoords = [new google.maps.LatLng(35.20449,-85.92187),
@@ -581,13 +603,6 @@ new google.maps.LatLng(35.202830,-85.920237),
 new google.maps.LatLng(35.202839,-85.920418)
 ];
 
-var convocationHall = [
-new google.maps.LatLng(35.204958,-85.919989),
-new google.maps.LatLng(35.205050,-85.919978),
-new google.maps.LatLng(35.205092,-85.920419),
-new google.maps.LatLng(35.205000,-85.920431),
-new google.maps.LatLng(35.204957,-85.919991)
-];
 
 var baseballField = [
 new google.maps.LatLng(35.211523,-85.925843),
@@ -1373,7 +1388,7 @@ var dormsArray = [elliotCoords,tuckawayCoords,quintardCoords,gorgasCoords,
 
 var univArray = [fowlerCoords, stLukesChapCoords, bcCoords, wickCoords, stirCoords, mcgriffCoords, guerryCoords,
                 allStCoords, convoCoords, clurgCoords, bookCoords, fulfordCoords,
-                 SUTCoords, chenCoords, careerCoords, cravCoords, eqCoords,convocationHall, EQB, fireDept, policeDept, archivesBuilding, healthServices, Hospital, sewaneeVillage,
+                 SUTCoords, chenCoords, careerCoords, cravCoords, eqCoords, EQB, fireDept, policeDept, archivesBuilding, healthServices, Hospital, sewaneeVillage,
                  sewaneeInn, soccerField, golfOffice, universityFarmCoords, multiculturalCoords, spanishHouseCoords, germanHouseCoords, tennisCourts, footballField, baseballField];
 
 var acadCoordArray= [duPontCoords, woodsCoords, spencerCoords, snowdenCoords, carnegieCoords,
