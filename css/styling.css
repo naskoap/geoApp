@@ -80,6 +80,10 @@ html, body {
         background: -moz-linear-gradient(center top,rgb(112,112,112) 0%,rgb(94,94,94) 51%,rgb(57,57,57) 52%);
       }
         .pic{
-        width: 90px;
+        width: 250px;
         height: 200px;
     }
+        .bigPic{
+            width:240px;
+            height:300px;
+        }

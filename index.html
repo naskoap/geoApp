@@ -61,13 +61,13 @@ function initialize() {
             alert("Your browser does not support the Geolocation API");
 }
             infoBubble = new InfoBubble({
-          maxWidth: 100
+          maxWidth: 300
         });
                 infoBubbleA = new InfoBubble({
-          maxWidth: 100
+          maxWidth: 300
         });
                 infoBubbleD = new InfoBubble({
-          maxWidth: 100
+          maxWidth: 300
         });
       //Construct markers
     // DORM MARKERS START
@@ -134,6 +134,18 @@ function initialize() {
     //ACADEMIC MARKERS
     
         for (var p=0; p < locationNameArrayA.length; p++) {
+            if(p==0){
+                
+       contentStringA = '<div>'+
+      '<div>'+
+      '</div>'+
+      '<h1>' + locationNameArrayA[p] + '</h1>'+
+      '<div>'+
+      '<p>' + descriptionArray[1] + '</p>' +
+      '</div>'+
+      '</div>';
+    infoBubbleArrayA[0] = contentStringA;
+            }
          contentStringA = '<div>'+
       '<div>'+
       '</div>'+
@@ -142,8 +154,9 @@ function initialize() {
       '<p>Welcome to ' + locationNameArrayA[p] + '!</p>' +
       '</div>'+
       '</div>';
+        if(p!=0){
     infoBubbleArrayA[p] = contentStringA;
-    }
+    }}
 
       for (var i=0; i <= academicArray.length; i++) {
       var storeK = infoBubbleArrayA[i];
@@ -195,6 +208,17 @@ function initialize() {
     //UNIVERSITY MARKERS
     
     for (var p=0; p < locationArrayU.length; p++) {
+        if(p==0){
+        contentString = '<div>'+
+      '<div>'+
+      '</div>'+
+      '<h1>' + locationNameArrayU[p] + '</h1>'+
+      '<div>'+
+      '<p>' + descriptionArray[p] + '</p>' +
+      '</div>'+
+      '</div>';
+    infoBubbleArrayU[0] = contentString;   
+             }
          contentString = '<div>'+
       '<div>'+
       '</div>'+
@@ -203,8 +227,9 @@ function initialize() {
       '<p>Welcome to ' + locationNameArrayU[p] + '!</p>' +
       '</div>'+
       '</div>';
+        if(p!=0){
     infoBubbleArrayU[p] = contentString;
-    }
+    }}
 
       for (var i=0; i < locationArrayU.length; i++) {
       var storeU = infoBubbleArrayU[i];
@@ -475,7 +500,7 @@ function setMarker(pos) {
 </div>
 <div id="checkBox">
 <br>
-CheckBoxes Will Be With Us SOON!!<hr>
+Directions:<hr>
 <input type="checkbox" id="box1" onchange="residenceBox()"/>Residence Halls<br><br>
 <input type="checkbox" id="box2" onchange="academicBox()"/>University Buildings<br><br>
 <input type="checkbox" id="box3" onchange="academicBox2()"/>Acadmic Buildings<hr>
