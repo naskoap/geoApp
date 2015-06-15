@@ -14,9 +14,10 @@
     <script src="detectMobileBrowser.js"></script>
     <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js"></script>
     <script src="Pictures.js"></script>
+    <script src="walkingTour.js"></script>
     <script type="text/javascript">
 
-var marker, marker1, posMarker, dMarker, aMarker, positionTimer, map, infoU;
+var marker, marker1, posMarker, dMarker, aMarker, positionTimer, map, infoU, tourLine;
 var coords = new google.maps.LatLng(35.20438,-85.92016);
 var markersArray  = [];
 var markersArrayD  = [];
@@ -39,6 +40,9 @@ var infoBubbleArrayA = [];
 var infoBubbleArrayD = [];
 var acadPolygonArray = [];
 var univPolygonArray = [];
+var currentLocationArray = [];
+var tourLineArray = [];
+var tourLineArrayIndoor = [];
 
 function initialize() {
 
@@ -55,11 +59,8 @@ function initialize() {
 }
   );
  
-    if  (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(setMarker);
-          } else {
-            alert("Your browser does not support the Geolocation API");
-}
+    
+    //Info bubbles for the academic, university, and residential buildings
             infoBubble = new InfoBubble({
           maxWidth: 300
         });
@@ -69,7 +70,16 @@ function initialize() {
                 infoBubbleD = new InfoBubble({
           maxWidth: 300
         });
+    
+    
+    
+    
       //Construct markers
+    
+    
+    
+    
+    
     // DORM MARKERS START
             for (var p=0; p < locationNameArrayD.length; p++) {
          contentStringD = '<div>'+
@@ -82,7 +92,9 @@ function initialize() {
       '</div>';
     infoBubbleArrayD[p] = contentStringD;
     }
-
+    
+    
+    //DORM INFOBUBBLE START
       for (var i=0; i <= locationNameArrayD.length; i++) {
       var storeY = infoBubbleArrayD[i];
       var storeW = infoBubbleArrayD[i];
@@ -101,6 +113,8 @@ function initialize() {
             infoBubbleD.open(map, dMarker);
           
           });
+    
+    //link infobubbles to the dorm markers
        function linkInfoBubble(dMarker, map, infoBubbleD, description5, description6){ 
        
        google.maps.event.addListener(aMarker, 'click', function() {
@@ -158,6 +172,7 @@ function initialize() {
     infoBubbleArrayA[p] = contentStringA;
     }}
 
+    //ACADMIC INFOBUBBLES START
       for (var i=0; i <= academicArray.length; i++) {
       var storeK = infoBubbleArrayA[i];
       var storeT = infoBubbleArrayA[i];
@@ -175,6 +190,8 @@ function initialize() {
             infoBubbleA.open(map, aMarker);
           
           });
+    
+    //LINK INFOBUBBLES TO THE MARKERS
        function linkInfoBubble(aMarker, map, infoBubbleA, description3, description4){ 
        
        google.maps.event.addListener(aMarker, 'click', function() {
@@ -231,6 +248,8 @@ function initialize() {
     infoBubbleArrayU[p] = contentString;
     }}
 
+    
+    //UNIVERSITY INFOBUBBLES
       for (var i=0; i < locationArrayU.length; i++) {
       var storeU = infoBubbleArrayU[i];
       var storeP = pictureArrayU[i];
@@ -247,6 +266,8 @@ function initialize() {
             infoBubble.open(map, marker1);
           
           });
+    
+    //LINK MARKERS TO THE INFOBUBBLE
        function linkInfoBubble(marker1, map, infoBubble, description1, description2){ 
        google.maps.event.addListener(marker1, 'click', function() {
        google.maps.event.addListener(map, "click", function () { 
@@ -272,6 +293,8 @@ function initialize() {
 }
     );
         }
+    
+    //ANYTIME THE USER CLCKS ON THE MAP THE INFOBUBBLES WILL BE CLOSED
        google.maps.event.addListener(map, "click", function () { 
        infoBubble.close();
        infoBubbleA.close();
@@ -287,57 +310,7 @@ function initialize() {
     that.close();
     google.maps.event.trigger(that, 'closeclick');
   });}
-        
-// Set blue marker indicating user position
-function setMarker(pos) {
-        var lat = pos.coords.latitude,
-        lng = pos.coords.longitude;
-        coords = new google.maps.LatLng(lat, lng);
-        posMarker = new google.maps.Marker({
-        map: map,
-        icon: 'markers/TrackingDot.png',
-        position: coords,
-        title: "Current Position"
-}
-  );
-        map.panTo(coords);
-            directionsDisplay = new google.maps.DirectionsRenderer();
-          // Update user's location  
-          positionTimer = navigator.geolocation.watchPosition(function (pos) {
-           var lat = pos.coords.latitude,
-           lng = pos.coords.longitude;
-           coords = new google.maps.LatLng(lat, lng);
-            posMarker.setPosition(coords);
-            //map.panTo(coords);
-}
-      
-  );
-        directionsDisplay.setMap(map)
-     }
 
-
-     for (var j = 0; j < fratArray.length; j++) {
-   
-        var q = new google.maps.Polygon({
-         paths: fratArray[j],
-        strokeColor: '#CCFFEE',
-        strokeOpacity: 0.2,
-        strokeWeight: 2,
-        fillColor: '#CCFF10',
-        fillOpacity: 0.35,
-        indexID: j
-}
-  );
-        q.setMap(map);
-}
-        infowindowD = new google.maps.InfoWindow({
-        content: ""
-}
-  );
-        infowindowA = new google.maps.InfoWindow({
-        content: ""
-}
-  );
   
         var request = {
         location: coords,
@@ -368,6 +341,9 @@ function setMarker(pos) {
 
 
    }               // initialize end
+        
+        
+        //CREATE POLYGONS AND MARKERS FOR THE BUILDINGS AND PUSH THEM INTO ARRAYS
 
       for (var i = 0; i < dormsArray.length; i++) {
    
@@ -416,7 +392,8 @@ function setMarker(pos) {
 
 
 
-     
+//SET THE DORMS ON THE MAP IF THE CHECKBOX IS CLICKED
+        
      function residenceBox() {
      if(box1.checked){
      for( var m=0; m < dormMarkerBox.length; m++){
@@ -426,6 +403,9 @@ function setMarker(pos) {
      dormPolygonArray[j].setMap(map);
     }
 }
+
+//CLEAR THE MAP OF THE DORM ARRAY IF IT IS NOT CLICKED
+
      if(!box1.checked){
      for(var l=0; l < dormMarkerBox.length; l++){
      dormMarkerBox[l].setMap(null);
@@ -436,7 +416,8 @@ function setMarker(pos) {
     }
     }}
 
-
+//SET THE ACADMIC BUILDINGS AND MARKERS ON THE MAP
+        
      function academicBox() {
      if(box2.checked){
      for(m=0; m < markersArray.length; m++){
@@ -446,6 +427,9 @@ function setMarker(pos) {
      univPolygonArray[j].setMap(map);
     }
     }
+         
+//CLEAR THE UNIVERSITY BUILDINGS OFF THE MAP
+         
      if(!box2.checked){
      for(l=0; l < markersArray.length; l++){
      markersArray[l].setMap(null);
@@ -491,6 +475,144 @@ function setMarker(pos) {
     mapType.maxZoom = 19;  
     mapType.minZoom = 14;
   }
+        
+        
+    function locate(){
+            if  (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setMarker);
+          } else {
+            alert("Your browser does not support the Geolocation API");
+}
+        // Set blue marker indicating user position
+function setMarker(pos) {
+        var lat = pos.coords.latitude,
+        lng = pos.coords.longitude;
+        coords = new google.maps.LatLng(lat, lng);
+        posMarker = new google.maps.Marker({
+        map: map,
+        icon: 'markers/TrackingDot.png',
+        position: coords,
+        animation: google.maps.Animation.DROP,
+        title: "Current Position"
+}
+  );
+        map.panTo(coords);
+            directionsDisplay = new google.maps.DirectionsRenderer();
+          // Update user's location  
+          positionTimer = navigator.geolocation.watchPosition(function (pos) {
+           var lat = pos.coords.latitude,
+           lng = pos.coords.longitude;
+           coords = new google.maps.LatLng(lat, lng);
+            posMarker.setPosition(coords);
+}
+      
+  );
+        directionsDisplay.setMap(map);
+        currentLocationArray.push(posMarker);
+     }
+        
+    }
+        
+function resetAll()
+{
+	//reset the check box form
+	var field = document.getElementById("checkboxform");
+	for (var i = 0; i < field.length; i++){
+		field[i].checked = false;
+    }
+     for(l=0; l < markersArray.length; l++){
+     markersArray[l].setMap(null);
+}
+     for(var j=0; j<univPolygonArray.length; j++){
+     univPolygonArray[j].setMap(null);
+    }
+     for(i=0; i < academicMBox.length; i++){
+     academicMBox[i].setMap(null);
+}
+     for(var j=0; j<acadPolygonArray.length; j++){
+     acadPolygonArray[j].setMap(null);
+    }
+     for( var m=0; m < dormMarkerBox.length; m++){
+     dormMarkerBox[m].setMap(null);
+}
+     for(var p=0; p<dormPolygonArray.length; p++){
+     dormPolygonArray[p].setMap(null);
+    }
+     map.setCenter(coords);
+    for(var d=0; d<currentLocationArray.length; d++){
+     currentLocationArray[d].setMap(null)
+    }
+       infoBubble.close();
+       infoBubbleA.close();
+       infoBubbleD.close();
+};
+        
+    var tourLength = 8;
+    for(var w=0;w<tourLength;w++){
+    var walkingTourPath = new google.maps.Polyline({
+    path: tourCoordsArray[w],
+    geodesic: true,
+    strokeColor: '#FF3030',
+    strokeOpacity: 0.80,
+    strokeWeight: 7
+  });
+        tourLineArray.push(walkingTourPath);
+    }
+        
+    var indoorLength = 7;
+    for(var wp=0;wp<indoorLength;wp++){
+    var walkingTourPathIndoor = new google.maps.Polyline({
+    path: tourCoordsArrayIndoor[wp],
+    geodesic: true,
+    strokeColor: '#5858FF',
+    strokeOpacity: 0.80,
+    strokeWeight: 7
+  });
+        tourLineArrayIndoor.push(walkingTourPathIndoor);
+    }
+
+
+        
+        function walkingTours()
+        {
+for(var w=0;w<tourLineArray.length;w++)
+    {
+tourLineArray[w].setMap(map);
+    };
+for(var wp=0;wp<tourLineArrayIndoor.length;wp++){
+tourLineArrayIndoor[wp].setMap(map);
+}
+
+  var tourSymbol = {
+    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+    scale: 8,
+    strokeColor: '#393'
+  };
+  tourLine = new google.maps.Polyline({
+    path: animationCourse,
+    icons: [{
+      icon: tourSymbol,
+      offset: '100%',
+      repeat: '400px'
+    }],
+    map: map
+  });
+
+  animateCircle();
+            
+function animateCircle() {
+    var count = 0;
+    window.setInterval(function() {
+      count = (count + 1) % 200;
+
+      var icons = tourLine.get('icons');
+      icons[0].offset = (count / 2) + '%';
+      tourLine.set('icons', icons);
+  }, 100);
+}
+        }
+        
+        
     google.maps.event.addDomListener(window, 'load', initialize);
   </script> 
   </head>
@@ -500,10 +622,19 @@ function setMarker(pos) {
 </div>
 <div id="checkBox">
 <br>
+Locate: <input type="button" value="Locate Me" onclick="locate();">&nbsp<input type="button" value="Reset" onclick="resetAll();"><br>
+    <input type="button" value="Walking Tour" onclick="walkingTours()">
+    <hr>
 Directions:<hr>
+<form name="checkboxform" id="checkboxform" action="#" >
+    <ul class="checkboxes" style="list-style: none;margin: 0;padding: 0;">
+        <li>
 <input type="checkbox" id="box1" onchange="residenceBox()"/>Residence Halls<br><br>
+        </li><li>
 <input type="checkbox" id="box2" onchange="academicBox()"/>University Buildings<br><br>
+        </li><li>
 <input type="checkbox" id="box3" onchange="academicBox2()"/>Acadmic Buildings<hr>
+        </li></ul></form>
                                                                                                                                                            
  <b>Directions From</b>
     <select id="start" onchange="routeCalc();">

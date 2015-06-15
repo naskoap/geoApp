@@ -34,7 +34,28 @@ var pictureArrayU = ['<img src="SewaneePictures/Fulford/IMG_0378.JPG" class="pic
                      '<img src="SewaneePictures/alumni/alumni.JPG" class="pic">',
                      '<img src="SewaneePictures/hospital/">',
                      '<img src="SewaneePictures/health/healthServices.JPG" class="pic">'];
+/*
 
+Pictures currently do not exist
+
+var pictureArrayD = ['<img src="SewaneePictures/Dorms/"Cannon.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Smith.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Benedict.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Stlukes.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Hoffman.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Humphreys.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Hodgeson.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Elliot.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Tuckaway.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Hunter.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Quintard.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Gorgas.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Cleveland.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Trez.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Courts.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Philips.JPG" class="pic">',
+                     '<img src="SewaneePictures/Dorms/"Mccrady.JPG" class="pic">'];
+*/
 
 
 

@@ -17,9 +17,10 @@
     <script src="bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js"></script>
     <script src="Pictures.js"></script>
+    <script src="walkingTour.js"></script>
     <script type="text/javascript">
 
-var map, infowindow, marker, marker1, posMarker, dMarker, aMarker, positionTimer,infowindowU, infowindowD, infowindowA;;
+var map, infowindow, marker, marker1, posMarker, dMarker, aMarker, positionTimer,infowindowU, infowindowD, infowindowA, tourLine;
 var coords = new google.maps.LatLng(35.20438,-85.92016);
 var markersArray  = [];
 var markersArrayD  = [];
@@ -42,7 +43,9 @@ var infoBubbleArrayA = [];
 var infoBubbleArrayD = [];
 var acadPolygonArray = [];
 var univPolygonArray = [];
-
+var currentLocationArray = [];
+var tourLineArray = [];
+var tourLineArrayIndoor = [];
 
 function initialize() {
 
@@ -58,12 +61,7 @@ function initialize() {
           content: ""
 }
   );
- 
-    if  (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(setMarker);
-          } else {
-            alert("Your browser does not support the Geolocation API");
-}
+
             infoBubble = new InfoBubble({
           maxWidth: 100
         });
@@ -268,31 +266,6 @@ function initialize() {
   });}
         
 // Set blue marker indicating user position
-function setMarker(pos) {
-        var lat = pos.coords.latitude,
-        lng = pos.coords.longitude;
-        coords = new google.maps.LatLng(lat, lng);
-        posMarker = new google.maps.Marker({
-        map: map,
-        icon: 'markers/TrackingDot.png',
-        position: coords,
-        title: "Current Position"
-}
-  );
-        map.panTo(coords);
-            directionsDisplay = new google.maps.DirectionsRenderer();
-          // Update user's location  
-          positionTimer = navigator.geolocation.watchPosition(function (pos) {
-           var lat = pos.coords.latitude,
-           lng = pos.coords.longitude;
-           coords = new google.maps.LatLng(lat, lng);
-            posMarker.setPosition(coords);
-            //map.panTo(coords);
-}
-      
-  );
-        directionsDisplay.setMap(map)
-     }
 
 
      for (var j = 0; j < fratArray.length; j++) {
@@ -470,45 +443,132 @@ function setMarker(pos) {
     mapType.maxZoom = 19;  
     mapType.minZoom = 14;
   }
+        
+        
+        
+            var tourLength = 8;
+    for(var w=0;w<tourLength;w++){
+    var walkingTourPath = new google.maps.Polyline({
+    path: tourCoordsArray[w],
+    geodesic: true,
+    strokeColor: '#FF3030',
+    strokeOpacity: 0.80,
+    strokeWeight: 7
+  });
+        tourLineArray.push(walkingTourPath);
+    }
+        
+    var indoorLength = 7;
+    for(var wp=0;wp<indoorLength;wp++){
+    var walkingTourPathIndoor = new google.maps.Polyline({
+    path: tourCoordsArrayIndoor[wp],
+    geodesic: true,
+    strokeColor: '#5858FF',
+    strokeOpacity: 0.80,
+    strokeWeight: 7
+  });
+        tourLineArrayIndoor.push(walkingTourPathIndoor);
+    }
+
+
+        
+        function walkingTours()
+        {
+for(var w=0;w<tourLineArray.length;w++)
+    {
+tourLineArray[w].setMap(map);
+    };
+for(var wp=0;wp<tourLineArrayIndoor.length;wp++){
+tourLineArrayIndoor[wp].setMap(map);
+}
+
+  var tourSymbol = {
+    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+    scale: 8,
+    strokeColor: '#393'
+  };
+  tourLine = new google.maps.Polyline({
+    path: animationCourse,
+    icons: [{
+      icon: tourSymbol,
+      offset: '100%',
+      repeat: '400px'
+    }],
+    map: map
+  });
+
+  animateCircle();
+            
+function animateCircle() {
+    var count = 0;
+    window.setInterval(function() {
+      count = (count + 1) % 200;
+
+      var icons = tourLine.get('icons');
+      icons[0].offset = (count / 2) + '%';
+      tourLine.set('icons', icons);
+  }, 100);
+}
+        }
+        
+            function locate(){
+            if  (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setMarker);
+          } else {
+            alert("Your browser does not support the Geolocation API");
+}
+        // Set blue marker indicating user position
+function setMarker(pos) {
+        var lat = pos.coords.latitude,
+        lng = pos.coords.longitude;
+        coords = new google.maps.LatLng(lat, lng);
+        posMarker = new google.maps.Marker({
+        map: map,
+        icon: 'markers/TrackingDot.png',
+        position: coords,
+        animation: google.maps.Animation.DROP,
+        title: "Current Position"
+}
+  );
+        map.panTo(coords);
+            directionsDisplay = new google.maps.DirectionsRenderer();
+          // Update user's location  
+          positionTimer = navigator.geolocation.watchPosition(function (pos) {
+           var lat = pos.coords.latitude,
+           lng = pos.coords.longitude;
+           coords = new google.maps.LatLng(lat, lng);
+            posMarker.setPosition(coords);
+}
+      
+  );
+        directionsDisplay.setMap(map);
+        currentLocationArray.push(posMarker);
+     }
+        
+    }
+        
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
   </head>
   
-<body>																																						
-
+<body>
+    
+    
 <!--17 closing divs            -->
-																																
 <div id="divContainer" class="container"></div>
-																																		
 <div class="container">
-																																									
 <div class="row">
-																																											
 <div class="column">
-																																												
 <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12" style="background-color: #3D007A;
                                                             height: 60px;" >
-																																										
 <div id="sewaneeBox" class="topBox">
-                                                                                                                                                                                    
-                                                                                                                                                
 <img src="SewaneeLogo.png" class="Logos">
-<hr>
-
-																																							
+<hr>		
 </div>
-																																					
+</div>				
+</div>				
 </div>
-																																										
-</div>
-																																											
-</div>
-
-																																								
 <div class="row">
-                    
-
-
 <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12">
 <div id="map-canvas">
 </div>
@@ -646,6 +706,5 @@ function setMarker(pos) {
 </div>
 </div>
 </div>
-                                                        
-  </body>
+    </body>
   </html>
