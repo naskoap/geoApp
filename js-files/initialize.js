@@ -156,7 +156,7 @@ function initialize() {
       '</div>'+
       '<h1>' + locationNameArrayU[p] + '</h1>'+
       '<div>'+
-      '<p>Welcome to ' + locationNameArrayU[p] + '!</p>' +
+      '<p>Welcome to ' + descriptionArrayU[p] + '!</p>' +
       '</div>'+
       '</div>';
     infoBubbleArrayU[p] = contentString;
@@ -263,7 +263,7 @@ function initialize() {
     }
 
 
-     google.maps.event.addListenerOnce(map, "projection_changed", function(){
+      google.maps.event.addListenerOnce(map, "projection_changed", function(){
       map.setMapTypeId(google.maps.MapTypeId.HYBRID);  //Changes the MapTypeId in short time.
       setZoomLimit(map, google.maps.MapTypeId.ROADMAP);
       setZoomLimit(map, google.maps.MapTypeId.HYBRID);
