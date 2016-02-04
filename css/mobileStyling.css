@@ -2,17 +2,45 @@
         margin: 0px;
       }
 	    #map-canvas {
-        top: 10px;
-        height:300px;
-        margin: 0px;
-        padding: 0px;
+        position: absolute;
+        margin-left: 5%;
+        margin-top: 10%;
+        height: 85%;
+        width: 85%;
         border-style: solid;
         border-width: 2px}
         
         #sewaneeBox{
-        height: 100px;
+        position: absolute;
+        height: 10%;
 }
         img.Logos{
-        height:60px;
+        margin-left: 9%;
+        height: 32px;
         width: 200px;
 }
+        .pic{
+        width: 90px;
+        height: 200px;
+    }
+      #styles, #add-tab {
+        float: left;
+        margin-top: 10px;
+        width: 400px;
+      }
+
+      #styles label,
+      #add-tab label {
+        display: inline-block;
+        width: 130px;
+      }
+
+      .phoney {
+        background: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgb(112,112,112)),color-stop(0.51, rgb(94,94,94)),color-stop(0.52, rgb(57,57,57)));
+        background: -moz-linear-gradient(center top,rgb(112,112,112) 0%,rgb(94,94,94) 51%,rgb(57,57,57) 52%);
+      }
+
+        .bigPic{
+            width:240px;
+            height:300px;
+        }
