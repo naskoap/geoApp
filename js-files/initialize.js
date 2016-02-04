@@ -16,13 +16,13 @@ function initialize() {
     directionsDisplay.setMap(map);
 
             infoBubble = new InfoBubble({
-          maxWidth: 100
+          maxWidth: 250
         });
                 infoBubbleA = new InfoBubble({
-          maxWidth: 100
+          maxWidth: 250
         });
                 infoBubbleD = new InfoBubble({
-          maxWidth: 100
+          maxWidth: 250
         });
       //Construct markers
     // DORM MARKERS START
@@ -41,7 +41,7 @@ function initialize() {
 
       for (var i=0; i <= locationNameArrayD.length; i++) {
       var storeY = infoBubbleArrayD[i];
-      var storeW = infoBubbleArrayD[i];
+      var storeW = pictureArrayD[i];
       dMarker = new google.maps.Marker({
       position: dormMarkerarray[i],
       map: map,
@@ -103,7 +103,7 @@ function initialize() {
 
       for (var i=0; i <= academicArray.length; i++) {
       var storeK = infoBubbleArrayA[i];
-      var storeT = infoBubbleArrayA[i];
+      var storeT = pictureArrayA[i];
       aMarker = new google.maps.Marker({
       position: academicArray[i],
       map: map,
@@ -156,7 +156,7 @@ function initialize() {
       '</div>'+
       '<h1>' + locationNameArrayU[p] + '</h1>'+
       '<div>'+
-      '<p>Welcome to ' + descriptionArrayU[p] + '!</p>' +
+      '<p>Welcome to ' + locationNameArrayU[p] + '!</p>' +
       '</div>'+
       '</div>';
     infoBubbleArrayU[p] = contentString;

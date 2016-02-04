@@ -26,7 +26,7 @@ var mccrady = new google.maps.LatLng(35.20257,-85.91818);
 var vanness = new google.maps.LatLng(35.20261,-85.91754);
 var snowden = new google.maps.LatLng(35.20318,-85.91774);
 var archives = new google.maps.LatLng(35.20384,-85.91803);
-var policeFire = new google.maps.LatLng(35.20353,-85.91790);
+var police = new google.maps.LatLng(35.20353,-85.91790);
 var stirlings = new google.maps.LatLng(35.20512,-85.91661);
 var alumniHouse = new google.maps.LatLng(35.20498,-85.91872);
 var hoffman = new google.maps.LatLng(35.20643,-85.91876);
@@ -58,16 +58,13 @@ var philips = new google.maps.LatLng(35.205716, -85.928844);
 var smith = new google.maps.LatLng(35.20469,-85.92211);
 var trez = new google.maps.LatLng(35.205545, -85.912272);
 var courts = new google.maps.LatLng(35.205150, -85.913943);
-
-
+var elliott = new google.maps.LatLng(35.20075,-85.92140);
+var fire = new google.maps.LatLng(35.20365, -85.91733);
 
 var navArray = [walshElletM, bookStoreMarker, woodsLab, hospital, gailor, mcclurg, fowlerCenter,
 carnegie, library, bishopCommons, fulford, allSaints, thompsonUnion, stLukes, mccrady, vanness,
-snowden, archives, policeFire, stirlings, alumniHouse, hoffman, careerServices, womensCenter, eqb, chen,
-convocation, guerry, soccerField, sewaneeGolfCourse, equestrian, tennisCourts, footballField, baseballField, memorialCross,
-morgansSteep, greensView, sewaneeInn, stLukesChapel, spencer, tenneseeWilliams, cravens, universityFarm, nabit, multiculturalCenter,
-hodgeson, philips, smith, trez, courts];
-
+snowden, archives, police, stirlings, alumniHouse, hoffman, careerServices, womensCenter, eqb, chen,
+convocation, guerry, soccerField, sewaneeGolfCourse, equestrian, tennisCourts, footballField, baseballField, memorialCross,morgansSteep, greensView, sewaneeInn, stLukesChapel, spencer, tenneseeWilliams, cravens, universityFarm, nabit, multiculturalCenter, hodgeson, philips, smith, trez, courts, elliott, fire];
 
 function calcRoute() {
   var request = {

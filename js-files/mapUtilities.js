@@ -66,7 +66,7 @@ function setMarker(pos) {
 }
       
   );
-        //directionsDisplay.setMap(map);
+        directionsDisplay.setMap(map);
         currentLocationArray.push(posMarker);
      }
         
@@ -134,7 +134,7 @@ function setMarker(pos) {
          calcRoute();
        else
          calcRoute2();
-     }
+     };
   
   function setZoomLimit(map, mapTypeId){
     //Gets MapTypeRegistry
@@ -148,6 +148,7 @@ function setMarker(pos) {
   function resetAll()
 {
   //reset the check box form
+  
   var field = document.getElementById("checkboxform");
   for (var i = 0; i < field.length; i++){
     field[i].checked = false;
