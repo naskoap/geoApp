@@ -10,3 +10,5 @@ Coordinates are preferred to addresses since addresses provide less accurate inf
 We are trying to include two travel modes - walking and driving. The walking mode implies that pedestrians will be using it so we are trying to create custom paths defining polyline routes.
 
 Our goal is to send a watchPosition request every 2.5 seconds so the user's location is automatically updated.
+
+The application needs some major code rafactoring. The optimized version could also benefit from some more sophisticated GIS concepts beyond polygons and markers.
