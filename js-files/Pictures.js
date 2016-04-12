@@ -17,9 +17,6 @@ var pictureArrayU = ['<img src="SewaneePictures/University/fulford.JPG" class="p
                      '<img src="SewaneePictures/University/tennis.JPG" class="pic">',
                      '<img src="SewaneePictures/University/football.JPG" class="pic">',
                      '<img src="SewaneePictures/University/baseball.JPG" class="pic">',
-                     '<img src="SewaneePictures/University/cross.JPG" class="bigPic">',
-                     '<img src="SewaneePictures/University/steep.JPG" class="pic">',
-                     '<img src="SewaneePictures/University/greens.JPG" class="pic">',
                      '<img src="SewaneePictures/University/inn.JPG" class="pic">',
                      '<img src="SewaneePictures/University/chapel.JPG" class="pic">',
                      '<img src="SewaneePictures/University/williams.JPG" class="pic">',
@@ -37,21 +34,27 @@ var pictureArrayU = ['<img src="SewaneePictures/University/fulford.JPG" class="p
 
 Pictures currently do not exist
 */
-var pictureArrayD = ['<img src="SewaneePictures/Dorms/cannon.jpg" class="pic">',
-                     '<img src="SewaneePictures/Dorms/smith.jpg" class="pic">',
-                     '<img src="SewaneePictures/Dorms/benedict.jpg" class="pic">',
-                     '<img src="SewaneePictures/Dorms/slukes.jpg" class="pic">',
-                     '<img src="SewaneePictures/Dorms/hoffman.jpg" class="pic">',
-                     '<img src="SewaneePictures/Dorms/humphreys.jpg" class="pic">',
-                     '<img src="SewaneePictures/Dorms/hodgeson.jpg" class="pic">',
-                     '<img src="SewaneePictures/Dorms/elliott.jpg" class="pic">',
+
+var overlookPics = [  '<img src="SewaneePictures/University/cross.JPG" class="bigPic">',
+                      '<img src="SewaneePictures/University/steep.JPG" class="pic">',
+                      '<img src="SewaneePictures/University/greens.JPG" class="pic">'
+                ];
+
+var pictureArrayD = ['<img src="SewaneePictures/Dorms/elliott.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/tuckaway.jpg" class="pic">',
-                     '<img src="SewaneePictures/Dorms/hunter.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/quintard.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/gorgas.jpg" class="pic">',
+                     '<img src="SewaneePictures/Dorms/hunter.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/cleveland.jpg" class="pic">',
+                     '<img src="SewaneePictures/Dorms/cannon.jpg" class="pic">',
+                     '<img src="SewaneePictures/Dorms/slukes.jpg" class="pic">',
+                     '<img src="SewaneePictures/Dorms/hoffman.jpg" class="pic">',
+                     '<img src="SewaneePictures/Dorms/benedict.jpg" class="pic">',
+                     '<img src="SewaneePictures/Dorms/humphreys.jpg" class="pic">',
+                     '<img src="SewaneePictures/Dorms/smith.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/trez.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/courts.jpg" class="pic">',
+                     '<img src="SewaneePictures/Dorms/hodgeson.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/phillips.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/mccrady.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/johnson.jpg" class="pic">',
@@ -75,7 +78,7 @@ cravens, universityFarm, multiculturalCenter, spanishM, germanM, bcM, alumniM, h
 
 var academicArray = [woodsM, walshM, carnegieM, gailorM, spencerM, guerryM, snowdenM, spencer, libraryM];
 */
-var dormMarkerarray = [cannon, smith, benedict, stLukes, Hoffman, Humphreys, Hodgeson, Elliot, Tuckaway, Hunter, Quintard, Gorgas, Cleveland, trez, courts, philips, mcCradyM];
+//var dormMarkerarray = [cannon, smith, benedict, stLukes, Hoffman, Humphreys, Hodgeson, Elliot, Tuckaway, Hunter, Quintard, Gorgas, Cleveland, trez, courts, philips, mcCradyM];
 
 
 var descriptionArrayU = ["Offices of Admission, Financial Aid, and Marketing and Communications",
@@ -96,7 +99,7 @@ var descriptionArrayU = ["Offices of Admission, Financial Aid, and Marketing and
                          "Tennis. I had a joke somewhere...",
                          "FOOTBALL. Because we wouldn't be a college without it",
                          "Baseball. Even more sports",
-                         "The cross. WE are an episcopalian school after all", 
+                         "The cross. WE are an episcopalian school after all",
                          "Its a bit STEEP here. Get it? No? ok...",
                          "View all the green we have here. Or, you know, just walk outside your dorm. Your choice",
                          "A new inn",
@@ -111,8 +114,8 @@ var descriptionArrayU = ["Offices of Admission, Financial Aid, and Marketing and
                          "EMH",
                          "HS",
                          ];
-                         
-                         
+
+
                       /*  "Computer science, mathematics, physics, psychology",
                         "Biology, chemistry, environmental studies",
                         "Forestry, geology, natural resources, environmental studies",
@@ -122,8 +125,8 @@ var descriptionArrayU = ["Offices of Admission, Financial Aid, and Marketing and
                         "English, foreign languages",
                         "Office of University Advancement",
                         "Home of the vice-chancellor"];*/
-                        
-                        
+
+
 /*
 Fulford Hall
 

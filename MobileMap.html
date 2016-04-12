@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Sewanee map </title>   
+    <title> Sewanee map </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <link href="css/mobileStyling.css" rel="stylesheet">
@@ -19,103 +19,32 @@
     <script src="js-files/jquery-touchswipe.js"></script>
     <script src="js-files/initialize.js"></script>
     <script src="js-files/mapUtilities.js"></script>
-    <script type="text/javascript">
+    <script>
 
-var map, infowindow, marker, marker1, posMarker, dMarker, aMarker, positionTimer,infowindowU, infowindowD, infowindowA, tourLine;
-var coords = new google.maps.LatLng(35.20438,-85.92016);
+var marker, marker1, posMarker, dMarker, aMarker, positionTimer, map, infoU;
+var map_center = new google.maps.LatLng(35.204406,-85.921315);
 var markersArray  = [];
 var markersArrayD  = [];
 var markersArrayA  = [];
-var dormMarkerBox = [];
+var overlooksArray = [];
 var academicMBox  = [];
-var dormPolygonArray = [];
+var dormMarkerBox = [];
 var infoArrayU = [];
 var infoArrayD = [];
 var infoArrayA = [];
+var infoArrayO = [];
 var storeB, storeZ;
-var infoBubble;
-var infoBubbleA;
-var infoBubbleD;
 var contentStringU;
 var contentStringA;
 var contentStringD;
 var infoBubbleArrayU = [];
 var infoBubbleArrayA = [];
 var infoBubbleArrayD = [];
+var infoBubbleArrayO = [];
 var acadPolygonArray = [];
 var univPolygonArray = [];
+var dormPolygonArray = [];
 var currentLocationArray = [];
-var tourLineArray = [];
-var tourLineArrayIndoor = [];
-
-      for (var i = 0; i < dormsArray.length; i++) {
-   
-        var p = new google.maps.Polygon({
-        paths: dormsArray[i],
-        strokeColor: '#996633',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#996633',
-        fillOpacity: 0.35,
-        indexID: i
-}
-  );
-        dormPolygonArray.push(p);
-} 
-
-     for (var i = 0; i < univArray.length; i++) {
-   
-        var p = new google.maps.Polygon({
-        paths: univArray[i],
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-        indexID: i
-}
-  );
-        univPolygonArray.push(p);
-}
-
- for (var i = 0; i < acadCoordArray.length; i++) {
-   
-        var p = new google.maps.Polygon({
-        paths: acadCoordArray[i],
-        strokeColor: '#5CADFF',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#5CADFF',
-        fillOpacity: 0.35,
-        indexID: i
-}
-  );
-        acadPolygonArray.push(p);
-} 
-            var tourLength = 8;
-    for(var w=0;w<tourLength;w++){
-    var walkingTourPath = new google.maps.Polyline({
-    path: tourCoordsArray[w],
-    geodesic: true,
-    strokeColor: '#FF3030',
-    strokeOpacity: 0.80,
-    strokeWeight: 7
-  });
-        tourLineArray.push(walkingTourPath);
-    }
-        
-    var indoorLength = 7;
-    for(var wp=0;wp<indoorLength;wp++){
-    var walkingTourPathIndoor = new google.maps.Polyline({
-    path: tourCoordsArrayIndoor[wp],
-    geodesic: true,
-    strokeColor: '#5858FF',
-    strokeOpacity: 0.80,
-    strokeWeight: 7
-  });
-        tourLineArrayIndoor.push(walkingTourPathIndoor);
-    }        
-    google.maps.event.addDomListener(window, 'load', initialize);
   </script>
   <script>
     alert("Welcome to the Sewanee Map!\nSwipe right or click the red box for options");
@@ -139,23 +68,21 @@ var tourLineArrayIndoor = [];
                            document.getElementById('swipe-area').innerHTML = '<img src="purpleArrow.png" id="arrows">';
                       }
                   }
-          }); 
+          });
       });
 </script>
   </head>
-  
-<body>
+
+<body onload="initialize()">
 <div class="container">
         <div id="sidebar">
           <ul>
-          <li><a><input type="button" value="Locate Me" onclick="locate();"></a></li>
-          <li><a><input type="button" value="Reset" onclick="resetAll();"></a></li>
-          <li><a><input type="button" value="Walking Tour" onclick="walkingTours()"></a></li>
-            <li><a>
+          <li><a><input type="button" value="Locate me" onclick="locate();"></a></li>
+          <li><a><input type="button" value="Clear map" onclick="resetAll();"></a></li>
+          <li><a>
                 <b>Directions From</b>
     <select id="start" onchange="routeCalc();">
-      <option value="400">                                        Choose Origin</option>
-      <option value="40000">                                   - - - - - - - - - - - - - - -</option>
+      <option value="100" disabled selected value>                                        Choose Origin</option>
       <option value="70">                                        Current Location</option>
       <option value="4">                                         Gailor Hall</option>
       <option value="3">                                         Hospital</option>
@@ -207,13 +134,12 @@ var tourLineArrayIndoor = [];
       <option value="47">                                        Smith</option>
       <option value="48">                                        Trez</option>
       <option value="49">                                        Courts</option>
-                </select> 
+                </select>
                 </a></li>
             <li><a>
                 <b>Directions To</b>
     <select id="end" onchange="routeCalc();">
-      <option value="400">                                        Choose Destination</option>
-      <option value="4000">                                   - - - - - - - - - - - - - - -</option>
+      <option value="102" disabled selected value>                                        Choose Destination</option>
       <option value="4">                                         Gailor Hall</option>
       <option value="3">                                         Hospital</option>
       <option value="0">                                         Walsh-Ellett Hall</option>
@@ -267,10 +193,13 @@ var tourLineArrayIndoor = [];
     </select></a>
     </li>
     <form name="checkboxform" id="checkboxform" action="#" >
+      <li><a href="#"><div id="travel_data"></div> </a></li>
             <li><a href="#"><input type="checkbox" id="box1" onchange="residenceBox()"/>Residence Halls<br></a></li>
             <li><a href="#"><input type="checkbox" id="box2" onchange="academicBox()"/>University Buildings<br></a></li>
             <li><a href="#"><input type="checkbox" id="box3" onchange="academicBox2()"/>Acadmic Buildings</br></a></li>
-            </form>
+          <li><a href="#"><input type="checkbox" id="box4" onchange="overlookBox()"/>Overlooks <br>(Hint: Keep zooming out) </a></li>
+    </ul></form>
+    </form>
           </ul>
         </div>
         <div class="main-content">
@@ -280,9 +209,9 @@ var tourLineArrayIndoor = [];
                       <div class="content">
                           <div id="sewaneeBox">
 <img src="SewaneeLogo.png" class="Logos">
-</div>		
+</div>
 <div id="map-canvas">
                               </div></div></div></div>
-            
+
     </body>
   </html>

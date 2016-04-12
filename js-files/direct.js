@@ -2,14 +2,16 @@ var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var infowindow = new google.maps.InfoWindow();
 var geocoder   = new google.maps.Geocoder();
-var map;
 var coords;
+var map;
 var lat;
 var lng;
 
 //Marker paths
+var cleveland = new google.maps.LatLng(35.20247,-85.92175);
+var cannon = new google.maps.LatLng(35.20468,-85.92264);
 var walshElletM = new google.maps.LatLng(35.20458,-85.91990);
-var bookStoreMarker = new google.maps.LatLng(35.20283, -85.92100);
+var bookStore = new google.maps.LatLng(35.20283, -85.92100);
 var woodsLab = new google.maps.LatLng(35.20423,-85.91927);
 var hospital = new google.maps.LatLng(35.20771,-85.91373);
 var gailor = new google.maps.LatLng(35.20270,-85.91953);
@@ -37,7 +39,6 @@ var chen = new google.maps.LatLng(35.20310,-85.92214);
 var convocation = new google.maps.LatLng(35.20497,-85.92045);
 var guerry = new google.maps.LatLng(35.20507,-85.91959);
 var soccerField = new google.maps.LatLng(35.196098, -85.927296);
-var sewaneeGolfCourse = new google.maps.LatLng(35.210493, -85.914744);
 var equestrian = new google.maps.LatLng(35.214192, -85.936966);
 var tennisCourts = new google.maps.LatLng(35.209908, -85.915493);
 var footballField = new google.maps.LatLng(35.209406, -85.921503);
@@ -60,40 +61,70 @@ var trez = new google.maps.LatLng(35.205545, -85.912272);
 var courts = new google.maps.LatLng(35.205150, -85.913943);
 var elliott = new google.maps.LatLng(35.20075,-85.92140);
 var fire = new google.maps.LatLng(35.20365, -85.91733);
+var golf = new google.maps.LatLng(35.210493, -85.914744);
+var gorgas = new google.maps.LatLng(35.19715,-85.92599);
+var humphreys = new google.maps.LatLng(35.20507,-85.91508);
+var hunter = new google.maps.LatLng(35.20070,-85.92004);
+var johnson = new google.maps.LatLng(35.206625, -85.920822);
+var quintard = new google.maps.LatLng(35.19760,-85.92516);
+var tuckaway = new google.maps.LatLng(35.20120,-85.92223);
 
-var navArray = [walshElletM, bookStoreMarker, woodsLab, hospital, gailor, mcclurg, fowlerCenter,
-carnegie, library, bishopCommons, fulford, allSaints, thompsonUnion, stLukes, mccrady, vanness,
-snowden, archives, police, stirlings, alumniHouse, hoffman, careerServices, womensCenter, eqb, chen,
-convocation, guerry, soccerField, sewaneeGolfCourse, equestrian, tennisCourts, footballField, baseballField, memorialCross,morgansSteep, greensView, sewaneeInn, stLukesChapel, spencer, tenneseeWilliams, cravens, universityFarm, nabit, multiculturalCenter, hodgeson, philips, smith, trez, courts, elliott, fire];
+var navArray = [
+                allSaints,alumniHouse,archives,
+                baseballField,bishopCommons,bookStore,
+                cannon,careerServices,carnegie,chen,cleveland,convocation,courts,cravens,
+                elliott,eqb,equestrian,
+                fire,footballField,fowlerCenter,fulford,
+                gailor,golf,gorgas,greensView,guerry,
+                hodgeson,hoffman,hospital,humphreys,hunter,
+                johnson,
+                library,
+                mcclurg,mccrady,memorialCross,morgansSteep,multiculturalCenter,
+                nabit,
+                philips,police,
+                quintard,
+                sewaneeInn,smith,snowden,soccerField,spencer,stLukesChapel,
+                stLukes,stirlings,
+                tenneseeWilliams,tennisCourts,thompsonUnion,trez,tuckaway,
+                universityFarm,
+                vanness,
+                walshElletM,womensCenter,woodsLab
+               ];
 
 function calcRoute() {
   var request = {
       origin: navArray[document.getElementById('start').value],
       destination: navArray[document.getElementById('end').value],
       travelMode: google.maps.TravelMode.WALKING
-      
+
   };
-     
+
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
-    }
-  });
-}
-		
-function calcRoute2() {
-  var request = {
-      origin: coords,
-      destination: navArray[document.getElementById('end').value],
-      travelMode: google.maps.TravelMode.WALKING
-      
-  };
-     
-  directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
+      directionsDisplay.setMap(map);
+      var point = response.routes[0].legs[0];
+      $('#travel_data').html('It will take you about ' + point.duration.text + " to get from " + request.origin + " to " + request.destination + " on foot" + ' (' + point.distance.text + ')');
     }
   });
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+function calcRoute2() {
+  directionsDisplay.setMap(map);
+  var request = {
+      origin: coords,
+      destination: navArray[document.getElementById('end').value],
+      travelMode: google.maps.TravelMode.WALKING
+
+  };
+
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+      directionsDisplay.setMap(map);
+      var point = response.routes[0].legs[0];
+$('#travel_data').html('It will take you about ' + point.duration.text + " to get from " + request.origin + " to " + request.destination + " on foot" + ' (' + point.distance.text + ')');    }
+  });
+}
+
+//google.maps.event.addDomListener(window, 'load', initialize);
