@@ -3,13 +3,13 @@ html, body {
         margin: 0px;
       }
 	  #map-canvas {
-	    top: 30px;
-        height: 85%;
+	      top: 65px;
+        height: 80%;
         margin: 0px;
         padding: 0px;
-	margin: 50px 5px 20px 260px;
-	border-style: solid;
-	border-width: 2px
+	      margin: 50px 5px 20px 260px;
+	      //border-style: dashed;
+	      border-width: 2px
 		}
 	  #panel {
         position: absolute;
@@ -33,13 +33,13 @@ html, body {
         position: absolute;
         top: 0px;
         left: 0px;
-        height: 55px;
+        height: 100px;
         width: 100%;
         background-color: #3D007A;
         padding: 5px;
         border-bottom: 2px solid;
 }
-          div.dropDown{
+      div.dropDown {
         background-color: #ffffff;
         border: 1px solid black;
         opacity: 0.8;
@@ -48,9 +48,9 @@ html, body {
 }
 	  #checkBox {
         position: absolute;
-        top: 70px;
-        left: 5px;
-        height: 84%;
+        top:   114px;
+        left:   5px;
+        height: 78%;
         width: 240px;
         background-color: #E0E0E0;
         -moz-border-radius: 40px;
@@ -59,10 +59,10 @@ html, body {
         border: 1px solid #999;
         padding: 5px;
 	  }
-         img.logo{
+        /*img.logo{
         width: 300px;
         height: 60px;
-}
+}*/
       #styles, #add-tab {
         float: left;
         margin-top: 10px;
@@ -75,15 +75,22 @@ html, body {
         width: 130px;
       }
 
+      #travel_data {
+         background: #00e5ee;
+      }
+
       .phoney {
         background: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgb(112,112,112)),color-stop(0.51, rgb(94,94,94)),color-stop(0.52, rgb(57,57,57)));
         background: -moz-linear-gradient(center top,rgb(112,112,112) 0%,rgb(94,94,94) 51%,rgb(57,57,57) 52%);
       }
-        .pic{
+
+      .pic{
         width: 250px;
         height: 200px;
     }
         .bigPic{
-            width:240px;
+            width:200px;
             height:300px;
         }
+
+

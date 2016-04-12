@@ -1,6 +1,6 @@
 
 //Dorm Array section open
-var cannon = new google.maps.LatLng(35.20468,-85.92264);
+/*var cannon = new google.maps.LatLng(35.20468,-85.92264);
 var smith = new google.maps.LatLng(35.20469,-85.92211);
 var benedict = new google.maps.LatLng(35.20746,-85.91716);
 var stLukes = new google.maps.LatLng(35.20608,-85.91883);
@@ -23,10 +23,9 @@ var germanM = new google.maps.LatLng(35.207990, -85.918187);
 
 
 var dormMarkerarray = [cannon, smith, benedict, stLukes, Hoffman, Humphreys, Hodgeson, elliott, Tuckaway, Hunter, Quintard, Gorgas, Cleveland, trez, courts, philips, mcCradyM, johnson, spanishM, germanM];
-var locationNameArrayD =['Cannon Hall','Smith Hall','Benedict Hall','St.Lukes Hall','Hoffman Hall','Humphreys Hall','Hodgson Hall','Elliott Hall','Tuckaway Hall','Hunter Hall','Quintard Hall','Gorgas Hall','Cleveland Hall','Trezevant Hall','Courts Hall','Philips Hall','McCrady Hall', 'Johnson Hall', 'Spanish House', 'German House'];
-//Dorm array section close
+//Dorm array section close*/
 
-//Academic array section open
+//academicArray array section open
 var woodsM = new google.maps.LatLng(35.20422,-85.91905);
 var walshM = new google.maps.LatLng(35.20473,-85.92011);
 var carnegieM = new google.maps.LatLng(35.20430,-85.91977);
@@ -43,7 +42,7 @@ var academicArray = [woodsM, walshM, carnegieM, gailorM, spencerM, guerryM, snow
 var locationNameArrayA = ['Woods Laboratories','Walsh-Ellett Hall','Carnegie','Gailor','Spencer Hall','Guerry','Snowden','DuPoint Library','Nabit Art Building'];
 //Academic section close
 
-//University Building open
+/*University Building open
 var downtown = new google.maps.LatLng(35.19566,-85.91832);
 var careerServices = new google.maps.LatLng(35.20784, -85.91996);
 var womensCenter = new google.maps.LatLng(35.20635,-85.91726);
@@ -56,9 +55,6 @@ var equestrian = new google.maps.LatLng(35.214192, -85.936966);
 var tennisCourts = new google.maps.LatLng(35.20982, -85.91503);
 var footballFieldM = new google.maps.LatLng(35.209301, -85.922152)
 var baseballField = new google.maps.LatLng(35.211948, -85.925140);
-var memorialCross = new google.maps.LatLng(35.191995, -85.937322);
-var morgansSteep = new google.maps.LatLng(35.202472, -85.931802);
-var greensView = new google.maps.LatLng(35.217453, -85.918474);
 var sewaneeInn = new google.maps.LatLng(35.209099, -85.913995);
 var stLukesChapel = new google.maps.LatLng(35.205584, -85.918786);
 var tenneseeWilliams = new google.maps.LatLng(35.196440, -85.924078);
@@ -83,11 +79,12 @@ var fire = new google.maps.LatLng(35.20365, -85.91733);
 
 
 var locationArrayU = [fulford, downtown, mcclurg,allsaints,bookstore,stirlings,sut,fowler, careerServices, womensCenter, eqb, chen, convocation, soccerField,sewaneeGolfCourse, equestrian, tennisCourts, footballFieldM, baseballField, memorialCross, morgansSteep, greensView, sewaneeInn, stLukesChapel, tenneseeWilliams,
-cravens, universityFarm, multiculturalCenter, police, fire, bcM, alumniM, hospitalM, UHSM];
-var locationNameArrayU = ['Fulford', 'Sewanee Village', 'McClurg','All Saints Chapel',
-'Barnes&Noble','Stirlings','Thompson Union','Fowler Center','Career Services','Women\'s Center','EQB House','Chen Hall','Convocation Hall','The Soccer Field',
-'The Sewanee Golf Course','Equestrian Center','Tennis Courts','Football Field','Baseball Field','Memorial Cross','Morgan\'s Steep','Green\'s View',
-'Sewanee Inn','St. Luke\'s Chapel','Tennesee Williams Center','Cravens Hall','The University Farm','Ayers Multicultural Center', 'Sewanee Police Department', 'Sewanee Fire Department', 'Bishop\'s Common','McGriff Alumni House', 'Hospital', 'STRHS Hospital'];
+cravens, universityFarm, multiculturalCenter, police, fire, bcM, alumniM, hospitalM, UHSM]; */
+
+//overlooks
+var memorialCross = new google.maps.LatLng(35.191995, -85.937322);
+var morgansSteep = new google.maps.LatLng(35.202472, -85.931802);
+var greensView = new google.maps.LatLng(35.217453, -85.918474);
 
 //Polygon coordinates open
   var smithCoords = [new google.maps.LatLng(35.20449,-85.92187),
@@ -162,7 +159,7 @@ var locationNameArrayU = ['Fulford', 'Sewanee Village', 'McClurg','All Saints Ch
                       new google.maps.LatLng(35.197137,-85.926154),
                       new google.maps.LatLng(35.197274,-85.925870),
                       new google.maps.LatLng(35.197282,-85.925877)];
- 
+
   var hunterCoords = [new google.maps.LatLng(35.200476,-85.920133),
                       new google.maps.LatLng(35.200510,-85.920126),
                       new google.maps.LatLng(35.200513,-85.920138),
@@ -197,7 +194,7 @@ var sigmaNuCoords = [new google.maps.LatLng(35.20813,-85.91910),
 					 new google.maps.LatLng(35.20813,-85.91928),
 					 new google.maps.LatLng(35.20824,-85.91903),
 					 new google.maps.LatLng(35.20818,-85.91899)];
-  
+
 var aTOCoords = [new google.maps.LatLng(35.20615,-85.92096),
                  new google.maps.LatLng(35.20614,-85.92091),
 				 new google.maps.LatLng(35.20609,-85.92092),
@@ -212,7 +209,7 @@ var aTOCoords = [new google.maps.LatLng(35.20615,-85.92096),
 				 new google.maps.LatLng(35.20617,-85.92104),
 				 new google.maps.LatLng(35.20621,-85.92103),
 				 new google.maps.LatLng(35.20620,-85.92095)];
- 
+
 var phiSocietyCoords = [new google.maps.LatLng(35.20737,-85.92006),
                         new google.maps.LatLng(35.20726,-85.92011),
 						new google.maps.LatLng(35.20729,-85.92020),
@@ -222,7 +219,7 @@ var phiSocietyBarnCoords = [new google.maps.LatLng(35.20740,-85.92024),
                             new google.maps.LatLng(35.20731,-85.92027),
 							new google.maps.LatLng(35.20736,-85.92045),
 							new google.maps.LatLng(35.20745,-85.92040)];
-  
+
 var sigmaAlphaEpsilonCoords = [new google.maps.LatLng(35.20699,-85.91806),
                                new google.maps.LatLng(35.20694,-85.91811),
 							   new google.maps.LatLng(35.20692,-85.91808),
@@ -235,7 +232,7 @@ var sigmaAlphaEpsilonCoords = [new google.maps.LatLng(35.20699,-85.91806),
 							   new google.maps.LatLng(35.20696,-85.91786),
 							   new google.maps.LatLng(35.20704,-85.91796),
 							   new google.maps.LatLng(35.20698,-85.91803)];
-  
+
 var deltaTauDeltCoords = [new google.maps.LatLng(35.20765,-85.91669),
                           new google.maps.LatLng(35.20763,-85.91686),
 						  new google.maps.LatLng(35.20747,-85.91684),
@@ -260,14 +257,14 @@ var kappaAlphaCoords = [new google.maps.LatLng(35.20812,-85.91545),
 						new google.maps.LatLng(35.20811,-85.91539),
 						new google.maps.LatLng(35.20809,-85.91541)];
 
-var gammaCoords = [new google.maps.LatLng(35.20616,-85.91464), 
-                   new google.maps.LatLng(35.20606,-85.91458), 
+var gammaCoords = [new google.maps.LatLng(35.20616,-85.91464),
+                   new google.maps.LatLng(35.20606,-85.91458),
 				   new google.maps.LatLng(35.20609,-85.91449),
 				   new google.maps.LatLng(35.20627,-85.91460),
 				   new google.maps.LatLng(35.20624,-85.91471),
 				   new google.maps.LatLng(35.20615,-85.91467),
 				   new google.maps.LatLng(35.20616,-85.91464)];
-  
+
 var chiPsiCoords = [new google.maps.LatLng(35.20434,-85.91363),
                     new google.maps.LatLng(35.20435,-85.91362),
 			        new google.maps.LatLng(35.20431,-85.91353),
@@ -280,14 +277,14 @@ var chiPsiCoords = [new google.maps.LatLng(35.20434,-85.91363),
 			        new google.maps.LatLng(35.20443,-85.91377),
 			        new google.maps.LatLng(35.20438,-85.91367),
 			        new google.maps.LatLng(35.20437,-85.91368)];
-  
+
 var deltaKappaEpsilonCoords = [new google.maps.LatLng(35.20396,-85.91390),
                                new google.maps.LatLng(35.20394,-85.91403),
 							   new google.maps.LatLng(35.20387,-85.91402),
 							   new google.maps.LatLng(35.20388,-85.91391),
 							   new google.maps.LatLng(35.20385,-85.91383),
 							   new google.maps.LatLng(35.20390,-85.91380)];
-  
+
 var phiGammaCoords = [new google.maps.LatLng(35.20154,-85.92025),
                       new google.maps.LatLng(35.20157,-85.92022),
 					  new google.maps.LatLng(35.20157,-85.92021),
@@ -298,7 +295,7 @@ var phiGammaCoords = [new google.maps.LatLng(35.20154,-85.92025),
 					  new google.maps.LatLng(35.20165,-85.92037),
 					  new google.maps.LatLng(35.20163,-85.92035),
 					  new google.maps.LatLng(35.20160,-85.92037)];
-  
+
 var betaCoords = [new google.maps.LatLng(35.20179,-85.91912),
                   new google.maps.LatLng(35.20178,-85.91912),
 				  new google.maps.LatLng(35.20177,-85.91891),
@@ -309,7 +306,7 @@ var betaCoords = [new google.maps.LatLng(35.20179,-85.91912),
 				  new google.maps.LatLng(35.20187,-85.91911),
 				  new google.maps.LatLng(35.20187,-85.91921),
 				  new google.maps.LatLng(35.20180,-85.91921)];
- 
+
 var lambdaChiAlphaCoords = [new google.maps.LatLng(35.20140,-85.91816),
                             new google.maps.LatLng(35.20125,-85.91803),
 							new google.maps.LatLng(35.20121,-85.91810),
@@ -357,7 +354,7 @@ var cannonCoords = [new google.maps.LatLng(35.20464,-85.92246),
 					new google.maps.LatLng(35.20464,-85.92282),
 					new google.maps.LatLng(35.20464,-85.92268),
 					new google.maps.LatLng(35.20465,-85.92268)];
-  
+
 var johnsonCoords = [new google.maps.LatLng(35.20649,-85.92076),
                      new google.maps.LatLng(35.20656,-85.92100),
 					 new google.maps.LatLng(35.20663,-85.92097),
@@ -368,7 +365,7 @@ var johnsonCoords = [new google.maps.LatLng(35.20649,-85.92076),
 					 new google.maps.LatLng(35.20676,-85.92069),
 					 new google.maps.LatLng(35.20657,-85.92078),
 					 new google.maps.LatLng(35.20655,-85.92073)];
-  
+
 var stLukesCoords = [new google.maps.LatLng(35.20630,-85.91890),
                      new google.maps.LatLng(35.20628,-85.91875),
 					 new google.maps.LatLng(35.20614,-85.91876),
@@ -382,7 +379,7 @@ var hoffmanCoords = [new google.maps.LatLng(35.20656,-85.91887),
                      new google.maps.LatLng(35.20654,-85.91862),
 					 new google.maps.LatLng(35.20644,-85.91863),
 					 new google.maps.LatLng(35.20645,-85.91888)];
- 
+
  var benedictCoords = [new google.maps.LatLng(35.20768,-85.91733),
                  new google.maps.LatLng(35.20767,-85.91723),
 				 new google.maps.LatLng(35.20765,-85.91723),
@@ -403,7 +400,7 @@ var hoffmanCoords = [new google.maps.LatLng(35.20656,-85.91887),
 				 new google.maps.LatLng(35.20759,-85.91736),
 				 new google.maps.LatLng(35.20765,-85.91735),
 				 new google.maps.LatLng(35.20765,-85.91733)];
-   
+
 var humphreysCoords = [new google.maps.LatLng(35.20490,-85.91507),
                        new google.maps.LatLng(35.20511,-85.91523),
 					   new google.maps.LatLng(35.20516,-85.91515),
@@ -1392,20 +1389,47 @@ new google.maps.LatLng(35.214260,-85.937316),
 new google.maps.LatLng(35.214032,-85.936891)
 ];
 
-//Polygon coordinates close
-
 var dormsArray = [elliotCoords,tuckawayCoords,quintardCoords,gorgasCoords,
                   hunterCoords,clevelandCoords,cannonCoords,
-                  stLukesCoords,hoffmanCoords,benedictCoords,humphreysCoords,smithCoords, 
-                  trezCoords, courtsBuilding, hodgesonCoords, phillipsCoords, cradyCoords, johnsonCoords, spanishHouseCoords, germanHouseCoords];
+                  stLukesCoords,hoffmanCoords,benedictCoords,humphreysCoords,smithCoords,
+                  trezCoords, courtsBuilding, hodgesonCoords, phillipsCoords, cradyCoords,
+                  johnsonCoords, spanishHouseCoords, germanHouseCoords];
 
-var univArray = [policeDept, fireDept, fowlerCoords, stLukesChapCoords, bcCoords, wickCoords, stirCoords, mcgriffCoords, allStCoords, convoCoords, clurgCoords, bookCoords, 
-                 fulfordCoords, SUTCoords, chenCoords, careerCoords, cravCoords, eqCoords, EQB, healthServices, Hospital, sewaneeVillage, sewaneeInn, soccerField, 
-                 golfOffice, universityFarmCoords, multiculturalCoords, tennisCourts, footballField, baseballField, twcCoords];
+var locationNameArrayD =['Elliott Hall','Tuckaway Hall','Quintard Hall','Gorgas Hall',
+                         'Hunter Hall','Cleveland Hall','Cannon Hall',
+                         'St.Lukes Hall','Hoffman Hall','Benedict Hall','Humphreys Hall','Smith Hall',
+                         'Trezevant Hall','Courts Hall','Hodgson Hall', 'Philips Hall','McCrady Hall',
+                         'Johnson Hall', 'Spanish House', 'German House'];
 
-var acadCoordArray= [duPontCoords, woodsCoords, spencerCoords, snowdenCoords, carnegieCoords,
-                      walECoords, gailorCoords, nabitArtCoords, guerryCoords];
 
+var univArray = [fulfordCoords, sewaneeVillage, clurgCoords, allStCoords,
+                 bookCoords, stirCoords, SUTCoords, fowlerCoords, careerCoords,
+                 wickCoords, EQB, chenCoords, convoCoords, soccerField,
+                 golfOffice, eqCoords, tennisCourts, footballField,
+                 baseballField, sewaneeInn, stLukesChapCoords, twcCoords, cravCoords,
+                 universityFarmCoords, multiculturalCoords, policeDept,
+                 fireDept, bcCoords, mcgriffCoords, Hospital, healthServices];
+
+var locationNameArrayU = ['Fulford', 'Sewanee Village', 'McClurg','All Saints Chapel',
+                          'Barnes&Noble','Stirlings','Thompson Union','Fowler Center','Career Services',
+                          'Women\'s Center','EQB House','Chen Hall','Convocation Hall','The Soccer Field',
+                          'The Sewanee Golf Course','Equestrian Center','Tennis Courts','Football Field',
+                          'Baseball Field', 'Sewanee Inn','St. Luke\'s Chapel','Tennesee Williams Center','Cravens Hall',
+                          'The University Farm','Multicultural Center', 'Sewanee Police Department',
+                          'Sewanee Fire Department', 'Bishop\'s Common','McGriff Alumni House', 'Hospital', 'STRHS Hospital'];
+
+var overlooks = [memorialCross, morgansSteep, greensView];
+
+var overlookNames = ['Memorial Cross','Morgan\'s Steep','Green\'s View'];
+
+
+var academicPoly = [woodsCoords, walECoords, carnegieCoords, gailorCoords,
+                    spencerCoords, guerryCoords, snowdenCoords, duPontCoords,
+                    nabitArtCoords];
+
+var academicPolyNames = ['Woods Laboratories','Walsh-Ellett Hall','Carnegie','Gailor',
+                         'Spencer Hall','Guerry','Snowden','DuPoint Library',
+                         'Nabit Art Building'];
 
 var fratArray = [sigmaNuCoords,aTOCoords, phiSocietyCoords,phiSocietyBarnCoords,
                  sigmaAlphaEpsilonCoords,deltaTauDeltCoords,phiGammaCoords,

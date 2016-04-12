@@ -1,4 +1,4 @@
-<!--
+ <!--
  geoApp
  Geolocation map of Sewanee -->
 <html>
@@ -9,90 +9,54 @@
     <link href="css/styling.css" rel="stylesheet">
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3"></script>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
     <script src="js-files/coords.js"> </script>
     <script src="js-files/direct.js"> </script>
     <script src="js-files/detectMobileBrowser.js"></script>
-    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js"></script>
+    <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js"></script>
     <script src="js-files/Pictures.js"></script>
-    <script src="js-files/walkingTour.js"></script>
     <script src="js-files/mapUtilities.js"></script>
     <script src="js-files/initialize.js"></script>
-    <script type="text/javascript">
+    <script>
 
-var marker, marker1, posMarker, dMarker, aMarker, positionTimer, map, infoU, tourLine;
-var coords = new google.maps.LatLng(35.20438,-85.92016);
+var marker, marker1, posMarker, dMarker, aMarker, positionTimer, map, infoU;
+var map_center = new google.maps.LatLng(35.204406,-85.921315);
 var markersArray  = [];
 var markersArrayD  = [];
 var markersArrayA  = [];
-var dormMarkerBox = [];
+var overlooksArray = [];
 var academicMBox  = [];
-var dormPolygonArray = [];
+var dormMarkerBox = [];
 var infoArrayU = [];
 var infoArrayD = [];
 var infoArrayA = [];
+var infoArrayO = [];
 var storeB, storeZ;
 var infoBubble;
-var infoBubbleA;
-var infoBubbleD;
+var infoBubble;
 var contentStringU;
 var contentStringA;
 var contentStringD;
 var infoBubbleArrayU = [];
 var infoBubbleArrayA = [];
 var infoBubbleArrayD = [];
+var infoBubbleArrayO = [];
 var acadPolygonArray = [];
 var univPolygonArray = [];
+var dormPolygonArray = [];
 var currentLocationArray = [];
 
-      //CREATE POLYGONS AND MARKERS FOR THE BUILDINGS AND PUSH THEM INTO ARRAYS
-
-     for (i in dormsArray) {
-         var poly = new google.maps.Polygon({
-             paths: dormsArray[i],
-             strokeColor: '#996633',
-             strokeOpacity: 0.8,
-             strokeWeight: 2,
-             fillColor: '#996633',
-             fillOpacity: 0.35,
-             indexID: i});
-         dormPolygonArray.push(poly);
-     }
-
-     for (i in univArray) {
-         var poly = new google.maps.Polygon({
-             paths: univArray[i],
-             strokeColor: '#FF0000',
-             strokeOpacity: 0.8,
-             strokeWeight: 2,
-             fillColor: '#FF0000',
-             fillOpacity: 0.35,
-             indexID: i});
-         univPolygonArray.push(poly);
-     }
-
-     for (i in acadCoordArray) {
-         var poly = new google.maps.Polygon({
-             paths: acadCoordArray[i],
-             strokeColor: '#5CADFF',
-             strokeOpacity: 0.8,
-             strokeWeight: 2,
-             fillColor: '#5CADFF',
-             fillOpacity: 0.35,
-             indexID: i});
-         acadPolygonArray.push(poly);
-     }
-
-     window.onload = initialize;
   </script>
   </head>
-  <body>
+  <body onload="initialize()">
 <div id="sewaneeBox">
 <img src="SewaneeLogo.png" class="Logo">
 </div>
 <div id="checkBox">
 <br>
-<input type="button" value="Locate Me" onclick="locate();">&nbsp<input type="button" value="Reset" onclick="resetAll();"><br>
-    <hr>
+    <button id=locateMe onclick="locate();"> Locate me </button> &nbsp
+    <button id="reset" onclick="resetAll();"> Clear map </button> <br>
+  <hr>
 Directions:<hr>
 <form name="checkboxform" id="checkboxform" action="#" >
     <ul class="checkboxes" style="list-style: none;margin: 0;padding: 0;">
@@ -101,143 +65,144 @@ Directions:<hr>
         </li><li>
 <input type="checkbox" id="box2" onchange="academicBox()"/>University Buildings<br><br>
         </li><li>
-<input type="checkbox" id="box3" onchange="academicBox2()"/>Acadmic Buildings<hr>
-        </li></ul></form>
+<input type="checkbox" id="box3" onchange="academicBox2()"/>Acadmic Buildings<br><br>
+      </li> <li>
+<input type="checkbox" id="box4" onchange="overlookBox()"/>Overlooks <br>(Hint: Keep zooming out)
+      </li></ul></form><hr>
+
 
  <b>Directions From</b>
     <select id="start" onchange="routeCalc();">
-    <!--<select id="end" onchange="calcRoute();">-->
-      <option value="100">                                       Choose Origin</option>
-      <option value="100">                                       - - - - - - - - - - - - - - -</option>
-       <option value="70">	                                   Current Location</option>
-+      <option value="11">	                                   All Saints’ Chapel</option>
-+      <option value="17">	                                   Archives and Special Collections</option>
-+      <option value="23">	                                   Barnwick Womens Center</option>
-+      <option value="33">	                                   Baseball Field</option>
-       <option value ="58">                                    Benedict Hall</option>
-+      <option value="9">	                                   Bishops Commons</option>
-+      <option value="1">	                                   Bookstore</option>
-       <option value ="50">                                   Cannon Hall</option>
-+      <option value="22">	                                   Career Services</option>
-+      <option value="7">	                                   Carnegie Hall</option>
-+      <option value="25">	                                   Chen Hall</option>
-       <option value ="51">                                   Cleveland Hall</option>
-+      <option value="26">	                                   Convocation Hall</option>
-+      <option value="49">	                                   Courts</option>
-+      <option value="41">	                                   Cravens Hall</option>
-+      <option value="8">	                                   DuPoint Library</option>
-+      <option value ="53">                                    Elliot Hall</option>
-+      <option value="24">	                                   EQB</option>
-+      <option value="30">	                                   Equestrian</option>
-+      <option value="32">	                                   Football Field</option>
-+      <option value="6">	                                   Fowler Center</option>
-+      <option value="10">	                                   Fulford Hall</option>
-+      <option value="4">	                                   Gailor Hall</option>
-+      <option value="29">	                                   Golf Course</option>
-       <option value ="56">                                   Gorgas Hall</option>
-+      <option value="36">	                                   Green's View</option>
-+      <option value="27">	                                   Guerry Hall and Art Gallery</option>
-+      <option value="45">	                                   Hodgeson</option>
-+      <option value="21">	                                   Hoffman Hall</option>
-+      <option value="3">	                                   Hospital</option>
-       <option value ="57">                                   Humphreys Hall</option>
-       <option value ="54">                                   Hunter Hall</option>
-       <option value ="59">                                   Johnson Hall</option>
-+      <option value="5">	                                   McClurg Dining Hall</option>
-+      <option value="14">	                                   McCrady Hall</option>
-+      <option value="20">	                                   McGriff Alumni House</option>
-+      <option value="34">	                                   Memorial Cross</option>
-+      <option value="35">	                                   Morgan's Steep</option>
-+      <option value="44">	                                   MultiCultural Center</option>
-+      <option value="43">	                                   Nabit Art Building</option>
-+      <option value="46">	                                   Philips</option>
-+      <option value="18">	                                   Police/Fire Service</option>
-       <option value ="55">                                   Quintard Hall</option>
-+      <option value="37">	                                   Sewanee Inn</option>
-+      <option value="47">	                                   Smith</option>
-+      <option value="16">	                                   Snowden Hall</option>
-+      <option value="28">	                                   Soccer Field</option>
-+      <option value="39">	                                   Spencer</option>
-+      <option value="38">	                                   St. Lukes Chapel</option>
-+      <option value="13">	                                   St. Lukes Hall</option>
-+      <option value="19">	                                   Stirlings</option>
-+      <option value="40">	                                   Tennesee Williams Center</option>
-+      <option value="31">	                                   Tennis Courts</option>
-+      <option value="12">	                                   Thompson Union</option>
-+      <option value="48">	                                   Trez</option>
-       <option value ="52">                                    Tuckaway Hall</option>
-+      <option value="42">	                                   University Farm</option>
-+      <option value="0">	                                   Walsh-Ellett Hall</option>
-+      <option value="2">	                                   Woods Laboratories</option>
-+
-                </select>
+      <option value="100"  disabled selected value>  Choose Origin </option>
+       <option value="70" onclick="locate()">	Current Location                 </option>
++      <option value="0">	  All Saints’ Chapel               </option>
+       <option value="1">	  Alumni House                     </option>
++      <option value="2">	  Archives and Special Collections </option>
+       <option value="58"> 	Bairnwick Women's Center         </option>
++      <option value="3">	  Baseball Field                   </option>
+       <option value="4">	  Bishops Commons                  </option>
++      <option value="5">	  Bookstore                        </option>
+       <option value="6">   Cannon Hall                      </option>
++      <option value="7">	  Career Services                  </option>
++      <option value="8">	  Carnegie Hall                    </option>
++      <option value="9">	  Chen Hall                        </option>
+       <option value ="10"> Cleveland Hall                   </option>
++      <option value="11">	Convocation Hall                 </option>
++      <option value="12">	Courts Hall                      </option>
++      <option value="13">	Cravens Hall                     </option>
++      <option value="32">	DuPoint Library                  </option>
++      <option value ="14"> Elliot Hall                      </option>
++      <option value="15">	EQB Building                     </option>
++      <option value="16">	Equestrian                       </option>
+       <option value="17">	Fire Department                  </option>
++      <option value="18">	Football Field                   </option>
++      <option value="19">	Fowler Center                    </option>
++      <option value="20">	Fulford Hall                     </option>
++      <option value="21">	Gailor Hall                      </option>
++      <option value="22">	Golf Course                      </option>
+       <option value="23">  Gorgas Hall                      </option>
++      <option value="24">	Green's View                     </option>
++      <option value="25">	Guerry Hall and Art Gallery      </option>
++      <option value="26">	Hodgson Hall                     </option>
++      <option value="27">	Hoffman Hall                     </option>
++      <option value="28">	Hospital                         </option>
+       <option value="29">  Humphreys Hall                   </option>
+       <option value="30">  Hunter Hall                      </option>
+       <option value="31">  Johnson Hall                     </option>
++      <option value="33">	McClurg Dining Hall              </option>
++      <option value="34">	McCrady Hall                     </option>
++      <option value="35">	Memorial Cross                   </option>
++      <option value="36">	Morgan's Steep                   </option>
++      <option value="37">	MultiCultural Center             </option>
++      <option value="38">	Nabit Art Building               </option>
++      <option value="39">	Philips                          </option>
++      <option value="40">	Police Department                </option>
+       <option value="41">  Quintard Hall                    </option>
++      <option value="42">	Sewanee Inn                      </option>
++      <option value="43">	Smith Hall                       </option>
++      <option value="44">	Snowden Hall                     </option>
++      <option value="45">	Soccer Field                     </option>
++      <option value="46">	Spencer Hall                     </option>
++      <option value="47">	St. Lukes Chapel                 </option>
++      <option value="48">	St. Lukes Hall                   </option>
++      <option value="49">	Stirlings                        </option>
++      <option value="50">	Tennesee Williams Center         </option>
++      <option value="51">	Tennis Courts                    </option>
++      <option value="52">	Thompson Union                   </option>
++      <option value="53">	Trezevant Hall                   </option>
+       <option value="54">  Tuckaway Hall                    </option>
++      <option value="55">	University Farm                  </option>
+       <option value="56">	Van Ness Center                  </option>
++      <option value="57">  Walsh-Ellett Hall                </option>
++      <option value="59">	Woods Laboratories               </option>
++    </select>
 
     <b>Directions To</b>
     <select id="end" onchange="routeCalc();">
-    <!--<select id="end" onchange="calcRoute();">-->
-      <option value="100">                                       Choose Destination</option>
-      <option value="100">                                       - - - - - - - - - - - - - - -</option>
-      <option value="11">	                                   All Saints</option>
-      <option value="17">	                                   Archives</option>
-      <option value="23">	                                   Barnwick Womens Center</option>
-      <option value="33">	                                   Baseball Field</option>
-      <option value ="58">                                    Benedict Hall</option>
-      <option value="9">	                                   Bishops Commons</option>
-      <option value="1">	                                   Book Store</option>
-      <option value ="50">                                    Cannon Hall</option>
-      <option value="22">	                                   Career Services</option>
-      <option value="7">	                                   Carnegie Hall</option>
-      <option value="25">	                                   Chen Hall</option>
-      <option value ="51">                                    Cleveland Hall</option>
-      <option value="26">	                                   Convocation Hall</option>
-      <option value="49">	                                   Courts</option>
-      <option value="41">	                                   Cravens Hall</option>
-      <option value="8">	                                   DuPoint Library</option>
-      <option value ="53">                                    Elliot Hall</option>
-      <option value="24">	                                   EQB</option>
-      <option value="30">	                                   Equestrian</option>
-      <option value="32">	                                   Football Field</option>
-      <option value="6">	                                   Fowler Center</option>
-      <option value="10">	                                   Fulford Hall</option>
-      <option value="29">	                                   Golf Course</option>
-      <option value ="56">                                    Gorgas Hall</option>
-      <option value="36">	                                   Green's View</option>
-      <option value="27">	                                   Guerry Hall and Art Gallery</option>
-      <option value="45">	                                   Hodgeson</option>
-      <option value="21">	                                   Hoffman Hall</option>
-      <option value="3">	                                   Hospital</option>
-      <option value ="57">                                     Humphreys Hall</option>
-      <option value ="54">                                    Hunter Hall</option>
-      <option value ="59">                                    Johnson Hall</option>
-      <option value="5">	                                   McClurg Dining Hall</option>
-      <option value="14">	                                   McCrady Hall</option>
-      <option value="20">	                                   McGriff Alumni House</option>
-      <option value="34">	                                   Memorial Cross</option>
-      <option value="35">	                                   Morgan's Steep</option>
-      <option value="44">	                                   MultiCultural Center</option>
-      <option value="43">	                                   Nabit Art Building</option>
-      <option value="46">	                                   Philips</option>
-      <option value="18">	                                   Police/Fire Service</option>
-      <option value ="55">                                     Quintard Hall</option>
-      <option value="37">	                                   Sewanee Inn</option>
-      <option value="47">	                                   Smith</option>
-      <option value="16">	                                   Snowden Hall</option>
-      <option value="28">	                                   Soccer Field</option>
-      <option value="39">	                                   Spencer</option>
-      <option value="38">	                                   St. Lukes Chapel</option>
-      <option value="13">	                                   St. Lukes Hall</option>
-      <option value="19">	                                   Stirlings</option>
-      <option value="40">	                                   Tennesee Williams Center</option>
-      <option value="31">	                                   Tennis Courts</option>
-      <option value="12">	                                   Thompson Union</option>
-      <option value="48">	                                   Trez</option>
-      <option value ="52">                                     Tuckaway Hall</option>
-      <option value="42">	                                   University Farm</option>
-      <option value="0">	                                   Walsh-Ellett Hall</option>
-      <option value="2">	                                   Woods Laboratories</option>
-
+       <option value="102" disabled selected value> Choose Destination               </option>
+       <option value="0">	  All Saints’ Chapel               </option>
+       <option value="1">	  Alumni House                     </option>
++      <option value="2">	  Archives and Special Collections </option>
+       <option value="58"> 	Bairnwick Women's Center         </option>
++      <option value="3">	  Baseball Field                   </option>
+       <option value="4">	  Bishops Commons                  </option>
++      <option value="5">	  Bookstore                        </option>
+       <option value="6">   Cannon Hall                      </option>
++      <option value="7">	  Career Services                  </option>
++      <option value="8">	  Carnegie Hall                    </option>
++      <option value="9">	  Chen Hall                        </option>
+       <option value ="10"> Cleveland Hall                   </option>
++      <option value="11">	Convocation Hall                 </option>
++      <option value="12">	Courts Hall                      </option>
++      <option value="13">	Cravens Hall                     </option>
++      <option value="32">	DuPoint Library                  </option>
++      <option value ="14"> Elliot Hall                      </option>
++      <option value="15">	EQB Building                     </option>
++      <option value="16">	Equestrian                       </option>
+       <option value="17">	Fire Department                  </option>
++      <option value="18">	Football Field                   </option>
++      <option value="19">	Fowler Center                    </option>
++      <option value="20">	Fulford Hall                     </option>
++      <option value="21">	Gailor Hall                      </option>
++      <option value="22">	Golf Course                      </option>
+       <option value="23">  Gorgas Hall                      </option>
++      <option value="24">	Green's View                     </option>
++      <option value="25">	Guerry Hall and Art Gallery      </option>
++      <option value="26">	Hodgson Hall                     </option>
++      <option value="27">	Hoffman Hall                     </option>
++      <option value="28">	Hospital                         </option>
+       <option value="29">  Humphreys Hall                   </option>
+       <option value="30">  Hunter Hall                      </option>
+       <option value="31">  Johnson Hall                     </option>
++      <option value="33">	McClurg Dining Hall              </option>
++      <option value="34">	McCrady Hall                     </option>
++      <option value="35">	Memorial Cross                   </option>
++      <option value="36">	Morgan's Steep                   </option>
++      <option value="37">	MultiCultural Center             </option>
++      <option value="38">	Nabit Art Building               </option>
++      <option value="39">	Philips                          </option>
++      <option value="40">	Police Department                </option>
+       <option value="41">  Quintard Hall                    </option>
++      <option value="42">	Sewanee Inn                      </option>
++      <option value="43">	Smith Hall                       </option>
++      <option value="44">	Snowden Hall                     </option>
++      <option value="45">	Soccer Field                     </option>
++      <option value="46">	Spencer Hall                     </option>
++      <option value="47">	St. Lukes Chapel                 </option>
++      <option value="48">	St. Lukes Hall                   </option>
++      <option value="49">	Stirlings                        </option>
++      <option value="50">	Tennesee Williams Center         </option>
++      <option value="51">	Tennis Courts                    </option>
++      <option value="52">	Thompson Union                   </option>
++      <option value="53">	Trezevant Hall                   </option>
+       <option value="54">  Tuckaway Hall                    </option>
++      <option value="55">	University Farm                  </option>
+       <option value="56">	Van Ness Center                  </option>
++      <option value="57">  Walsh-Ellett Hall                </option>
++      <option value="59">	Woods Laboratories               </option>
     </select>
  <hr>
+  <div id="travel_data"></div>
 </div>
 
   <div id="out"></div>
