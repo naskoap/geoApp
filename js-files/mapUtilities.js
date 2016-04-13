@@ -1,35 +1,3 @@
-  function locate() {
-      if  (navigator.geolocation)
-        navigator.geolocation.getCurrentPosition(setMarker);
-      else
-        alert("Your browser does not support the Geolocation API");
-    }
-
-  // Set blue marker indicating user position
-  function setMarker(pos) {
-    var lat = pos.coords.latitude,
-        lng = pos.coords.longitude;
-    coords = new google.maps.LatLng(lat, lng);
-    posMarker = new google.maps.Marker({
-      map: map,
-      icon: 'markers/TrackingDot.png',
-      position: coords,
-      animation: google.maps.Animation.DROP,
-      title: "Current Position"
-    });
-    map.panTo(coords);
-    map.setCenter(coords);
-    // Update user's location
-    positionTimer = navigator.geolocation.watchPosition(function (pos) {
-      /*var lat = pos.coords.latitude,
-          lng = pos.coords.longitude;
-      coords = new google.maps.LatLng(lat, lng);*/
-      posMarker.setPosition(coords);
-    });
-    //directionsDisplay.setMap(map);
-    currentLocationArray.push(posMarker);
-  }
-
 function residenceBox() {
      if(box1.checked){
      for( var m=0; m < dormMarkerBox.length; m++){

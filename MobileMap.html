@@ -81,7 +81,7 @@ var currentLocationArray = [];
           <li><a><input type="button" value="Clear map" onclick="resetAll();"></a></li>
           <li><a>
                 <b>Directions From</b>
-    <select id="start" onchange="routeCalc();">
+    <select id="start">
       <option value="100" disabled selected value>                                        Choose Origin</option>
       <option value="70">                                        Current Location</option>
       <option value="4">                                         Gailor Hall</option>
@@ -138,7 +138,7 @@ var currentLocationArray = [];
                 </a></li>
             <li><a>
                 <b>Directions To</b>
-    <select id="end" onchange="routeCalc();">
+    <select id="end">
       <option value="102" disabled selected value>                                        Choose Destination</option>
       <option value="4">                                         Gailor Hall</option>
       <option value="3">                                         Hospital</option>
@@ -190,8 +190,9 @@ var currentLocationArray = [];
       <option value="47">                                        Smith</option>
       <option value="48">                                        Trez</option>
       <option value="49">                                        Courts</option>
-    </select></a>
+    </select> </a>
     </li>
+            <li> <a><br><button id="direct" onclick="displayDirections()"> Get Directions </button></a></li>
     <form name="checkboxform" id="checkboxform" action="#" >
       <li><a href="#"><div id="travel_data"></div> </a></li>
             <li><a href="#"><input type="checkbox" id="box1" onchange="residenceBox()"/>Residence Halls<br></a></li>
