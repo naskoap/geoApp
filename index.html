@@ -57,7 +57,7 @@ var currentLocationArray = [];
     <button id=locateMe onclick="locate();"> Locate me </button> &nbsp
     <button id="reset" onclick="resetAll();"> Clear map </button> <br>
   <hr>
-Directions:<hr>
+Building overlays <hr>
 <form name="checkboxform" id="checkboxform" action="#" >
     <ul class="checkboxes" style="list-style: none;margin: 0;padding: 0;">
         <li>
@@ -72,7 +72,7 @@ Directions:<hr>
 
 
  <b>Directions From</b>
-    <select id="start" onchange="routeCalc();">
+    <select id="start">
       <option value="100"  disabled selected value>  Choose Origin </option>
        <option value="70" onclick="locate()">	Current Location                 </option>
 +      <option value="0">	  All Saints’ Chapel               </option>
@@ -93,7 +93,7 @@ Directions:<hr>
 +      <option value="32">	DuPoint Library                  </option>
 +      <option value ="14"> Elliot Hall                      </option>
 +      <option value="15">	EQB Building                     </option>
-+      <option value="16">	Equestrian                       </option>
++      <option value="16">	Equestrian Center                </option>
        <option value="17">	Fire Department                  </option>
 +      <option value="18">	Football Field                   </option>
 +      <option value="19">	Fowler Center                    </option>
@@ -136,9 +136,9 @@ Directions:<hr>
 +      <option value="57">  Walsh-Ellett Hall                </option>
 +      <option value="59">	Woods Laboratories               </option>
 +    </select>
-
+    <!-- onchange="routeCalc();" -->
     <b>Directions To</b>
-    <select id="end" onchange="routeCalc();">
+    <select id="end">
        <option value="102" disabled selected value> Choose Destination               </option>
        <option value="0">	  All Saints’ Chapel               </option>
        <option value="1">	  Alumni House                     </option>
@@ -158,7 +158,7 @@ Directions:<hr>
 +      <option value="32">	DuPoint Library                  </option>
 +      <option value ="14"> Elliot Hall                      </option>
 +      <option value="15">	EQB Building                     </option>
-+      <option value="16">	Equestrian                       </option>
++      <option value="16">	Equestrian Center                </option>
        <option value="17">	Fire Department                  </option>
 +      <option value="18">	Football Field                   </option>
 +      <option value="19">	Fowler Center                    </option>
@@ -201,6 +201,7 @@ Directions:<hr>
 +      <option value="57">  Walsh-Ellett Hall                </option>
 +      <option value="59">	Woods Laboratories               </option>
     </select>
+    <br><button id="direct" onclick="displayDirections()"> Get Directions </button>
  <hr>
   <div id="travel_data"></div>
 </div>

@@ -91,10 +91,46 @@ var navArray = [
                 walshElletM,womensCenter,woodsLab
                ];
 
+  function locate() {
+      if  (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(setMarker);
+        resetDirections('start',70);
+      }
+      else
+        alert("Your browser does not support the Geolocation API");
+    }
+
+  // Set blue marker indicating user position
+  function setMarker(pos) {
+    var lat = pos.coords.latitude,
+        lng = pos.coords.longitude;
+    coords = new google.maps.LatLng(lat, lng);
+    posMarker = new google.maps.Marker({
+      map: map,
+      icon: 'markers/TrackingDot.png',
+      position: coords,
+      animation: google.maps.Animation.DROP,
+      title: "Current Position"
+    });
+    map.panTo(coords);
+    map.setCenter(coords);
+    // Update user's location
+    positionTimer = navigator.geolocation.watchPosition(function (pos) {
+      /*var lat = pos.coords.latitude,
+          lng = pos.coords.longitude;
+      coords = new google.maps.LatLng(lat, lng);*/
+      posMarker.setPosition(coords);
+    });
+    //directionsDisplay.setMap(map);
+    currentLocationArray.push(posMarker);
+  }
+
 function calcRoute() {
+  var orig = document.getElementById('start');
+  var dest = document.getElementById('end');
   var request = {
-      origin: navArray[document.getElementById('start').value],
-      destination: navArray[document.getElementById('end').value],
+      origin: navArray[orig.value],
+      destination: navArray[dest.value],
       travelMode: google.maps.TravelMode.WALKING
 
   };
@@ -104,12 +140,15 @@ function calcRoute() {
       directionsDisplay.setDirections(response);
       directionsDisplay.setMap(map);
       var point = response.routes[0].legs[0];
-      $('#travel_data').html('It will take you about ' + point.duration.text + " to get from " + request.origin + " to " + request.destination + " on foot" + ' (' + point.distance.text + ')');
+      $('#travel_data').html('It will take you about ' + point.duration.text + " to get from " + orig.options[orig.selectedIndex].text + " to " + dest.options[dest.selectedIndex].text + " on foot" + ' (' + point.distance.text + ').');
     }
   });
+
 }
 
 function calcRoute2() {
+  var orig = document.getElementById('start');
+  var dest = document.getElementById('end');
   directionsDisplay.setMap(map);
   var request = {
       origin: coords,
@@ -123,8 +162,16 @@ function calcRoute2() {
       directionsDisplay.setDirections(response);
       directionsDisplay.setMap(map);
       var point = response.routes[0].legs[0];
-$('#travel_data').html('It will take you about ' + point.duration.text + " to get from " + request.origin + " to " + request.destination + " on foot" + ' (' + point.distance.text + ')');    }
+$('#travel_data').html('It will take you about ' + point.duration.text + " to get from your current position" + " to " + dest.options[dest.selectedIndex].text + " on foot" + ' (' + point.distance.text + ').');    }
   });
 }
 
+function displayDirections() {
+  if(document.getElementById('start').value == 100 || document.getElementById('end').value == 102)
+    $('#travel_data').html('Please choose a valid origin and destination.');
+  else if(document.getElementById('start').value == document.getElementById('end').value)
+    $('#travel_data').html('Please make sure the origin and the destination are not the same.');
+  else
+    routeCalc();
+}
 //google.maps.event.addDomListener(window, 'load', initialize);
