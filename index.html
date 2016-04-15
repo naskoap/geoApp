@@ -19,57 +19,66 @@
     <script src="js-files/initialize.js"></script>
     <script>
 
-var marker, marker1, posMarker, dMarker, aMarker, positionTimer, map, infoU;
-var map_center = new google.maps.LatLng(35.204406,-85.921315);
-var markersArray  = [];
-var markersArrayD  = [];
-var markersArrayA  = [];
-var overlooksArray = [];
-var academicMBox  = [];
-var dormMarkerBox = [];
-var infoArrayU = [];
-var infoArrayD = [];
-var infoArrayA = [];
-var infoArrayO = [];
-var storeB, storeZ;
-var infoBubble;
-var infoBubble;
-var contentStringU;
-var contentStringA;
-var contentStringD;
-var infoBubbleArrayU = [];
-var infoBubbleArrayA = [];
-var infoBubbleArrayD = [];
-var infoBubbleArrayO = [];
-var acadPolygonArray = [];
-var univPolygonArray = [];
-var dormPolygonArray = [];
-var currentLocationArray = [];
+        var marker, marker1, posMarker, dMarker, aMarker, positionTimer, map, infoU;
+        //var map_center = new google.maps.LatLng(35.205422702639886, -85.91916918754578);
+        var markersArray = [];
+        var markersArrayD = [];
+        var markersArrayA = [];
+        var overlooksArray = [];
+        var academicMBox = [];
+        var dormMarkerBox = [];
+        var infoArrayU = [];
+        var infoArrayD = [];
+        var infoArrayA = [];
+        var infoArrayO = [];
+        var dorm, univ, acad, overlook;
+        var dorms = [];
+        var acads = [];
+        var univs = [];
+        var scenic = [];
+        var storeB, storeZ;
+        var contentStringU;
+        var contentStringA;
+        var contentStringD;
+        var infoBubbleArrayU = [];
+        var infoBubbleArrayA = [];
+        var infoBubbleArrayD = [];
+        var infoBubbleArrayO = [];
+        var acadPolygonArray = [];
+        var univPolygonArray = [];
+        var dormPolygonArray = [];
+        var currentLocationArray = [];
 
   </script>
   </head>
   <body onload="initialize()">
 <div id="sewaneeBox">
-<img src="SewaneeLogo.png" class="Logo">
+<a href="https://sewanee.edu">
+  <img src="SewaneeLogo.png" class="Logo">
+</a>
 </div>
 <div id="checkBox">
 <br>
     <button id=locateMe onclick="locate();"> Locate me </button> &nbsp
     <button id="reset" onclick="resetAll();"> Clear map </button> <br>
-  <hr>
-Building overlays <hr>
+  <hr> <strong> Building overlays </strong> <hr>
 <form name="checkboxform" id="checkboxform" action="#" >
-    <ul class="checkboxes" style="list-style: none;margin: 0;padding: 0;">
-        <li>
-<input type="checkbox" id="box1" onchange="residenceBox()"/>Residence Halls<br><br>
-        </li><li>
-<input type="checkbox" id="box2" onchange="academicBox()"/>University Buildings<br><br>
-        </li><li>
-<input type="checkbox" id="box3" onchange="academicBox2()"/>Acadmic Buildings<br><br>
-      </li> <li>
-<input type="checkbox" id="box4" onchange="overlookBox()"/>Overlooks <br>(Hint: Keep zooming out)
-      </li></ul></form><hr>
-
+  <ul class="checkboxes" style="list-style: none;margin: 0;padding: 0;">
+    <li>
+      <input type="checkbox" id="box1" onchange="residenceBox()"/> Residence Halls <br><br>
+    </li>
+    <li>
+      <input type="checkbox" id="box2" onchange="academicBox()"/> University Buildings <br><br>
+    </li>
+    <li>
+      <input type="checkbox" id="box3" onchange="academicBox2()"/> Acadmic Buildings <br><br>
+    </li>
+    <li>
+      <input type="checkbox" id="box4" onchange="overlookBox()"/> Overlooks <br>(Hint: Keep zooming out)
+    </li>
+  </ul>
+</form>
+<hr>
 
  <b>Directions From</b>
     <select id="start">
