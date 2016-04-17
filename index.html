@@ -1,6 +1,7 @@
  <!--
  geoApp
  Geolocation map of Sewanee -->
+<!DOCTYPE html>
 <html>
   <head>
     <title> Sewanee map </title>
@@ -21,6 +22,7 @@
 
         var marker, marker1, posMarker, dMarker, aMarker, positionTimer, map, infoU;
         //var map_center = new google.maps.LatLng(35.205422702639886, -85.91916918754578);
+        var cnt = 0;
         var markersArray = [];
         var markersArrayD = [];
         var markersArrayA = [];
@@ -59,8 +61,8 @@
 </div>
 <div id="checkBox">
 <br>
-    <button id=locateMe onclick="locate();"> Locate me </button> &nbsp
-    <button id="reset" onclick="resetAll();"> Clear map </button> <br>
+    <button class='btn' id=locateMe onclick="locate();"> Locate me </button> &nbsp
+    <button class='btn' id="reset" onclick="resetAll();"> Clear map </button> <br>
   <hr> <strong> Building overlays </strong> <hr>
 <form name="checkboxform" id="checkboxform" action="#" >
   <ul class="checkboxes" style="list-style: none;margin: 0;padding: 0;">
@@ -81,11 +83,11 @@
 <hr>
 
  <b>Directions From</b>
-    <select id="start">
+    <select id="start" onchange="trackOptions();">
       <option value="100"  disabled selected value>  Choose Origin </option>
        <option value="70" onclick="locate()">	Current Location                 </option>
 +      <option value="0">	  All Saints’ Chapel               </option>
-       <option value="1">	  Alumni House                     </option>
+       <option value="1">	  McGriff Alumni House             </option>
 +      <option value="2">	  Archives and Special Collections </option>
        <option value="58"> 	Bairnwick Women's Center         </option>
 +      <option value="3">	  Baseball Field                   </option>
@@ -134,7 +136,7 @@
 +      <option value="46">	Spencer Hall                     </option>
 +      <option value="47">	St. Lukes Chapel                 </option>
 +      <option value="48">	St. Lukes Hall                   </option>
-+      <option value="49">	Stirlings                        </option>
++      <option value="49">	Stirling's Coffee House          </option>
 +      <option value="50">	Tennesee Williams Center         </option>
 +      <option value="51">	Tennis Courts                    </option>
 +      <option value="52">	Thompson Union                   </option>
@@ -142,12 +144,12 @@
        <option value="54">  Tuckaway Hall                    </option>
 +      <option value="55">	University Farm                  </option>
        <option value="56">	Van Ness Center                  </option>
+       <option value="60">  Sewanee Village                  </option>
 +      <option value="57">  Walsh-Ellett Hall                </option>
 +      <option value="59">	Woods Laboratories               </option>
 +    </select>
-    <!-- onchange="routeCalc();" -->
     <b>Directions To</b>
-    <select id="end">
+    <select id="end" onchange="trackOptions();">
        <option value="102" disabled selected value> Choose Destination               </option>
        <option value="0">	  All Saints’ Chapel               </option>
        <option value="1">	  Alumni House                     </option>
@@ -207,10 +209,17 @@
        <option value="54">  Tuckaway Hall                    </option>
 +      <option value="55">	University Farm                  </option>
        <option value="56">	Van Ness Center                  </option>
+       <option value="60">  Sewanee Village                  </option>
 +      <option value="57">  Walsh-Ellett Hall                </option>
 +      <option value="59">	Woods Laboratories               </option>
     </select>
-    <br><button id="direct" onclick="displayDirections()"> Get Directions </button>
+  <strong> Select Travel Mode </strong> <br>
+  <select id="mode" onchange="trackOptions();">
+      <option value="WALKING">Walking</option>
+      <option value="BICYCLING">Cycling</option>
+      <option value="DRIVING">Driving</option>
+  </select>
+ <button class='btn' id="direct" onclick="displayDirections();"> Get Directions </button>
  <hr>
   <div id="travel_data"></div>
 </div>

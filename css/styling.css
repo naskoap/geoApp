@@ -4,17 +4,46 @@ html, body {
       }
 	  #map-canvas {
 	      top: 65px;
-        height: 80%;
+        height: 88%;
         margin: 0px;
         padding: 0px;
 	      margin: 50px 5px 20px 260px;
 	      border-style: solid;
 	      border-width: 2px
 		}
+
+    .btn {
+      background: #FFB81C;
+      background-image: -webkit-linear-gradient(top, #582C83, #FFB81C);
+      background-image: -moz-linear-gradient(top, #582C83, #FFB81C);
+      background-image: -ms-linear-gradient(top, #582C83, #FFB81C);
+      background-image: -o-linear-gradient(top, #582C83, #FFB81C);
+      background-image: linear-gradient(to bottom, #582C83, #FFB81C);
+      -webkit-border-radius: 5;
+      -moz-border-radius: 5;
+      border-radius: 5px;
+      font-family: Arial;
+      color: #f0e4f0;
+      font-size: 15px;
+      padding: 3px 5px 3px 5px;
+      text-decoration: none;
+    }
+
+  .btn:hover {
+    background: #582C83;
+    /*background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);*/
+    text-decoration: underline overline;
+    font-weight: bold;
+  }
+
 	  #panel {
         position: absolute;
         top: 100px;
-	margin-left: 260px;
+	      margin-left: 260px;
         z-index: 100;
         background-color: #fff;
         padding: 5px;
@@ -35,7 +64,7 @@ html, body {
         left: 0px;
         height: 100px;
         width: 100%;
-        background-color: #3D007A;
+        background-color: #582C83;
         padding: 5px;
         border-bottom: 2px solid;
 }
@@ -50,7 +79,7 @@ html, body {
         position: absolute;
         top:   114px;
         left:   5px;
-        height: 78%;
+        height: 87%;
         width: 240px;
         background-color: #E0E0E0;
         -moz-border-radius: 40px;
@@ -59,10 +88,7 @@ html, body {
         border: 1px solid #999;
         padding: 5px;
 	  }
-        /*img.logo{
-        width: 300px;
-        height: 60px;
-}*/
+
       #styles, #add-tab {
         float: left;
         margin-top: 10px;
@@ -76,7 +102,13 @@ html, body {
       }
 
       #travel_data {
-         background: #00e5ee;
+         font-family: Arial;
+         background: #582C83;
+         color: white;
+        }
+
+      #travel_data:hover {
+         font-weight: bold;
       }
 
       .phoney {
@@ -92,5 +124,3 @@ html, body {
             width:200px;
             height:300px;
         }
-
-

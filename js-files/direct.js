@@ -68,6 +68,7 @@ var hunter = new google.maps.LatLng(35.20070, -85.92004);
 var johnson = new google.maps.LatLng(35.206625, -85.920822);
 var quintard = new google.maps.LatLng(35.19760, -85.92516);
 var tuckaway = new google.maps.LatLng(35.20120, -85.92223);
+var downtown = new google.maps.LatLng(35.19566,-85.91832);
 
 var navArray = [
   allSaints, alumniHouse, archives,
@@ -88,7 +89,7 @@ var navArray = [
   tenneseeWilliams, tennisCourts, thompsonUnion, trez, tuckaway,
   universityFarm,
   vanness,
-  walshElletM, womensCenter, woodsLab
+  walshElletM, womensCenter, woodsLab, downtown
 ];
 
 function locate() {
@@ -121,12 +122,13 @@ function setMarker(pos) {
 }
 
 function calcRoute() {
+  var selectedMode = document.getElementById('mode');
   var orig = document.getElementById('start');
   var dest = document.getElementById('end');
   var request = {
     origin: navArray[orig.value],
     destination: navArray[dest.value],
-    travelMode: google.maps.TravelMode.WALKING
+    travelMode: google.maps.TravelMode[selectedMode.value]
 
   };
   directionsService.route(request, function(response, status) {
@@ -134,30 +136,36 @@ function calcRoute() {
       directionsDisplay.setDirections(response);
       directionsDisplay.setMap(map);
       var point = response.routes[0].legs[0];
-      var str = 'It will take you about ' + point.duration.text + " to get from " + orig.options[orig.selectedIndex].text + " to " + dest.options[dest.selectedIndex].text + " on foot" + ' (' + point.distance.text + ').';
+      var str = 'Estimated ' + selectedMode.options[selectedMode.selectedIndex].text.toLowerCase()  + ' time from ' + orig.options[orig.selectedIndex].text + " to " + dest.options[dest.selectedIndex].text + ": " + point.duration.text  + ' (' + point.distance.text + ').';
       document.getElementById('travel_data').innerHTML = "";
-        var i = 0;
-        var id = window.setInterval(function() {
-          var ch = str.charAt(i);
-          document.getElementById('travel_data').innerHTML += ch;
-          i++;
-          if (i == str.length) {
-            window.clearInterval(id);
-          }
-        }, 40);
+      if (cnt > 1) {
+        document.getElementById('travel_data').innerHTML = "";
+        $('#travel_data').html(str);
       }
+      else {
+        var i = 0;
+          var id = window.setInterval(function() {
+            var ch = str.charAt(i);
+            document.getElementById('travel_data').innerHTML += ch;
+            i++;
+            if (i == str.length  || cnt > 1) {
+              window.clearInterval(id);
+            }
+          }, 40);
+      }
+    }
   });
-
 }
 
 function calcRoute2() {
+  var selectedMode = document.getElementById('mode');
   var orig = document.getElementById('start');
   var dest = document.getElementById('end');
   directionsDisplay.setMap(map);
   var request = {
     origin: coords,
     destination: navArray[document.getElementById('end').value],
-    travelMode: google.maps.TravelMode.WALKING
+    travelMode: google.maps.TravelMode[selectedMode.value]
 
   };
 
@@ -166,8 +174,23 @@ function calcRoute2() {
       directionsDisplay.setDirections(response);
       directionsDisplay.setMap(map);
       var point = response.routes[0].legs[0];
-      $('#travel_data').html('It will take you about ' + point.duration.text + " to get from your current location  " + " to " + dest.options[dest.selectedIndex].text + " on foot" + ' (' + point.distance.text + ').');
-    }
+      var str = 'Estimated ' + selectedMode.options[selectedMode.selectedIndex].text.toLowerCase()  + ' time from your ' + orig.options[orig.selectedIndex].text.toLowerCase() + " to " + dest.options[dest.selectedIndex].text + ": " + point.duration.text  + ' (' + point.distance.text + ').';
+      document.getElementById('travel_data').innerHTML = "";
+      if (cnt > 1) {
+        document.getElementById('travel_data').innerHTML = "";
+        $('#travel_data').html(str);
+      }
+      else {
+        var i = 0;
+          var id = window.setInterval(function() {
+            var ch = str.charAt(i);
+            document.getElementById('travel_data').innerHTML += ch;
+            i++;
+            if (i == str.length  || cnt > 1) {
+              window.clearInterval(id);
+            }
+          }, 40);
+      }}
   });
 }
 
@@ -178,5 +201,6 @@ function displayDirections() {
     $('#travel_data').html('Please make sure the origin and the destination are not the same.');
   else {
     routeCalc();
+    countClicks();
   }
 }
