@@ -67,6 +67,11 @@ function overlookBox() {
   }
 }
 
+//reset animation counter after origin/destination change
+function trackOptions() {
+  cnt = 0;
+}
+
 function routeCalc() {
   if (document.getElementById('start').value != 70)
     calcRoute();
@@ -85,6 +90,10 @@ function setZoomLimit(map, mapTypeId) {
 
 }
 
+function countClicks() {
+  cnt++;
+}
+
 function resetDirections(elementId, val) {
   var elt = document.getElementById(elementId);
   elt.value = val;
@@ -92,8 +101,11 @@ function resetDirections(elementId, val) {
 
 function resetAll() {
 
+  cnt = 0;
+
   resetDirections('start', 100);
   resetDirections('end', 102);
+  resetDirections('mode', 'WALKING');
 
   var field = document.getElementById("checkboxform");
 
