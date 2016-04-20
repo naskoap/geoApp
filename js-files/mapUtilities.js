@@ -69,6 +69,12 @@ function overlookBox() {
   }
 }
 
+//fix image display
+function rmJPG(pics) {
+  for (i in pics)
+    pics[i].replace("JPG", "jpg");
+}
+
 //reset animation counter after origin/destination change
 function trackOptions() {
   cnt = 0;
@@ -141,6 +147,6 @@ function resetAll() {
   directionsDisplay.setMap(null);
   document.getElementById("travel_data").innerHTML = "";
 
-  map.setCenter(libraryM);
+  map.setCenter(map_center);
   map.setZoom(16);
 };

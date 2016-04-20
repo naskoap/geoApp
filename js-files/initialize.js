@@ -1,7 +1,7 @@
 function initialize() {
 
   var mapOptions = {
-    center: libraryM,
+    center: map_center,
     zoom: 16,
     minZoom: 14,
     maxZoom: 18,
