@@ -10,7 +10,7 @@ var pictureArrayU = ['<img src="SewaneePictures/University/fulford.JPG" class="p
                      '<img src="SewaneePictures/University/wick.JPG" class="pic">',
                      '<img src="SewaneePictures/University/eqb.JPG" class="pic">',
                      '<img src="SewaneePictures/University/chen.JPG" class="pic">',
-                     '<img src="SewaneePictures/convocation>',
+                     '<img src="SewaneePictures/University/convocation.JPG" class="pic">',
                      '<img src="SewaneePictures/University/soccer.JPG" class="pic">',
                      '<img src="SewaneePictures/University/course.JPG" class="pic">',
                      '<img src="SewaneePictures/University/equestrian.JPG" class="pic">',
@@ -25,11 +25,12 @@ var pictureArrayU = ['<img src="SewaneePictures/University/fulford.JPG" class="p
                      '<img src="SewaneePictures/University/mcc.jpg" class="pic">',
                      '<img src="SewaneePictures/University/spd.JPG" class="pic">',
                      '<img src="SewaneePictures/University/fire.jpg" class="pic">',
-                     //'<img src="SewaneePictures/archives">',
                      '<img src="SewaneePictures/University/bc.JPG" class="pic">',
                      '<img src="SewaneePictures/University/alumni.JPG" class="pic">',
                      '<img src="SewaneePictures/hospital/">',
-                     '<img src="SewaneePictures/University/healthServices.JPG" class="pic">'];
+                     '<img src="SewaneePictures/University/healthServices.JPG" class="pic">',
+                     '<img src="SewaneePictures/University/archives.jpg" class="pic">'
+                     ];
 /*
 
 Pictures currently do not exist
@@ -54,7 +55,7 @@ var pictureArrayD = ['<img src="SewaneePictures/Dorms/elliott.jpg" class="pic">'
                      '<img src="SewaneePictures/Dorms/smith.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/trez.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/courts.jpg" class="pic">',
-                     '<img src="SewaneePictures/Dorms/hodgeson.jpg" class="pic">',
+                     '<img src="SewaneePictures/Dorms/hodgson.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/phillips.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/mccrady.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/johnson.jpg" class="pic">',
