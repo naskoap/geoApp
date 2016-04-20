@@ -31,15 +31,13 @@ var pictureArrayU = ['<img src="SewaneePictures/University/fulford.JPG" class="p
                      '<img src="SewaneePictures/University/healthServices.JPG" class="pic">',
                      '<img src="SewaneePictures/University/archives.jpg" class="pic">'
                      ];
-/*
-
-Pictures currently do not exist
-*/
+rmJPG(pictureArrayU);
 
 var overlookPics = [  '<img src="SewaneePictures/University/cross.JPG" class="bigPic">',
                       '<img src="SewaneePictures/University/steep.JPG" class="pic">',
                       '<img src="SewaneePictures/University/greens.JPG" class="pic">'
-                ];
+                   ];
+rmJPG(overlookPics);
 
 var pictureArrayD = ['<img src="SewaneePictures/Dorms/elliott.jpg" class="pic">',
                      '<img src="SewaneePictures/Dorms/tuckaway.jpg" class="pic">',
