@@ -58,8 +58,10 @@ function academicBox2() {
 
 function overlookBox() {
   if (box4.checked) {
-    for (i in overlooksArray)
+    for (i in overlooksArray) {
       overlooksArray[i].setMap(map);
+      overlooksArray[i].setAnimation(google.maps.Animation.DROP);
+    }
   }
   if (!box4.checked) {
     for (i in overlooksArray)
@@ -78,17 +80,6 @@ function routeCalc() {
   else
     calcRoute2();
 };
-
-function setZoomLimit(map, mapTypeId) {
-  //Gets MapTypeRegistry
-  var mapTypeRegistry = map.mapTypes;
-  //Gets the specified MapType
-  var mapType = mapTypeRegistry.get(mapTypeId);
-  //Sets limits to MapType
-  mapType.maxZoom = 19;
-  mapType.minZoom = 14;
-
-}
 
 function countClicks() {
   cnt++;

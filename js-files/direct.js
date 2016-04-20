@@ -121,6 +121,8 @@ function setMarker(pos) {
   currentLocationArray.push(posMarker);
 }
 
+
+
 function calcRoute() {
   var selectedMode = document.getElementById('mode');
   var orig = document.getElementById('start');

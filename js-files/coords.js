@@ -1422,7 +1422,7 @@ var univArray = [fulfordCoords, sewaneeVillage, clurgCoords, allStCoords,
   golfOffice, eqCoords, tennisCourts, footballField,
   baseballField, sewaneeInn, stLukesChapCoords, twcCoords, cravCoords,
   universityFarmCoords, multiculturalCoords, policeDept,
-  fireDept, bcCoords, mcgriffCoords, Hospital, healthServices
+  fireDept, bcCoords, mcgriffCoords, Hospital, healthServices, archivesBuilding
 ];
 
 var locationNameArrayU = ['Fulford', 'Sewanee Village', 'McClurg', 'All Saints Chapel',
@@ -1431,7 +1431,7 @@ var locationNameArrayU = ['Fulford', 'Sewanee Village', 'McClurg', 'All Saints C
   'The Sewanee Golf Course', 'Equestrian Center', 'Tennis Courts', 'Football Field',
   'Baseball Field', 'Sewanee Inn', 'St. Luke\'s Chapel', 'Tennesee Williams Center', 'Cravens Hall',
   'The University Farm', 'Multicultural Center', 'Sewanee Police Department',
-  'Sewanee Fire Department', 'Bishop\'s Common', 'McGriff Alumni House', 'Hospital', 'STRHS Hospital'
+  'Sewanee Fire Department', 'Bishop\'s Common', 'McGriff Alumni House', 'Hospital', 'STRHS Hospital', 'Archives Building'
 ];
 
 var overlooks = [memorialCross, morgansSteep, greensView];

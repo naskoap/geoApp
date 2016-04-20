@@ -140,8 +140,8 @@ function initialize() {
     m = new google.maps.Marker({
       position: overlooks[i],
       map: map,
-      //icon: 'markers/yellowMarker.png',
-      title: overlookNames[i]
+      icon: 'markers/beautifulview.png',
+      title: overlookNames[i],
     });
     overlooksArray.push(m);
     overlooksArray[i].setMap(null);
