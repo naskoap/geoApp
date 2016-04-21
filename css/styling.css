@@ -1,13 +1,14 @@
 html, body {
         height: 100%;
         margin: 0px;
+        overflow: hidden;
       }
 	  #map-canvas {
 	      top: 65px;
-        height: 88%;
+        height: 81.5%;
         margin: 0px;
         padding: 0px;
-	      margin: 50px 5px 20px 260px;
+	      margin: 50px 2px 20px 260px;
 	      border-style: solid;
 	      border-width: 2px
 		}
@@ -56,6 +57,7 @@ html, body {
 }
 	    #sewaneeBox {
         position: absolute;
+        float:left;
         top: 0px;
         left: 0px;
         height: 100px;
@@ -75,7 +77,7 @@ html, body {
         position: absolute;
         top:   114px;
         left:   5px;
-        height: 87%;
+        height: 80.25%;
         width: 240px;
         background-color: #E0E0E0;
         -moz-border-radius: 40px;
@@ -120,3 +122,42 @@ html, body {
             width:200px;
             height:300px;
         }
+
+  #weather {
+    float:right;
+    position: relative;
+    left: 130px;
+    width: 425px;
+    text-align: left;
+    padding-right: 0cm;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+#weather h2 {
+  margin: 0 0 1px;
+  color: #fff;
+  font-size: 50px;
+  font-weight: 200;
+  text-align: left;
+  padding-left: 2.25cm;
+  //text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+#weather ul {
+  margin: 0;
+  padding: 0;
+
+}
+
+#weather li {
+  background: #fff;
+  background: rgba(255,255,255,0.90);
+  padding: 5px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+#weather .currently {
+  margin: 0 20px;
+}
