@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Sewanee map </title>
+    <title> Sewanee Campus Map </title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
     <meta charset="utf-8">
     <link href="css/styling.css" rel="stylesheet">
@@ -64,18 +64,18 @@
 <div id="checkBox">
 <br>
     <button class='btn' id=locateMe onclick="locate();"> Locate me </button> &nbsp
-    <button class='btn' id=reset onclick="resetAll();"> Clear map </button> <br>
-  <hr> <strong> Building overlays </strong> <hr>
+    <button class='btn' id=reset onclick="resetAll();"> Clear map </button>
+<hr> <strong> Building overlays </strong> <hr>
 <form name="checkboxform" id="checkboxform" action="#" >
-  <ul class="checkboxes" style="list-style: none;margin: 0;padding: 0;">
+  <ul class="checkboxes">
     <li>
-      <input type="checkbox" id="box1" onchange="residenceBox()"/> Residence Halls <br><br>
+      <input type="checkbox" id="box1" onchange="residenceBox()"/> Residence Halls <br>
     </li>
     <li>
-      <input type="checkbox" id="box2" onchange="academicBox()"/> University Buildings <br><br>
+      <input type="checkbox" id="box2" onchange="academicBox()"/> University Buildings <br>
     </li>
     <li>
-      <input type="checkbox" id="box3" onchange="academicBox2()"/> Acadmic Buildings <br><br>
+      <input type="checkbox" id="box3" onchange="academicBox2()"/> Acadmic Buildings <br>
     </li>
     <li>
       <input type="checkbox" id="box4" onchange="overlookBox()"/> Overlooks <br>(Hint: Keep zooming out)
@@ -222,7 +222,7 @@
       <option value="DRIVING">Driving</option>
   </select>
  <button class='btn' id="direct" onclick="displayDirections();"> Get Directions </button>
- <hr>
+  <hr>
   <div id="travel_data"></div>
 </div>
 

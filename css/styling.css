@@ -25,6 +25,7 @@ html, body {
       border-radius: 5px;
       font-family: Arial;
       color: #eee9e9;
+      //display: inline-block;
       font-size: 15px;
       font-weight: bold;
       padding: 3px 5px 3px 5px;
@@ -34,8 +35,30 @@ html, body {
   .btn:hover {
     background: #582C83;
     text-decoration: underline overline;
-    //font-weight: bold;
   }
+
+#locateMe {
+  position: relative;
+  left: 20px;
+  bottom: 8px;
+}
+
+#reset {
+  position: relative;
+  left: 20px;
+  bottom: 8px;
+}
+
+.checkboxes {
+  list-style: none;
+  margin: 0;
+  padding: 7px;
+}
+
+li:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
 
 	  #panel {
         position: absolute;
@@ -140,8 +163,7 @@ html, body {
   font-size: 50px;
   font-weight: 200;
   text-align: left;
-  padding-left: 2.25cm;
-  //text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+  padding-left: 1.5cm;
 }
 
 #weather ul {
@@ -156,6 +178,11 @@ html, body {
   padding: 5px;
   display: inline-block;
   border-radius: 5px;
+}
+
+#weather li:hover {
+text-decoration: none;
+font-weight:normal;
 }
 
 #weather .currently {

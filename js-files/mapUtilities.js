@@ -106,10 +106,9 @@ function getWeather() {
     location: '37383',
     unit: 'f',
     success: function(weather) {
-      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+      html =  '<h2 id=t>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
       html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-      html += '<li class="currently">'+weather.currently+'</li>';
-      html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
+      html += '<li class="currently">'+weather.currently+'</li></ul>';
 
       $("#weather").html(html);
     },
@@ -124,8 +123,8 @@ function resetAll() {
   cnt = 0;
 
   resetDirections('start', 100);
-  resetDirections('end', 102);
-  resetDirections('mode', 'WALKING');
+  resetDirections('end',   102);
+  resetDirections('mode',  'WALKING');
 
   var field = document.getElementById("checkboxform");
 

@@ -33,7 +33,7 @@ var pictureArrayU = ['<img src="SewaneePictures/University/fulford.JPG" class="p
                      ];
 rmJPG(pictureArrayU);
 
-var overlookPics = [  '<img src="SewaneePictures/University/cross.JPG" class="bigPic">',
+var overlookPics = [  '<img src="SewaneePictures/University/cross.JPG" class="pic">',
                       '<img src="SewaneePictures/University/steep.JPG" class="pic">',
                       '<img src="SewaneePictures/University/greens.JPG" class="pic">'
                    ];
