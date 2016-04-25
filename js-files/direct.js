@@ -141,7 +141,7 @@ function calcRoute() {
       var str = 'Estimated ' + selectedMode.options[selectedMode.selectedIndex].text.toLowerCase()  + ' time from ' + orig.options[orig.selectedIndex].text + " to " + dest.options[dest.selectedIndex].text + ": " + point.duration.text  + ' (' + point.distance.text + ').';
       document.getElementById('travel_data').innerHTML = "";
       if (cnt > 1) {
-        document.getElementById('travel_data').innerHTML = "";
+        $('#travel_data').html("");
         $('#travel_data').html(str);
       }
       else {
