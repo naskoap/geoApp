@@ -1,3 +1,9 @@
+/*
+  geoApp - Geolocation map of Sewanee,TN
+  Nasko Apostolov
+  4/30/2016
+*/
+
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var infowindow = new google.maps.InfoWindow();
@@ -7,7 +13,7 @@ var map;
 var lat;
 var lng;
 
-//Marker paths
+//Marker paths for Directions API
 var cleveland = new google.maps.LatLng(35.20247, -85.92175);
 var cannon = new google.maps.LatLng(35.20468, -85.92264);
 var walshElletM = new google.maps.LatLng(35.20458, -85.91990);
@@ -70,6 +76,7 @@ var quintard = new google.maps.LatLng(35.19760, -85.92516);
 var tuckaway = new google.maps.LatLng(35.20120, -85.92223);
 var downtown = new google.maps.LatLng(35.19566,-85.91832);
 
+//Store navigation points here
 var navArray = [
   allSaints, alumniHouse, archives,
   baseballField, bishopCommons, bookStore,
@@ -92,6 +99,7 @@ var navArray = [
   walshElletM, womensCenter, woodsLab, downtown
 ];
 
+//Assess the location of the user and set origin to 'Current location'
 function locate() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(setMarker);
@@ -103,7 +111,7 @@ function locate() {
 // Set blue marker indicating user position
 function setMarker(pos) {
   var lat = pos.coords.latitude,
-    lng = pos.coords.longitude;
+      lng = pos.coords.longitude;
   coords = new google.maps.LatLng(lat, lng);
   posMarker = new google.maps.Marker({
     map: map,
@@ -121,14 +129,21 @@ function setMarker(pos) {
   currentLocationArray.push(posMarker);
 }
 
-
-
+//Calculate a route for a given origin, destination and travel mode
 function calcRoute() {
   var selectedMode = document.getElementById('mode');
   var orig = document.getElementById('start');
   var dest = document.getElementById('end');
+  if(orig.value != 70) { //Determine whether origin is current location
+    o = navArray[orig.value];
+    direct = orig.options[orig.selectedIndex].text;
+  }
+  else {
+    o = coords;
+    direct = "your current location";
+  }
   var request = {
-    origin: navArray[orig.value],
+    origin: o,
     destination: navArray[dest.value],
     travelMode: google.maps.TravelMode[selectedMode.value]
 
@@ -138,7 +153,8 @@ function calcRoute() {
       directionsDisplay.setDirections(response);
       directionsDisplay.setMap(map);
       var point = response.routes[0].legs[0];
-      var str = 'Estimated ' + selectedMode.options[selectedMode.selectedIndex].text.toLowerCase()  + ' time from ' + orig.options[orig.selectedIndex].text + " to " + dest.options[dest.selectedIndex].text + ": " + point.duration.text  + ' (' + point.distance.text + ').';
+      //Calculate estimated travel time given the selected travel mode
+      var str = 'Estimated ' + selectedMode.options[selectedMode.selectedIndex].text.toLowerCase()  + ' time from ' + direct + " to " + dest.options[dest.selectedIndex].text + ": " + point.duration.text  + ' (' + point.distance.text + ').';
       document.getElementById('travel_data').innerHTML = "";
       if (cnt > 1) {
         $('#travel_data').html("");
@@ -150,49 +166,12 @@ function calcRoute() {
             var ch = str.charAt(i);
             document.getElementById('travel_data').innerHTML += ch;
             i++;
-            if (i == str.length  || cnt > 1) {
+            if (i == str.length  || cnt > 1) { //Stop animation if 'Get Directions' has been clicked more than once
               window.clearInterval(id);
             }
           }, 40);
       }
     }
-  });
-}
-
-function calcRoute2() {
-  var selectedMode = document.getElementById('mode');
-  var orig = document.getElementById('start');
-  var dest = document.getElementById('end');
-  directionsDisplay.setMap(map);
-  var request = {
-    origin: coords,
-    destination: navArray[document.getElementById('end').value],
-    travelMode: google.maps.TravelMode[selectedMode.value]
-
-  };
-
-  directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-      directionsDisplay.setMap(map);
-      var point = response.routes[0].legs[0];
-      var str = 'Estimated ' + selectedMode.options[selectedMode.selectedIndex].text.toLowerCase()  + ' time from your ' + orig.options[orig.selectedIndex].text.toLowerCase() + " to " + dest.options[dest.selectedIndex].text + ": " + point.duration.text  + ' (' + point.distance.text + ').';
-      document.getElementById('travel_data').innerHTML = "";
-      if (cnt > 1) {
-        document.getElementById('travel_data').innerHTML = "";
-        $('#travel_data').html(str);
-      }
-      else {
-        var i = 0;
-          var id = window.setInterval(function() {
-            var ch = str.charAt(i);
-            document.getElementById('travel_data').innerHTML += ch;
-            i++;
-            if (i == str.length  || cnt > 1) {
-              window.clearInterval(id);
-            }
-          }, 40);
-      }}
   });
 }
 
@@ -202,7 +181,7 @@ function displayDirections() {
   else if (document.getElementById('start').value == document.getElementById('end').value)
     $('#travel_data').html('Please make sure the origin and the destination are not the same.');
   else {
-    routeCalc();
+    calcRoute();
     countClicks();
   }
 }

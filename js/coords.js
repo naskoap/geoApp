@@ -1,3 +1,9 @@
+/*
+  geoApp - Geolocation map of Sewanee,TN
+  Nasko Apostolov
+  4/30/2016
+*/
+
 //overlooks
 var memorialCross = new google.maps.LatLng(35.191995, -85.937322);
 var morgansSteep = new google.maps.LatLng(35.202472, -85.931802);

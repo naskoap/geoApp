@@ -1,41 +1,24 @@
-html, body {
-        height: 100%;
-        margin: 0px;
-        overflow: hidden;
-      }
-	  #map-canvas {
-	      top: 65px;
-        height: 81.5%;
-        margin: 0px;
-        padding: 0px;
-	      margin: 50px 2px 20px 260px;
-	      border-style: solid;
-	      border-width: 2px
-		}
+/*
+  geoApp - Geolocation map of Sewanee,TN
+  Nasko Apostolov
+  4/30/2016
+*/
 
-    .btn {
-      background: #998ec3;
-      background-image: -webkit-linear-gradient(top, #998ec3, #f1a340);
-      background-image: -moz-linear-gradient(top, #998ec3, #f1a340);
-      background-image: -ms-linear-gradient(top, #998ec3, #f1a340);
-      background-image: -o-linear-gradient(top, #998ec3, #f1a340);
-      background-image: linear-gradient(to bottom, #998ec3, #f1a340);
-      -webkit-border-radius: 5;
-      -moz-border-radius: 5;
-      border-radius: 5px;
-      font-family: Arial;
-      color: #eee9e9;
-      //display: inline-block;
-      font-size: 15px;
-      font-weight: bold;
-      padding: 3px 5px 3px 5px;
-      text-decoration: none;
-    }
+html,body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
 
-  .btn:hover {
-    background: #582C83;
-    text-decoration: underline overline;
-  }
+#map-canvas {
+  top: 65px;
+  height: 81.5%;
+  margin: 0;
+  padding: 0;
+  margin: 50px 2px 20px 260px;
+  border-style: solid;
+  border-width: 2px;
+}
 
 #locateMe {
   position: relative;
@@ -57,105 +40,148 @@ html, body {
 
 li:hover {
   text-decoration: underline;
+  font-weight: 700;
+}
+
+#panel {
+  position: absolute;
+  top: 100px;
+  margin-left: 260px;
+  z-index: 100;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}
+
+#panel2 {
+  position: absolute;
+  top: 100px;
+  margin-left: 720px;
+  z-index: 100;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}
+
+.btn {
+  background: #998ec3;
+  background-image: -webkit-linear-gradient(top, #998ec3, #f1a340);
+  background-image: -moz-linear-gradient(top, #998ec3, #f1a340);
+  background-image: -ms-linear-gradient(top, #998ec3, #f1a340);
+  background-image: -o-linear-gradient(top, #998ec3, #f1a340);
+  background-image: linear-gradient(to bottom, #998ec3, #f1a340);
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  font-family: Arial;
+  color: #eee9e9;
+  font-size: 15px;
   font-weight: bold;
+  padding: 3px 5px 3px 5px;
+  text-decoration: none;
 }
 
-	  #panel {
-        position: absolute;
-        top: 100px;
-	      margin-left: 260px;
-        z-index: 100;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-      }
-	  	  #panel2 {
-        position: absolute;
-        top: 100px;
-        margin-left: 720px;
-        z-index: 100;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
+.btn:hover {
+  background: #582C83;
+  text-decoration: underline overline;
 }
-	    #sewaneeBox {
-        position: absolute;
-        float:left;
-        top: 0px;
-        left: 0px;
-        height: 100px;
-        width: 100%;
-        background-color: #582C83;
-        padding: 5px;
-        border-bottom: 2px solid;
+
+#sewaneeBox {
+  position: absolute;
+  clear: both;
+  float: left;
+  top: 0;
+  left: 0;
+  height: 100px;
+  width: 100%;
+  background-color: #582C83;
+  padding: 5px;
+  border-bottom: 2px solid;
 }
-      div.dropDown {
-        background-color: #ffffff;
-        border: 1px solid black;
-        opacity: 0.8;
-        filter: alpha(opacity=60);
-        width: 40px;
+
+div.dropDown {
+  background-color: #fff;
+  border: 1px solid #000;
+  opacity: .8;
+  filter: alpha(opacity=60);
+  width: 40px;
 }
-	  #checkBox {
-        position: absolute;
-        top:   114px;
-        left:   5px;
-        height: 80.25%;
-        width: 240px;
-        background-color: #E0E0E0;
-        -moz-border-radius: 40px;
-        -webkit-border-radius: 40px;
-        border-radius:         40px;
-        border: 1px solid #999;
-        padding: 5px;
-	  }
 
-      #styles, #add-tab {
-        float: left;
-        margin-top: 10px;
-        width: 400px;
-      }
+#checkBox {
+  position: absolute;
+  top: 114px;
+  left: 5px;
+  height: 80.25%;
+  width: 240px;
+  background-color: #E0E0E0;
+  -moz-border-radius: 40px;
+  -webkit-border-radius: 40px;
+  border-radius: 40px;
+  border: 1px solid #999;
+  padding: 5px;
+}
 
-      #styles label,
-      #add-tab label {
-        display: inline-block;
-        width: 130px;
-      }
+#styles,#add-tab {
+  float: left;
+  margin-top: 10px;
+  width: 400px;
+}
 
-      #travel_data {
-         font-family: Arial;
-         background: #582C83;
-         color: white;
-        }
+#styles label,#add-tab label {
+  display: inline-block;
+  width: 130px;
+}
 
-      #travel_data:hover {
-         font-weight: bold;
-      }
+#travel_data {
+  font-family: Arial;
+  background: #582C83;
+  color: #fff;
+}
 
-      .phoney {
-        background: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgb(112,112,112)),color-stop(0.51, rgb(94,94,94)),color-stop(0.52, rgb(57,57,57)));
-        background: -moz-linear-gradient(center top,rgb(112,112,112) 0%,rgb(94,94,94) 51%,rgb(57,57,57) 52%);
-      }
+#travel_data:hover {
+  font-weight: 700;
+}
 
-      .pic{
-        width: 250px;
-        height: 200px;
-    }
-        .bigPic{
-            width:200px;
-            height:300px;
-        }
+.phoney {
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#707070),color-stop(0.51,#5e5e5e),color-stop(0.52,#393939));
+  background: -moz-linear-gradient(center top,#707070 0%,#5e5e5e 51%,#393939 52%);
+}
 
-  #weather {
-    float:right;
-    position: relative;
-    left: 140px;
-    width: 425px;
-    text-align: left;
-    padding-right: 0cm;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-  }
+.pic {
+  width: 250px;
+  height: 200px;
+}
+
+.bigPic {
+  width: 200px;
+  height: 300px;
+}
+
+#forecast {
+  float: center;
+  display: inline-block;
+  position: relative;
+  left: 150px;
+  color: #fff;
+  font-size: 23px;
+  bottom: 2px;
+}
+
+td {
+  border: 1px solid #fff;
+  text-align: center;
+  padding-right: 5px;
+}
+
+#weather {
+  float: right;
+  position: relative;
+  left: 140px;
+  width: 425px;
+  text-align: left;
+  padding-right: 0;
+  text-transform: uppercase;
+}
 
 #weather h2 {
   margin: 0 0 1px;
@@ -169,7 +195,6 @@ li:hover {
 #weather ul {
   margin: 0;
   padding: 0;
-
 }
 
 #weather li {
@@ -181,8 +206,8 @@ li:hover {
 }
 
 #weather li:hover {
-text-decoration: none;
-font-weight:normal;
+  text-decoration: none;
+  font-weight: 400;
 }
 
 #weather .currently {
