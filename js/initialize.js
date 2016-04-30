@@ -1,3 +1,9 @@
+/*
+  geoApp - Geolocation map of Sewanee,TN
+  Nasko Apostolov
+  4/30/2016
+*/
+
 function initialize() {
 
   var mapOptions = {
@@ -168,19 +174,4 @@ function initialize() {
       google.maps.event.trigger(that, 'closeclick');
     });
   }
-
-  for (j in fratArray) {
-
-    var q = new google.maps.Polygon({
-      paths: fratArray[j],
-      strokeColor: '#CCFFEE',
-      strokeOpacity: 0.2,
-      strokeWeight: 2,
-      fillColor: '#CCFF10',
-      fillOpacity: 0.35,
-      indexID: j
-    });
-    q.setMap(map);
-  }
-
 } // initialize end

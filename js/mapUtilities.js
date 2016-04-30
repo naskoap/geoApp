@@ -1,61 +1,58 @@
+/*
+  geoApp - Geolocation map of Sewanee,TN
+  Nasko Apostolov
+  4/30/2016
+*/
+
+//Keep track of residence halls overlay
 function residenceBox() {
   if (box1.checked) {
-    for (var m = 0; m < dormMarkerBox.length; m++) {
-      dormMarkerBox[m].setMap(map);
-    }
-    for (var j = 0; j < dormPolygonArray.length; j++) {
-      dormPolygonArray[j].setMap(map);
-    }
+    for (i in dormMarkerBox)
+      dormMarkerBox[i].setMap(map);
+    for (i in dormPolygonArray)
+      dormPolygonArray[i].setMap(map);
   }
   if (!box1.checked) {
-    for (var l = 0; l < dormMarkerBox.length; l++) {
-      dormMarkerBox[l].setMap(null);
-
-    }
-    for (var j = 0; j < dormPolygonArray.length; j++) {
-      dormPolygonArray[j].setMap(null);
-    }
+    for (i in dormMarkerBox)
+      dormMarkerBox[i].setMap(null);
+    for (i in dormPolygonArray)
+      dormPolygonArray[i].setMap(null);
   }
 }
 
-function academicBox() {
+//Keep track of university buildings overlay
+function universityBox() {
   if (box2.checked) {
-    for (m = 0; m < markersArray.length; m++) {
-      markersArray[m].setMap(map);
-    }
-    for (var j = 0; j < univPolygonArray.length; j++) {
-      univPolygonArray[j].setMap(map);
-    }
+    for (i in markersArray)
+      markersArray[i].setMap(map);
+    for (i in univPolygonArray)
+      univPolygonArray[i].setMap(map);
   }
   if (!box2.checked) {
-    for (l = 0; l < markersArray.length; l++) {
-      markersArray[l].setMap(null);
-    }
-    for (var j = 0; j < univPolygonArray.length; j++) {
-      univPolygonArray[j].setMap(null);
-    }
+    for (i in markersArray)
+      markersArray[i].setMap(null);
+    for (i in univPolygonArray)
+      univPolygonArray[i].setMap(null);
   }
 }
 
-function academicBox2() {
+//Keep track of academic buildings overlay
+function academicBox() {
   if (box3.checked) {
-    for (i = 0; i < academicMBox.length; i++) {
+    for (i in academicMBox)
       academicMBox[i].setMap(map);
-    }
-    for (var j = 0; j < acadPolygonArray.length; j++) {
-      acadPolygonArray[j].setMap(map);
-    }
+    for (i in acadPolygonArray)
+      acadPolygonArray[i].setMap(map);
   }
   if (!box3.checked) {
-    for (i = 0; i < academicMBox.length; i++) {
+    for (i in academicMBox)
       academicMBox[i].setMap(null);
-    }
-    for (var j = 0; j < acadPolygonArray.length; j++) {
-      acadPolygonArray[j].setMap(null);
-    }
+    for (i in acadPolygonArray)
+      acadPolygonArray[i].setMap(null);
   }
 }
 
+//Keep track of overlooks overlay
 function overlookBox() {
   if (box4.checked) {
     for (i in overlooksArray) {
@@ -69,28 +66,23 @@ function overlookBox() {
   }
 }
 
-//fix image display
+//Fix image display
 function rmJPG(pics) {
   for (i in pics)
     pics[i].replace("JPG", "jpg");
 }
 
-//reset animation counter after origin/destination change
+//Reset animation counter after origin/destination change
 function trackOptions() {
   cnt = 0;
 }
 
-function routeCalc() {
-  if (document.getElementById('start').value != 70)
-    calcRoute();
-  else
-    calcRoute2();
-};
-
+//Count how many times the 'Get Directions' has been clicked
 function countClicks() {
   cnt++;
 }
 
+//Reset directions to default values upon clearing map
 function resetDirections(elementId, val) {
   var elt = document.getElementById(elementId);
   elt.value = val;
@@ -101,16 +93,35 @@ $(document).ready(function() {
   setInterval(getWeather, 600000); //Update the weather every 10 minutes.
 });
 
+//Display current conditions as well as a 9-day forecast
 function getWeather() {
   $.simpleWeather({
     location: '37383',
     unit: 'f',
     success: function(weather) {
-      html =  '<h2 id=t>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+      dates = []; //Store dates in the following format '29 Apr 2016'
+
+      html = '<h2>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
       html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
       html += '<li class="currently">'+weather.currently+'</li></ul>';
 
-      $("#weather").html(html);
+      $("#weather").html(html); //Display current temperature
+
+      for(i in weather.forecast)
+        dates.push(weather.forecast[i].date);
+
+      //Show a 9-day forecast
+      forecast = '<table><tr><th colspan="10"> Forecast from ' + dates[0] + ' to ' + dates.slice(-1).pop() + ' </th></tr><tr>';
+      for(i in weather.forecast) {
+        forecast += '<td>' + weather.forecast[i].day+'</td>';
+      }
+      forecast += '</tr><tr>';
+      for(i in weather.forecast)
+        forecast += '<td>' + weather.forecast[i].high+'&deg;'+weather.units.temp +'</td>';
+      forecast += '</tr></table>';
+
+      $("#forecast").html(forecast); //Display forecast
+
     },
     error: function(error) {
       $("#weather").html('<p>'+error+'</p>');
@@ -128,6 +139,7 @@ function resetAll() {
 
   var field = document.getElementById("checkboxform");
 
+  //Remove all overlays
   for (var i = 0; i < field.length; i++) {
     field[i].checked = false;
   }
@@ -154,6 +166,7 @@ function resetAll() {
     currentLocationArray[i].setMap(null)
   }
 
+  //Remove all infoBubbles
   for (i in dorms)
     dorms[i].closeBubble();
 
@@ -166,6 +179,7 @@ function resetAll() {
   for (i in scenic)
     scenic[i].closeBubble();
 
+  //Remove directions
   directionsDisplay.setMap(null);
   document.getElementById("travel_data").innerHTML = "";
 
